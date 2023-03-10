@@ -65,7 +65,7 @@ while se_ejecuta:
             
             nombre = input("Nombre: ").title()
             primer_apellido = input("Primer Apellido: ").title()
-            segundo_apellido = input("segundo Apellido: ").title()
+            segundo_apellido = input("Segundo Apellido: ").title()
             nif = input("NIF: ").title()
             while not validaDNI(nif):
                 nif = input("Introduce un valor correcto: ")
@@ -74,16 +74,24 @@ while se_ejecuta:
             
             edad = input("Edad: ").title()
             while not edad.isnumeric() and edad < 0:
-                edad = input("Introduce un valor correcto: ")
+                edad = input("Introduce una edad valida: ")
                 
                 
                 
             direccion = input("Direccion: ").title()
-            telf_fijo = input("Telefono fijo: ").title()
-            telf_movil = input("Telefono movil: ").title()
+            
+            telf_fijo = input("Telefono fijo: ")
+            while not telf_fijo.isnumeric() and len(telf_fijo) == 9:
+                telf_fijo = input("Introduce un numero valido: ")
+
+            
+            telf_movil = input("Telefono movil: ")
+            while not telf_movil.isnumeric() and len(telf_movil) == 9:
+                telf_movil = input("Introduce un numero valido: ")
+            
             email = input("Email: ").title()
             while not validarEmail(email):
-                email = input("Introduce un valor correcto")
+                email = input("Introduce un email valido: ")
             
             #Pruebas
             # nombre = "Miguel"
@@ -113,6 +121,5 @@ while se_ejecuta:
             nuevo_valor = input("Cual es el nuevo valor del prametro?")
             print(mi_agenda.editar_contacto(contacto,parametro,nuevo_valor))    
             
-print(mi_agenda.contactos)
 
 
