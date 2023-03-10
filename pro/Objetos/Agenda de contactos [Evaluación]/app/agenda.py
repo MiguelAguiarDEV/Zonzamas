@@ -21,7 +21,7 @@ class Agenda():
     def anhadir_contacto(self,contacto:Contacto):
         self.contactos[contacto.nombre] = {"Nombre" : contacto.nombre ,"Primer Apellido" :contacto.primer_apellido,"Segundo apellido" :contacto.segundo_apellido,"NIF" :contacto.nif, "Edad" :contacto.edad, "Direccion" :contacto.direccion,"Telf fijo" :contacto.telf_fijo,"Telf_movil" :contacto.telf_movil,"Email" :contacto.email}
         
-    def mosrar_contactos(self):
+    def mostrar_contactos(self):
         agenda = ""
         for nombre in sorted(self.contactos):
             agenda += "->"+ nombre + "\n"
@@ -109,7 +109,7 @@ while se_ejecuta:
             mi_agenda.anhadir_contacto(contacto)
             
         case "L":
-            print(mi_agenda.mosrar_contactos())
+            print(mi_agenda.mostrar_contactos())
         
         case "B":
             contacto_deseado = input("¿Que contacto desea buscar? ")
