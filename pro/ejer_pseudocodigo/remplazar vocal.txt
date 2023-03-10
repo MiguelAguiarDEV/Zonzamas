@@ -1,0 +1,15 @@
+Cadena vocales = "AaÁáEeÉéIiÍíOoÓóUuÚú";
+Cadena palabra = Leer();
+Cadena palabraResultado = "";
+Entero i = 0;
+
+Mientras i < palabra.tamanho hacer
+    si estaEnArray(vocales, palabra[i]) entonces
+        palabraResultado += vocales[posCadena(vocales, palabra[i]) + 4];
+    si no 
+        palabraResultado += palabra[i];
+    fin si
+
+Fin Mientras
+
+Escribir (palabraResultado);

@@ -1,0 +1,37 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+#NavBar {
+    min-width: 980px;
+}
+
+.Contenedor {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.Menu,.Caja {
+    background-color: aqua;
+    width: 200px;
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+    margin-top:3px;
+}
+.Contenedor2 {
+    width: max-content;
+}
+
+.Contenedor2 div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.Contenedor2 div div {
+    display: block;
+}
+

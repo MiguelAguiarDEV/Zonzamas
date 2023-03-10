@@ -1,0 +1,13 @@
+Funcion validarCorreo(Cadena posibleCorreo)
+    si posCadena(posibleCorreo,@) > 0
+        si posCadena(posibleCorreo, .es) == posibleCorreo.tamanho-3 or posCadena(posibleCorreo, .com) == posibleCorreo.tamanho-4 entonces entonces 
+            devolder valido;  
+        Fin si 
+    Fin si 
+    devolver invalido;
+Fin Funcion
+
+
+Escribir ("Escriba su correo");
+Cadena correo = Leer();
+Escribir ("Su correo es "+ Cadena validarCorreo(posCorreo)

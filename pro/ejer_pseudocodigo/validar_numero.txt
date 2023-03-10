@@ -1,0 +1,10 @@
+Funcion validarNumero (Entero numero)
+        Logica bandera = Falso ;
+        si isInteger (numero) and isNumeric (numero) entonces
+                bandera = Verdadero ;
+
+        Fin si
+
+        devolver bandera;
+
+Fin Funcion

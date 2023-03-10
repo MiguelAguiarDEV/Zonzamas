@@ -1,0 +1,54 @@
+Cadena Tecla = "";
+Cadena dni = "";
+Entero km = "";
+Entero kmConductor[];
+Cadena AuxMasGrande
+
+##Introduzco dni y km en kmConductor
+Mientras Tecla != K or Tecla != k hacer
+    Escribir ("Inserte su dni");
+    Cadena dni = Leer();
+    Escribir  ("Inserte el numero de kilometros recorridos en un ano");
+    Entero km = Leer();
+    kmConductor[dni] = km;
+    Escribir ('Pulse la tecla "K" si quiere introducir otra persona');
+    Cadena Tecla = Leer("");
+Fin Mientras
+
+
+
+Entero kmConductor[];
+Entero Ordenados[];
+
+Cadena NombreMasGrande;
+Entero posicionMasGrande;
+
+
+
+para kmConductor como i => nombreConductor  hacer
+
+    tamamhoMasGrande = -1;
+    para kmConductor como j => nombreConductor hacer
+
+        si j > i and not estaEnArray(Ordenados, kmConductor[i]) entonces
+
+            NombreMasGrande = kmConductor[j];
+            tamamhoMasGrande = j;
+
+        Fin si
+
+    Fin Para
+
+    si tamamhoMasGrande >= 0 entonces
+        Ordenados[tamamhoMasGrande] = NombreMasGrande;
+    fin si
+
+Fin Para
+
+
+##Muestro en pantalla un listado de los dnis y los kilometros ordenados
+Para arrayOrdenada como dni => km hacer 
+    Cadena dni = dni
+    Cadena km = km
+    Escribir (dni+" "+" "+km+"\n") ;
+Fin Para

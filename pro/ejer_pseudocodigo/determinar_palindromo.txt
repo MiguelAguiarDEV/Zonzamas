@@ -1,0 +1,30 @@
+Cadena palabra = Leer();
+            // abalaba
+               0123456
+               1234567 tama
+
+Funcion reves(texto)
+    Cadena reves = "";
+    Entero fin = palabra.tamnho-1;
+    
+    Mientras fin >= 0 hacer
+        
+            reves += palabra[fin];
+
+            fin--;
+           
+    Fin Mientras 
+
+    devolver reves
+Fin Funcion
+
+
+si palabra == reves(palabra) entonces
+
+    Escribir (palabra + "es un palindromo");
+
+sino 
+
+    Escribir (palabra + "no es un palindromo");
+
+Fin si

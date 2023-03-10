@@ -1,0 +1,42 @@
+ 
+
+    if ()
+    {
+
+    }
+    else
+    {
+
+    }
+
+    $i = 0;
+    while ($i <100)
+    {
+
+        $i++;
+    }
+
+    for($i=0;$i<100;$i++)
+    {
+
+    }
+
+
+
+    $paises['España']['Canarias']['Las Palmas'] = 'Las Palmas de gran canarias'
+    $paises['paris'] = 'Francia';
+
+
+    $paises = array(
+
+        'madrid' =>  'España'
+        ,'paris' => 'Francia'
+    );
+
+
+
+    foreach($paises[] as $capital => $pais)
+    {
+
+
+    }

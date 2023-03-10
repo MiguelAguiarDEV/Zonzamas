@@ -1,0 +1,59 @@
+Funcion potencia(Entero base, Entero elevacion)
+    Entero i = 0;
+    Entero resultado = 1;
+    Mientras i < elevacion hacer
+        resultado = resultado * base;
+        i++;
+    Fin Mientras
+
+
+    devolver resultado;
+
+Fin funcion
+
+Funcion invertir(Cadena Cadena)
+    Cadena cadenaInvertida = "";
+    Entero i;
+    para i = cadena.tamanho hasta i == 0 hacer con paso 1
+        cadenaInvertida += cadena[i];
+    Fin para 
+  
+    
+    devolver cadenaInvertida
+
+Fin funcion
+
+Funcion binarioDecimal(Cadena binario)
+    binarioInvertido = invertir(binario);
+    Entero resultado = 0;
+    Entero i = 0;
+
+    Mientras i < binario.tamanho hacer
+        si binarioInvertido[i] == 1 entonces
+            resultado = potencia(2, i);
+        fin si
+        i++
+    Fin Mientras 
+    
+    devolver resultado;
+Fin Funcion
+
+
+----------------------------------------------------
+
+
+Funcion binarioDecimal(Cadena binario)
+    Entero resultado = 0;
+    Entero i = binario.tamanho;
+    Entero posFinal = binario.tamanho-1
+    Mientras i >= 0 hacer
+        si binario[i] == 1 entonces
+            resultado = potencia(2, -(i-posFinal);
+        fin si
+        i--
+    Fin Mientras 
+    
+    devolver resultado;
+Fin Funcion
+
+-----------------------------------------------

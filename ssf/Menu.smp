@@ -1,0 +1,120 @@
+SimuProc 1.4 - Vlaye
+1ba
+211
+
+
+
+42000
+What's wanted to do? (0) to exit
+42000
+(1) Addition
+42000
+(2) Substraction
+42000
+(3) Parity check
+40000
+
+32035
+
+31010
+
+32036
+
+3101A
+
+32037
+
+31026
+
+32034
+
+3100E
+
+99000
+
+42000
+Menu Exit
+99000
+
+42000
+Welcome to Magic-Addition!
+42000
+Insert the first number
+40000
+
+02038
+
+42000
+Insert the second number
+40000
+
+20038
+
+42000
+The answer is:
+41000
+
+30000
+
+42000
+Welcome to Insta-Subtraction!
+42000
+Insert the first number
+40000
+
+02038
+
+42000
+Insert the second number
+40000
+
+12AX
+
+08AX
+
+20038
+
+42000
+The answer is:
+41000
+
+30000
+
+42000
+Welcome to the parity-check Fest!
+42000
+Insert the data in binary
+40000
+
+3234
+
+18AX,1
+
+352E
+
+30029
+
+081
+
+18AX,1
+
+35032
+
+42000
+Even
+30000
+
+42000
+ODD
+30000
+
+0
+
+1
+
+10
+
+11
+
+101
+
