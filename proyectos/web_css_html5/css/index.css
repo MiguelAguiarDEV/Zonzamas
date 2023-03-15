@@ -3,9 +3,14 @@
     padding: 0;
     box-sizing: 0;
     font-family: 'Roboto', sans-serif;
+    font-style: none;
 }
+
+
+
 body {
 	background: #bbd3d3;
+    padding-bottom:100px ;
 }
 
 .contenedor {
@@ -92,6 +97,11 @@ div div {
     grid-column: 1 / -1;
 }
 
+.cabecera a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .banner {   
     width: 100%;
     overflow: hidden;
@@ -150,15 +160,17 @@ div div {
     background-color: #ff5400;
     border-radius: 7px 4px;
     padding: 4px 4px 3px 7px;
-    position: relative;
-
+    position: relative; 
+    display: inline-block;
 }
+
+
+
 
 .banner:hover img {
     transform: scale(1.5);
 
 } 
-/*TENDENCIAS*/
 
 .contenedor_juegos .titulo {
     margin: 0;
