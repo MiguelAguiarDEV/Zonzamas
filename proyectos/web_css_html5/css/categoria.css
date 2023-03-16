@@ -80,9 +80,6 @@ div div {
     display: flex;
 }
 
-.menu:hover .nombre {
-    display: ;
-}
 
 .menu:hover .elemento {
     /* Borrar si no se puede animar*/
