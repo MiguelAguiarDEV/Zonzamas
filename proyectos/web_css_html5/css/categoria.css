@@ -14,6 +14,7 @@ body {
 
 .contenedor {
 	width: 80%;
+    max-width: 900px;
 	margin: 20px auto;
 	display: grid;
 	grid-gap: 20px;
@@ -184,3 +185,53 @@ div div {
     transform: scale(1.3);
     z-index: 9999;
 }
+
+
+
+.categorias {
+    background-color: transparent;
+    padding: 0;
+}
+
+.categorias .texto {
+    background-color: #646464;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: fit-content;
+    padding: 0px;
+    padding-left: 10px;
+    color: #fff;
+}
+
+.categorias .texto h4 {
+    margin: auto 0;
+}
+
+.texto .simbolo {
+    background-color: transparent;
+    width: fit-content;
+    margin-left: auto;
+    transition: 0.5s;
+}
+
+.texto .simbolo #simbolo1{
+    padding: 0;
+    width: 4px;
+    height: 10px;
+    margin-bottom: -2px;
+    border-bottom-left-radius: 0px;
+    transform: skew(30deg);
+}
+
+
+.texto .simbolo #simbolo2{
+    padding: 0;
+    width: 4px;
+    height: 10px;
+    transform: skew(-30deg);
+}
+
+.categorias:hover .simbolo{
+    transform: rotate(90deg);
+}
+
