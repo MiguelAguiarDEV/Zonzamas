@@ -191,6 +191,7 @@ div div {
 .categorias {
     background-color: transparent;
     padding: 0;
+    width: min-content;
 }
 
 .categorias .texto {
@@ -231,7 +232,27 @@ div div {
     transform: skew(-30deg);
 }
 
+.tipos {
+    background-color: transparent;
+    padding: 0px;
+    display: none;
+    transition: 1s;
+}
+
+.tipos div {
+    background-color: #646464;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: -20px;
+}
+.tipos a {
+    color: #fff;
+    text-decoration: none;
+}
 .categorias:hover .simbolo{
     transform: rotate(90deg);
 }
 
+.categorias:hover .tipos {
+    display: block;
+}
