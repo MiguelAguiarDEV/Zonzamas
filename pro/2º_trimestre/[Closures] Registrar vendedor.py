@@ -1,6 +1,6 @@
+
+
 # Crear la función 'registrar_vendedor' aquí
-
-
 
 def registrar_vendedor(nombre):
     ventas = 0
