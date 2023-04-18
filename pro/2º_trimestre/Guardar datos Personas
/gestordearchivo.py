@@ -1,9 +1,9 @@
 class GestorDeArchivo():
     
-    def insertar_datos(self, ruta_archivo, nombre, apellidos, calle, numero_puerta,codigo_postal, nif, emails, telefonos):
+    def insertar_datos(self, ruta_archivo, nombre, apellidos, calle, numero_puerta,codigo_postal, nif, email, telefono):
         
         archivo = open(ruta_archivo, "a")
-        datos = 'nif: {' \
+        datos = nif+ ': {' \
                     '"nombre": "' + nombre + '",' \
                     '"apellidos": "' + apellidos + '",' \
                     '"direccion": "' + calle + numero_puerta + codigo_postal + '",' \
@@ -12,3 +12,6 @@ class GestorDeArchivo():
                 '}' \
 
         archivo.write(datos)
+
+    def 
+    
