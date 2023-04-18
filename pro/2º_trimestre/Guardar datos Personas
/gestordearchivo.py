@@ -12,6 +12,3 @@ class GestorDeArchivo():
                 '}' \
 
         archivo.write(datos)
-
-    def 
-    
