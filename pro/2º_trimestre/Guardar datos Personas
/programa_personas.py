@@ -3,14 +3,6 @@ from gestordearchivo import GestorDeArchivo
 
 #print("Elige la opción adecuada:\n[I] Insertar un nuevo usuario.\n[B] Buscar un elemento en el diccionario.[M] Mostrar el diccionario.[T] Terminar el programa.")
 
-
-###############################################
-#      Clase con para manejar el fichero      #
-###############################################
-
-
-
-
 gestor = GestorDeArchivo()
 validaciones = Validaciones()
 
