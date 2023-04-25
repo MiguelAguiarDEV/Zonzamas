@@ -5,7 +5,6 @@ import ast
 
 
 class Viaje():
-    
     archivo_viajes = "viajes.json"
         
     
@@ -34,8 +33,6 @@ class Viaje():
 
         datos_viaje[self.origen+"-"+self.destino] = vars(self)
 
-        #print(datos_persona)
-
         file.write(json.dumps(datos_viaje))
 
 
@@ -58,19 +55,12 @@ class Viaje():
 
     def buscar_viaje(self):
         file = open(Viaje.archivo_viajes,'r')
-
         encontrados = {}
-
         contenido = file.read()
-
         datos_viaje = ast.literal_eval(contenido)
-
-
         for codigo_viaje, datos_viaje in datos_viaje.items():
-
             if self.origen+"-"+self.destino in codigo_viaje:
                 encontrados[codigo_viaje] = datos_viaje
-
             if self.origen+"-"+self.destino in str(datos_viaje.values()):
                 encontrados[codigo_viaje] = datos_viaje
 
@@ -84,4 +74,3 @@ avion = Avion("747",700)
 viaje = Viaje(avion,"LZT", "GC", 40)
 
 viaje.anhadir_viaje()
-    
