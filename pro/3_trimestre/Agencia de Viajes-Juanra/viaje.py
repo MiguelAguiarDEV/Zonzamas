@@ -67,11 +67,6 @@ class Viaje():
         else:
             raise Exception('precio','No se ha insertado un precio de billete válido. ')
             
-    
-        
-    
-    
-    
     def guardar(self):
         
 
