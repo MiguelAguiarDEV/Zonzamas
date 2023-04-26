@@ -7,26 +7,26 @@ class EntradaNoValidaError(Exception):
 
 class Calculadora:
 
-    def sumar(self, a, b):
-        if  not isinstance(a,str) and not isinstance(b,str):
-            return   a + b
-        raise EntradaNoValidaError
+    def __init__(self, a, b):
+        self.a       = a
+        self.b = b
 
-    def restar (self, a, b):
-        if  not isinstance(a,str) and not isinstance(b,str):
-            return a - b
-        raise EntradaNoValidaError
-    
-    def multiplicar (self, a, b):
-        if  not isinstance(a,str) and not isinstance(b,str):
-            return a * b
-        raise EntradaNoValidaError
-    
-    def dividir (self, a, b):
-        if  not isinstance(a,str) and not isinstance(b,str):
-            if b == 0:
-                raise DivisionPorCeroError
-            return a / b
-        raise EntradaNoValidaError
+
+    def __add__ (self):
+
+        return Calculadora(self.a + self.b)
+
+    def __sub__ (self, otro):
+
+        return Calculadora(self.a - otro.a, self.b - otro.b)
+
+    def __mul__ (self, otro):
+       
+        return Calculadora(self.a * self.b) 
+
+    def __truediv__ (self, otro):
+        
+        return Calculadora((self.a * otro.a + self.b * otro.b)/(pow(otro.a,2) + pow(otro.b,2)) , (self.b * otro.a - self.a * otro.b)/(pow(otro.real,2) + pow(otro.b,2)) ) 
+
 
 
