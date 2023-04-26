@@ -1,11 +1,14 @@
 
 
 from avion import Avion
+from billete import Billete
 
 import ast
 import json
 
 class Viaje():
+    
+    viajes = {}
     
     archivo_datos = '/home/juanra/Escritorio/python/agencia/viajes.json'
     import ast
@@ -16,6 +19,8 @@ class Viaje():
         self.__avion            = avion
         self.__precio           = precio
         self.billetes_comprados = {}
+        
+        self.cargar_viajes()
         
         
         
@@ -67,6 +72,44 @@ class Viaje():
         else:
             raise Exception('precio','No se ha insertado un precio de billete válido. ')
             
+    
+    @staticmethod
+    def cargar_viajes():
+        file = open(Viaje.archivo_datos,'r')
+        
+        contenido = file.read()
+        
+        datos_viaje = ast.literal_eval(contenido)
+        
+        file.close()
+        
+        
+        i = 0
+        for id_viaje, _ in datos_viaje.items():
+            Viaje.viajes[i] = id_viaje
+            i += 1
+        
+        
+    @staticmethod
+    def representacion():
+        #Para que no aparezca vacío, porque cargar_viajes() se llama en el constructor y este método es estático.
+        Viaje.cargar_viajes()
+        
+        informacion = ''
+
+        for i, id_viaje in Viaje.viajes.items():
+            
+            informacion += f"[{i}] Viaje:  {id_viaje}\n"
+
+            
+        return informacion
+        
+        
+        
+        
+    
+    
+    
     def guardar(self):
         
 
@@ -78,9 +121,11 @@ class Viaje():
         
         file.close()
         
+        #print(datos_viaje)
+        
         file = open(Viaje.archivo_datos,'w')
 
-        datos_viaje = {}
+        #datos_viaje = {}
         
         datos_viaje[self.origen + '-' + self.destino] = {
             'origen' : self.origen
@@ -101,12 +146,23 @@ class Viaje():
         
         
         file.close()
+
+    
+    @staticmethod  
+    def guardar_billete(billete : Billete):
+        file = open(Viaje.archivo_datos,'r')
+        
+        contenido = file.read()
+        
+        datos_viaje = ast.literal_eval(contenido)
+        
+        file.close()
         
         
-        """
-        contenido = contenido + datos_viaje
+        datos_viaje[billete.id_viaje]['billetes_comprados'][billete.nif] = str(billete.num_billetes)
+
+        file = open(Viaje.archivo_datos,'w')
         
-     
-        """
+        file.write(json.dumps(datos_viaje))
         
-        
+        file.close()
