@@ -6,8 +6,19 @@ class Aplicacion():
     
     def on_key_press(self, key):
         self.epantalla.focus_set()
+        if key in ["/","+","-","*"]:
+            self.operacion = key
+            self.operador1 = self.pantalla.get()
+            print(self.operador1)
+            self.pantalla.set("")
+
+        elif key == "=":
+            self.operador2 = self.pantalla.get()
+            print(self.operador2)
+            self.pantalla.set(eval(f'{self.operador1} {self.operacion} {self.operador2}'))
         
-        if key.char in ["/","+","-","*"]:
+        
+        elif key.char in ["/","+","-","*"]:
             self.operador1 = self.pantalla.get()[:-1]
             self.operacion = key.char
             self.pantalla.set("")
@@ -16,7 +27,14 @@ class Aplicacion():
             self.operador2 = self.pantalla.get()[:-1]
 
             self.pantalla.set(eval(f'{self.operador1} {self.operacion} {self.operador2}'))
-            
+        elif key.keycode == 36:
+            self.operador2 = self.pantalla.get()
+
+            self.pantalla.set(eval(f'{self.operador1} {self.operacion} {self.operador2}'))
+
+        self.epantalla.icursor(END)
+        
+        
         
     def __init__(self):
         
@@ -70,22 +88,22 @@ class Aplicacion():
         self.boton0 = Button(self.raiz, text='0',width=10,height=2, command=lambda: self.insertar_numero('0'))
         self.boton0.grid(row=5, column=0)
 
-        self.boton_suma = Button(self.raiz, text='+', width=10,height=2,command=lambda: self.insertar_operacion('+'))
+        self.boton_suma = Button(self.raiz, text='+', width=10,height=2,command=lambda: self.on_key_press('+'))
         self.boton_suma.grid(row=2, column=3)
 
-        self.boton_resta = Button(self.raiz, text='-', width=10,height=2,command=lambda: self.insertar_operacion('-'))
+        self.boton_resta = Button(self.raiz, text='-', width=10,height=2,command=lambda: self.on_key_press('-'))
         self.boton_resta.grid(row=3, column=3)
 
-        self.boton_mult = Button(self.raiz, text='*', width=10,height=2,command=lambda: self.insertar_operacion('*'))
+        self.boton_mult = Button(self.raiz, text='*', width=10,height=2,command=lambda: self.on_key_press('*'))
         self.boton_mult.grid(row=4, column=3)
 
-        self.boton_div = Button(self.raiz, text='/', width=10,height=2,command=lambda: self.insertar_operacion('/'))
+        self.boton_div = Button(self.raiz, text='/', width=10,height=2,command=lambda: self.on_key_press('/'))
         self.boton_div.grid(row=5, column=3)
 
         self.boton_punto = Button(self.raiz, text='.', width=10,height=2,command=lambda: self.insertar_punto())
         self.boton_punto.grid(row=5, column=1)
 
-        self.boton_igual = Button(self.raiz, text='=', width=10,height=2,command=lambda: self.calcular_resultado())
+        self.boton_igual = Button(self.raiz, text='=', width=10,height=2,command=lambda: self.on_key_press("="))
         self.boton_igual.grid(row=5, column=2)
 
         self.boton_clear = Button(self.raiz, text='C', width=10,height=2,command=lambda: self.limpiar_pantalla())
@@ -98,10 +116,21 @@ class Aplicacion():
         
         self.raiz.mainloop()
 
+    def borrar_caracter(self):
+        self.pantalla.set(self.pantalla.get()[:-1])
+
+
+    def limpiar_pantalla(self):
+        self.pantalla.set("")
+        self.operacion = None
+        self.operador1 = None
+        self.operador2 = None
+
     def insertar_numero(self,numero):
         if validar_numero(numero):
             self.pantalla.set(self.pantalla.get() + numero)
-        
+            print(self.pantalla.get())
+            self.epantalla.icursor(END)
         
     
     
