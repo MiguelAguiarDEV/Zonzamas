@@ -6,6 +6,7 @@ class Aplicacion():
     
     def on_key_press(self, key):
         self.epantalla.focus_set()
+            
         if key.char in ["/","+","-","*"]:
             self.operador1 = self.epantalla.get()
             self.operacion = key.char
