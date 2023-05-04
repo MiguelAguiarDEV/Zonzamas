@@ -139,6 +139,8 @@ class Aplicacion():
         self.boton_raiz = Button(self.raiz, text='√',width=10,height=2, command=lambda: [self.on_key_press('sqrt('),self.epantalla.icursor(END)])
         self.boton_raiz.grid(row=6, column=2)
         self.raiz.mainloop()
+        
+        
     def insertar_numero(self, numero):
         self.epantalla.insert(END, numero)
 
