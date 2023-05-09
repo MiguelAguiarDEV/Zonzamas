@@ -167,6 +167,9 @@ class Aplicacion():
             self.pantalla.set("Error: Syntax Error")
         except NameError:
             self.pantalla.set("Error: Operacion Invalida ")
+        except TypeError:
+            self.pantalla.set("Error: Operacion Invalida ")
+
 def main():
     mi_app = Aplicacion()
     return 0
