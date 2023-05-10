@@ -66,7 +66,7 @@ class AgendaViajes:
             provincias = json.load(file)
         if self.origen.get() not in provincias:
             
-        
+        Haz la puta validacion
         # self.destino.set("")
         # self.precio.set("")
         # self.avion.set("")
