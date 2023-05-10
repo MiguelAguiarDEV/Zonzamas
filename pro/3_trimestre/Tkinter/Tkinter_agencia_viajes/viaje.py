@@ -10,7 +10,7 @@ class Viaje():
     
     viajes = {}
     
-    archivo_datos = '/home/juanra/Escritorio/python/agencia/viajes.json'
+    archivo_datos = '/home/miguel/Escritorio/Zonzamas/pro/3_trimestre/Tkinter/Tkinter_agencia_viajes/viajes.json'
 
     def __init__(self, origen = '', destino= '', avion = '', precio=0.0) -> None:
         
@@ -106,7 +106,21 @@ class Viaje():
         
         
         
-        
+    # @staticmethod
+    # def buscar_billete(destino,):
+
+    #     texto_busqueda = input("Introduzca el texto a buscar: ")
+    #     resultados = []
+    #     for viaje in self.viajes:
+    #         if texto_busqueda in viaje["destino"] or texto_busqueda in viaje["fecha"]:
+    #             resultados.append(viaje)
+    #     if len(resultados) == 0:
+    #         self.resultados_busqueda.config(text="No se encontraron resultados")
+    #     else:
+    #         texto_resultados = ""
+    #         for viaje in resultados:
+    #             texto_resultados += "Destino: " + viaje["destino"] + " - Fecha: " + viaje["fecha"] + " - Precio: " + viaje["precio"] + "\n"
+    #         self.resultados_busqueda.config(text=texto_resultados)
     
     
     
@@ -127,7 +141,7 @@ class Viaje():
 
         #datos_viaje = {}
         
-        datos_viaje[self.origen + '-' + self.destino] = {
+        datos_viaje[self.origen+'-'+self.destino] = {
             'origen' : self.origen
            ,'destino' : self.destino
            ,'billetes_comprados' : {}

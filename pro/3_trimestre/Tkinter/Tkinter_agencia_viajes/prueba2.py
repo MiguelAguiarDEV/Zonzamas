@@ -1,10 +1,9 @@
-from tkinter import Tk, Label, Entry, Button, Menu, filedialog
+from tkinter import *
 
 class AgendaViajes:
 
     def __init__(self):
-        self.viajes = []
-
+z
         # Crear ventana principal
         self.ventana = Tk()
         self.ventana.title("Agenda de Viajes")
