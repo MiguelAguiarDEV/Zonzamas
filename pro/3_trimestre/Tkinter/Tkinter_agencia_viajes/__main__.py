@@ -23,16 +23,20 @@ class AgendaViajes:
         self.campo_origen = Entry(self.root,textvariable=self.origen)
         self.campo_destino = Entry(self.root,textvariable=self.destino)
         self.campo_precio = Entry(self.root,textvariable=self.precio)
-        self.campo_avion = ttk.Combobox(self.root,values=Avion.tipos_aviones)
+
+        self.campo_avion = ttk.Combobox(self.root,values=Avion.tipos_aviones,state="readonly")
         self.campo_avion.set("Elige un Avion")
-        self.boton_alta = Button(self.root, text="Dar de alta", command=lambda : Viaje(self.origen.get(),self.destino.get(),Avion(self.avion.get()),self.precio.get()).guardar())
+
+            
+            
+        self.boton_alta = Button(self.root, text="Dar de alta", command=lambda: )
 
         self.menu = Menu(self.root)
 
         
         self.menu.add_command(label="Cargar", command=None)
-        self.menu.add_command(label="Guardar", command=None)
         self.menu.add_command(label="Buscar", command=None)
+        self.menu.add_command(label="Billete", command=self.root.destroy)
         self.menu.add_command(label="Salir", command=self.root.destroy)
 
         self.root.config(menu = self.menu)
@@ -50,11 +54,40 @@ class AgendaViajes:
         self.root.rowconfigure(0, weight=1)
         self.root.columnconfigure(0, weight=1)
 
-
+        
 
 # Crear objeto AgendaViajes y ejecutar la aplicación
         self.root.mainloop()
+    
+    def dar_de_alta(self):
+        
+        
+        with open('provincias_invertido.json', 'r') as file:
+            provincias = json.load(file)
+        if self.origen.get() not in provincias:
+            
+        
+        # self.destino.set("")
+        # self.precio.set("")
+        # self.avion.set("")
+        # self.campo_avion.set("Elige un Avion")
 
+        
+        #     except TypeError:
+        #     self.pantalla.set("Error: Operacion Invalida ")
+        
+        self.limpiar_variables()
+        return Viaje(self.origen.get(), self.destino.get(), Avion(self.campo_avion.get()), self.precio.get()).guardar()
+        
+        
+    
+    def limpiar_variables(self):
+        self.origen.set("")
+        self.destino.set("")
+        self.precio.set("")
+        self.avion.set("")
+        self.campo_avion.set("Elige un Avion")
+            
 def main():
     mi_app = AgendaViajes()
     return 0

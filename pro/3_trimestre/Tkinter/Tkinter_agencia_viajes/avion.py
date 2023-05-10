@@ -33,4 +33,3 @@ class Avion():
         return informacion
             
             
-print(Avion.tipos)
