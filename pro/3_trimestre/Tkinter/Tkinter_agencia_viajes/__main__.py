@@ -7,7 +7,7 @@ from validaciones import *
 class AgendaViajes:
 
     def __init__(self):
-
+        self.archivo_provincias = open('/home/miguel/Escritorio/Zonzamas/pro/3_trimestre/Tkinter/Tkinter_agencia_viajes/provincias.json', 'r')
         # Crear root principal
         self.root = Tk()
         self.root.title("Agenda de Viajes")
@@ -37,9 +37,9 @@ class AgendaViajes:
         self.menu = Menu(self.root)
 
         
-        self.menu.add_command(label="Cargar", command=None)
+        self.menu.add_command(label="Cargar", command=self.cargar_archivo)
         self.menu.add_command(label="Buscar", command=None)
-        self.menu.add_command(label="Billete", command=self.root.destroy)
+        self.menu.add_command(label="Billete", command=None)
         self.menu.add_command(label="Salir", command=self.root.destroy)
 
         self.root.config(menu = self.menu)
@@ -63,20 +63,19 @@ class AgendaViajes:
     
     def dar_de_alta(self):
         
-        with open('/home/miguel/Escritorio/Zonzamas/pro/3_trimestre/Tkinter/Tkinter_agencia_viajes/provincias.json', 'r') as file:
-            provincias = json.load(file)
-        if self.origen.get() not in provincias:
-            self.error = Toplevel()
-            self.error_label = Label(self.error,text="Se Inserto un coddigo de provincia invalido")
-            self.error_boton = ttk.Button(self.error,text="Aceptar",command=lambda: self.error.destroy())
-            self.error_label.pack()
-            self.error_boton.pack()
-            self.limpiar_variables()
-            self.root.wait_window(self.error)
-            raise ProvinciaNoValida("Se puso un Codigo de provincia no valido")
-            
-        else:
-            return Viaje(self.origen.get(), self.destino.get(), Avion(self.campo_avion.get()), self.precio.get()).guardar()
+            self.provincias = json.load(self.archivo_provincias)
+            if self.origen.get() not in self.provincias:
+                self.error = Toplevel()
+                self.error_label = Label(self.error,text="Se Inserto un coddigo de provincia invalido")
+                self.error_boton = ttk.Button(self.error,text="Aceptar",command=lambda: self.error.destroy())
+                self.error_label.pack()
+                self.error_boton.pack()
+                self.limpiar_variables()
+                self.root.wait_window(self.error)
+                raise ProvinciaNoValida("Se puso un Codigo de provincia invalido")
+                
+            else:
+                return Viaje(self.origen.get(), self.destino.get(), Avion(self.campo_avion.get()), self.precio.get()).guardar()
         
         
     
@@ -88,8 +87,10 @@ class AgendaViajes:
         self.campo_avion.set("Elige un Avion")
     
        
+    def cargar_archivo(self):
+        self.arcivo_nuevo = fd.askopenfilename()
+
         
-            
 def main():
     mi_app = AgendaViajes()
     return 0

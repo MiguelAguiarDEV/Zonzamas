@@ -1,8 +1,9 @@
+
+create database ligasantander;
+use ligasantander;
 drop table partidos;
 drop table equipos;
 
-
-commit;
 
 create table equipos (
 	codequipo integer NOT NULL AUTO_INCREMENT,  
@@ -25,7 +26,8 @@ create table partidos (
 	PRIMARY KEY (codpartido)
 );
 
-commit;
+
+
 
 insert into equipos(nombre, localidad) values('Barcelona','Barcelona');
 insert into equipos(nombre, localidad) values('Real Madrid','Madrid');

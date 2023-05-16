@@ -4,7 +4,7 @@ DROP FUNCTION IF EXISTS FUN_DEPTO_SALARIO;
 DELIMITER $$
 CREATE FUNCTION FUN_DEPTO_SALARIO (departamento_deseado INT)
 RETURNS INT 
-DETERMINISTIC
+DETERMINISTIC 
 BEGIN
     SELECT depto_no into @depto_no_var from empleado where depto_no = departamento_deseado limit 1;
     SELECT sum(salario) into @salario_total from empleado where depto_no = departamento_deseado;
