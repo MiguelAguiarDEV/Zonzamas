@@ -21,7 +21,7 @@ BEGIN
         SELECT CONCAT(COUNT(*) + 1, 'º') into @clasificacion
         FROM clasificacion_liga
         WHERE puntos > @puntuacion_equipo;
-        RETURN @puntuacion_equipo;
+        RETURN @clasificacion;
     END IF;
     
 END $$
