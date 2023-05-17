@@ -5,7 +5,6 @@ function rail(texto,nlineas) {
     var resultado = "";
     var longitud_texto = texto.length; 
     var caracteres_fila = Math.round(longitud_texto / nlineas) 
-    console.log(longitud_texto)
     for (let i = 0; i < nlineas; i++) {
         var fila = document.createElement("tr");
         var x = 0
