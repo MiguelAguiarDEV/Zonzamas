@@ -1,0 +1,14 @@
+{
+    "Lanzarote-Gran Canaria": {
+        "origen": "Lanzarote",
+        "destino": "Gran Canaria",
+        "avion": "Airbus 319",
+        "billetes_comprados": {
+            "1": {
+                "viaje": "Lanzarote-Gran Canaria",
+                "nombre": "Juan Rafael",
+                "apellidos": "Curbelo Arrocha"
+            }
+        }
+    }
+}

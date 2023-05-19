@@ -88,8 +88,11 @@ class AgendaViajes:
     
        
     def cargar_archivo(self):
-        self.arcivo_nuevo = fd.askopenfilename()
-
+        self.ruta_archivo_nuevo = fd.askopenfilename()
+        self.archivo_nuevo = open(self.ruta_archivo_nuevo,'r')
+        self.contenido_archivo_nuevo = self.archivo_nuevo.read()
+        self.datos_archivo_nuevo = ast.literal_eval(self.contenido_archivo_nuevo)
+        
         
 def main():
     mi_app = AgendaViajes()
