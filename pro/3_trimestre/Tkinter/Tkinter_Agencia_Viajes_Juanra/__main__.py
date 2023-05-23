@@ -9,13 +9,16 @@ from aeropuerto import Aeropuerto
 from avion import Avion
 from billete import Billete
 from viaje import Viaje
+from usuario import Usuario
+from tkinter import filedialog as fd
 
+import json
 
 class AgenciaDeViaje():
     
     
     ruta_guardado = os.path.dirname(__file__) + os.sep + 'bbdd' + os.sep + 'viajes.json'
-    
+    ruta_usuarios = os.path.dirname(__file__) + os.sep + 'bbdd' + os.sep + 'usuarios.json'
     
     def __init__(self,iconos):
         
@@ -42,6 +45,8 @@ class AgenciaDeViaje():
         
         #DECLARAR StringsVars
         
+        
+        self.var_mostrar_contrasena = IntVar()
         self.nombre    = StringVar(value="")
         self.apellidos = StringVar(value="")
         self.viaje     = StringVar(value="")
@@ -49,10 +54,52 @@ class AgenciaDeViaje():
         self.destino   = StringVar(value="")
         self.avion     = StringVar(value="")
         self.filtro    = StringVar(value="")
-        
+        self.nombre_iniciar_sesion = StringVar(value="")
+        self.contrasenha_iniciar_sesion = StringVar(value="")
         
         self.viajes = self.leer_viajes()
+        self.usuarios = self.leer_usuarios()
         
+        self.frame_iniciar_sesion = Frame(self.raiz)
+        self.frame_iniciar_sesion.config(bg="lightblue")
+        
+        self.frame_iniciar_sesion.config(width=400, height=300)
+        
+        self.frame_iniciar_sesion.pack(side=TOP)
+        
+        self.frame_contrasenha = Frame(self.frame_iniciar_sesion)
+        
+        self.etiqueta_nombre = ttk.Label(self.frame_iniciar_sesion , text="Nombre: "   , justify="left", width=40, padding=[10])
+        self.etiqueta_contrasenha = ttk.Label(self.frame_iniciar_sesion , text="Contraseña: "   , justify="left", width=40, padding=[10])
+
+        self.nombre_iniciar_sesion = ttk.Entry(self.frame_iniciar_sesion, justify="left", textvariable=self.nombre_iniciar_sesion)
+
+        self.contrasenha_iniciar_sesion = ttk.Entry(self.frame_contrasenha, justify="left", textvariable=self.contrasenha_iniciar_sesion, show="*")
+        self.botton_ver_contrasenha = ttk.Checkbutton(self.frame_contrasenha, text = "Ver", variable = self.var_mostrar_contrasena , command=self.mostrar_contrasena)
+
+        self.botton_iniciar_sesion = ttk.Button(self.frame_iniciar_sesion, text="Iniciar Sesion", command=self.iniciar_sesion)
+        self.botton_registrar_cuenta = ttk.Button(self.frame_iniciar_sesion, text="Registrarse", command=self.registrar_cuenta)
+        
+        
+        self.etiqueta_nombre.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        self.nombre_iniciar_sesion.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        self.etiqueta_contrasenha.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        
+        self.frame_contrasenha.pack(side=TOP,fill=BOTH)
+        self.contrasenha_iniciar_sesion.pack(side=LEFT, fill=BOTH, expand=True)
+        self.botton_ver_contrasenha.pack(side=RIGHT)
+
+        
+        self.botton_iniciar_sesion.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        self.botton_iniciar_sesion.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        self.botton_registrar_cuenta.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        
+        self.raiz.mainloop()
+        
+        
+    
+    def cargar_programa(self):
+                
         barramenu = Menu(self.raiz)
         
         self.raiz['menu'] = barramenu
@@ -112,13 +159,42 @@ class AgenciaDeViaje():
         self.raiz.bind("<Control-l>", lambda event: self.listado_viajes())
         self.raiz.bind("<Control-o>", lambda event: self.carga_externa())
         
-        
-        
-        self.raiz.mainloop()
-
+    def mostrar_contrasena(self):
+        if self.var_mostrar_contrasena.get() == 1:  # El Checkbutton está marcado
+            self.contrasenha_iniciar_sesion.config(show="")
+        else:
+            self.contrasenha_iniciar_sesion.config(show="*")
     
-    def destruir_frames(self):
+    def iniciar_sesion(self):
+
+        nombre = self.nombre_iniciar_sesion.get()
+        contrasenha = self.contrasenha_iniciar_sesion.get()
+
         
+        if nombre in self.usuarios.keys():
+                if self.usuarios[nombre].diccionario() == :
+                    self.frame_iniciar_sesion.destroy()
+                    self.cargar_programa()
+        
+    
+    
+    def registrar_cuenta(self):
+        pass
+    
+    
+            
+    def guardar_usuarios(self):
+        pass
+   
+    
+    
+    def destruir_frames_viajes(self):
+        for widget in self.frame_viajes.winfo_children():
+
+            widget.destroy()
+            
+    def destruir_frames(self):
+
         for widget in self.frame.winfo_children():
             widget.destroy()
         
@@ -181,26 +257,172 @@ class AgenciaDeViaje():
         try:
             viaje_seleccionado.billetes_comprados = nuevo_billete
         except Exception as error:
+            errores = True
             texto_errores += error.args[1]
             
-            
+        
+
+        
         
         if errores:
             messagebox.showerror("Hay errores en el formulario", texto_errores)
         else:
-            self.guardar_fichero()
+            self.viajes[nuevo_billete.viaje] = viaje_seleccionado
+            self.guardar_viajes()
+            messagebox.showinfo("Agregado", "Se ha guardado el billete con éxito")
     
-    def guardar_fichero(self):
-        pass
+    def guardar_viajes(self):
+        f = open(self.ruta_guardado,'w')
+        
+        
+        
+        dict_viajes = {}
+        
+        for viaje in self.viajes: 
+            dict_viajes.update(self.viajes[viaje].diccionario())
+        #hace lo mismo    
+        #for key_viaje, viaje in self.viajes.items(): 
+        #    dict_viajes.update(viaje.diccionario())
+            
+        f.write(json.dumps(dict_viajes, indent=4))
+            
     
     def listado_viajes(self):
         self.destruir_frames()
+        
+        etiqueta_filtro    = ttk.Label(self.frame , text="Filtro: "             , justify="left", width=40, padding=[10])
+        etiqueta_listado   = ttk.Label(self.frame , text="Listado de viajes: "  , justify="left", width=40, padding=[10])
+        
+        filtro  = ttk.Entry(self.frame, justify="left", textvariable=self.filtro)
+        filtrar = ttk.Button(self.frame, text="Filtrar", command=self.filtrar)
+        
+        self.frame_viajes = Frame(self.frame)
+        
+        etiqueta_filtro.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        filtro.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        filtrar.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        etiqueta_listado.pack(side=TOP, fill=BOTH, padx=5, pady=5)      
+        self.frame_viajes.pack(side=TOP)
+        
+        
+        self.info_filtrar()
+        
+    def info_filtrar(self, texto_filtrado=""):
+  
+       
+        scrollbar = Scrollbar(self.frame_viajes)
+        scrollbar.pack(side="right",fill="y")
+        
+        self.treeview_viajes = ttk.Treeview(self.frame_viajes,  columns=('destino', 'avion', 'capacidad'), yscrollcommand= scrollbar.set)
+        
+        self.treeview_viajes.heading("#0"       , text="Origen")
+        self.treeview_viajes.heading("destino"  , text="Destino")
+        self.treeview_viajes.heading("avion"    , text="Avión")
+        self.treeview_viajes.heading("capacidad", text="Capacidad")
+        
+        
+        for key_viajes in self.viajes:
+            contenido_viajes = str(self.viajes[key_viajes])
+            
+            if texto_filtrado == '' or texto_filtrado.lower() in contenido_viajes.lower():
+            
+                self.treeview_viajes.insert(
+                        ""
+                    ,END
+                    ,text=self.viajes[key_viajes].origen.sede
+                    ,values=(self.viajes[key_viajes].destino.sede, self.viajes[key_viajes].avion.modelo, self.viajes[key_viajes].avion.capacidad)
+                )
+        
+        scrollbar.config(command=self.treeview_viajes.yview)
+        self.treeview_viajes.pack()
+        
+    
+    def filtrar(self):
+        self.destruir_frames_viajes()
+        
+        self.info_filtrar(self.filtro.get())
     
     def carga_externa(self):
         self.destruir_frames()
+        
+        ruta_datos_externos = fd.askopenfilename(initialdir="/", title="Seleccione archivo de carga externa", filetypes=(("json files","*.json"), ("todos los archivos", "*.*")))
+        
+        viajes_externos = self.leer_viajes(ruta_datos_externos)
+        
+        self.viajes.update(viajes_externos)
+        
+        self.guardar_fichero()
+        
+        #self.viajes
+
+        
     
     def nuevo_viaje(self):
         self.destruir_frames()
+        
+        etiqueta_origen  = ttk.Label(self.frame , text="Origen: " , justify="left", width=40, padding=[10])
+        etiqueta_destino = ttk.Label(self.frame , text="Destino: " , justify="left", width=40, padding=[10])
+        etiqueta_avion   = ttk.Label(self.frame , text="Avión: " , justify="left", width=40, padding=[10])
+        
+        select_origen  = OptionMenu(self.frame, self.origen, *Aeropuerto.listado)
+        select_destino = OptionMenu(self.frame, self.destino, *Aeropuerto.listado)
+        select_avion   = OptionMenu(self.frame, self.avion, *Avion.modelos.keys())
+        
+        guardar = ttk.Button(self.frame, text="Guardar", command=self.guardar_viaje)
+        
+        
+        etiqueta_origen.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        select_origen.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        etiqueta_destino.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        select_destino.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        etiqueta_avion.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        select_avion.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        guardar.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+    
+    
+    def guardar_viaje(self):
+        texto_errores = ''
+        
+        if not self.origen.get():
+            texto_errores += " - No se ha especificado un origen.\n"
+        if not self.destino.get():
+            texto_errores += " - No se ha especificado un destino.\n"
+        if not self.avion.get():
+            texto_errores += " - No se ha especificado un avion.\n"
+        if self.origen.get() and self.origen.get() == self.destino.get():
+            texto_errores += " - Origen, no puede ser igual a destino.\n"
+        if self.viajes.get(self.origen.get() + '-' + self.destino.get()):
+            texto_errores += " - El viaje ya se encuentra en nuestra BBDD.\n"
+            
+        if texto_errores:
+            messagebox.showerror("Hay errores en el formulario", texto_errores)
+        else:
+            viaje = Viaje(Aeropuerto(self.origen.get()),Aeropuerto(self.destino.get()), Avion(self.avion.get()))
+            self.viajes[self.origen.get() + '-' + self.destino.get()] = viaje
+            self.guardar_fichero()
+            messagebox.showinfo("Éxito", "Viaje creado con éxito")
+    
+    def leer_usuarios(self, ruta = ruta_usuarios):
+        f = open(ruta,'r')
+        
+        texto = f.read()
+        
+        dict_usuario = ast.literal_eval(texto)
+        
+        
+        usuarios = {}
+        
+        for key  in dict_usuario:
+            
+            
+            dict_usuario[key]
+            
+            usuario = Usuario(dict_usuario[key],dict_usuario[key]['contrasenha'])
+    
+            usuarios[key] = usuario
+        
+        print(usuarios)    
+        return usuarios
     
     def leer_viajes(self, ruta = ruta_guardado):
         
