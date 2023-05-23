@@ -172,7 +172,7 @@ class AgenciaDeViaje():
 
         
         if nombre in self.usuarios.keys():
-                if self.usuarios[nombre].diccionario() == :
+                if self.usuarios[nombre].diccionario()["contrasenha"] == contrasenha :
                     self.frame_iniciar_sesion.destroy()
                     self.cargar_programa()
         
@@ -351,7 +351,7 @@ class AgenciaDeViaje():
         
         self.viajes.update(viajes_externos)
         
-        self.guardar_fichero()
+        self.guardar_viajes()
         
         #self.viajes
 
@@ -399,7 +399,7 @@ class AgenciaDeViaje():
         else:
             viaje = Viaje(Aeropuerto(self.origen.get()),Aeropuerto(self.destino.get()), Avion(self.avion.get()))
             self.viajes[self.origen.get() + '-' + self.destino.get()] = viaje
-            self.guardar_fichero()
+            self.guardar_viajes()
             messagebox.showinfo("Éxito", "Viaje creado con éxito")
     
     def leer_usuarios(self, ruta = ruta_usuarios):
