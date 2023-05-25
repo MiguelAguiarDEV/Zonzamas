@@ -28,6 +28,6 @@ class Usuario():
             self.__contrasenha = nuevo_contrasenha
 
     def diccionario(self):
-        return {self.nombre: {"nombre": self.nombre, "contrasenha": self.contrasenha}}
+        return {self.__nombre: {"nombre": self.__nombre, "contrasenha": self.__contrasenha}}
             
             

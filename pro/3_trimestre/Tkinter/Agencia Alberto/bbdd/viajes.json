@@ -1,4 +1,8 @@
 {
+    "Usuarios": {
+        "admin": "admin",
+        "alberto": "csas1234"
+    },
     "Viajes": {
         "Lanzarote-Gran Canaria": {
             "origen": "Lanzarote",
@@ -33,34 +37,6 @@
                     "apellidos": "Calamaro"
                 }
             }
-        },
-        "Tenerife-La Palma": {
-            "origen": "Tenerife",
-            "destino": "La Palma",
-            "avion": "Boeing 747",
-            "billetes_comprados": {}
-        }
-    },
-    "Usuarios": {
-        "Miguel": {
-            "nombre": "Miguel",
-            "contrasenha": "Miguel36y"
-        },
-        "Alain": {
-            "nombre": "Alain",
-            "contrasenha": "Alain36y"
-        },
-        "asda": {
-            "nombre": "asda",
-            "contrasenha": "asdads"
-        },
-        "Juanra": {
-            "nombre": "Juanra",
-            "contrasenha": "Juanra36y"
-        },
-        "asdasdsad": {
-            "nombre": "asdasdsad",
-            "contrasenha": "asdasdasdada"
         }
     }
 }

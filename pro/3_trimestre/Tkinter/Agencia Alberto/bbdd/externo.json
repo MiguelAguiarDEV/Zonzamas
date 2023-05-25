@@ -1,4 +1,8 @@
-{
+{ 
+    "Usuarios" : {
+        "admin"    : "admin"
+        ,"alberto"  : "csas1234" 
+    },
     "Viajes": {
         "Lanzarote-Gran Canaria": {
             "origen": "Lanzarote",
@@ -39,28 +43,18 @@
             "destino": "La Palma",
             "avion": "Boeing 747",
             "billetes_comprados": {}
-        }
-    },
-    "Usuarios": {
-        "Miguel": {
-            "nombre": "Miguel",
-            "contrasenha": "Miguel36y"
         },
-        "Alain": {
-            "nombre": "Alain",
-            "contrasenha": "Alain36y"
+        "Fuerteventura-Tenerife": {
+            "origen": "Fuerteventura",
+            "destino": "Tenerife",
+            "avion": "Airbus 319",
+            "billetes_comprados": {}
         },
-        "asda": {
-            "nombre": "asda",
-            "contrasenha": "asdads"
-        },
-        "Juanra": {
-            "nombre": "Juanra",
-            "contrasenha": "Juanra36y"
-        },
-        "asdasdsad": {
-            "nombre": "asdasdsad",
-            "contrasenha": "asdasdasdada"
+        "Lanzarote-La Gomera": {
+            "origen": "Lanzarote",
+            "destino": "La Gomera",
+            "avion": "Airbus 320",
+            "billetes_comprados": {}
         }
     }
 }
