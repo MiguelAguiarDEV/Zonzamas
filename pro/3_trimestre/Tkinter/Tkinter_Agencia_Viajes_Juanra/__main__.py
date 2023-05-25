@@ -72,16 +72,24 @@ class AgenciaDeViaje():
             
     def cerrar_sesion(self):
         self.sesion_iniciada = False 
+        self.limpiar_contenido()
         
-
         self.log_in_interfaz()
 
         
-        
+    
+
+
+
+
+
+    def limpiar_contenido(self):
+        for widget in self.raiz.winfo_children():
+            widget.destroy()
+
     def log_in_interfaz(self):
         
-
-        self.destruir_frames
+        
 
         self.viajes = self.leer_viajes()
 
@@ -200,10 +208,21 @@ class AgenciaDeViaje():
         contrasenha = self.contrasenha_iniciar_sesion.get()
 
         
-        if nombre in self.usuarios.keys():
-            if self.usuarios[nombre].contrasenha == contrasenha :
-                self.frame_iniciar_sesion.destroy()
-                self.cargar_programa()
+        if nombre:
+            if nombre in self.usuarios.keys():
+
+                if self.usuarios[nombre].contrasenha == contrasenha:
+                    self.frame_iniciar_sesion.destroy()
+                    self.cargar_programa()
+                else:
+                    messagebox.showerror("Error de inicio de sesión", "Contraseña incorrecta.")
+            else:
+                messagebox.showerror("Error de inicio de sesión", "Usuario no encontrado.")
+        else:
+            messagebox.showerror("Error de inicio de sesión", "Introduce un usuario.")
+
+
+
     
     def registrar_usuario(self):
         
