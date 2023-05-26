@@ -61,6 +61,14 @@
         "asdasdsad": {
             "nombre": "asdasdsad",
             "contrasenha": "asdasdasdada"
+        },
+        "malo": {
+            "nombre": "malo",
+            "contrasenha": "asdf"
+        },
+        "mario\\n123": {
+            "nombre": "mario\\n123",
+            "contrasenha": "alo\\n"
         }
     }
 }
