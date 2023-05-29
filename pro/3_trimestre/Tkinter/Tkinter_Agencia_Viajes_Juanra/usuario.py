@@ -26,14 +26,8 @@ class Usuario():
             raise Exception('contrasenha', 'No se ha insertado un contrasenha. ')
         else:
             self.__contrasenha = nuevo_contrasenha
-                 
-            
+
     def diccionario(self):
-        
-        return {
-             'nombre'     : self.__nombre
-            ,'contrasenha'    : self.__contrasenha
-        }
-            
+        return {self.__nombre: {"nombre": self.__nombre, "contrasenha": self.__contrasenha}}
             
             

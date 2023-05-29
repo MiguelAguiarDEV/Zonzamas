@@ -41,7 +41,7 @@ class Billete():
             raise Exception('apellidos', 'No se ha insertado un apellidos. ')
         else:
             self.__apellidos = nuevo_apellidos
-
+                 
             
     def diccionario(self):
         

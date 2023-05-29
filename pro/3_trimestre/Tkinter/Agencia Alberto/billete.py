@@ -1,12 +1,9 @@
-
-
 class Billete():
     
     def __init__(self):
         self.__viaje = ''
         self.__nombre = ''
         self.__apellidos = ''
-        
         
     @property
     def viaje(self):
@@ -18,7 +15,6 @@ class Billete():
             raise Exception('viaje', 'No se han insertado viajes. ')
         else:
             self.__viaje = nuevo_viaje
-            
             
     @property
     def nombre(self):
@@ -40,8 +36,7 @@ class Billete():
         if not nuevo_apellidos:
             raise Exception('apellidos', 'No se ha insertado un apellidos. ')
         else:
-            self.__apellidos = nuevo_apellidos
-
+            self.__apellidos = nuevo_apellidos            
             
     def diccionario(self):
         
@@ -49,9 +44,7 @@ class Billete():
              'viaje'     : self.__viaje
             ,'nombre'    : self.__nombre
             ,'apellidos' : self.__apellidos
-        }
-            
-            
+        } 
             
     def __str__(self):
         
