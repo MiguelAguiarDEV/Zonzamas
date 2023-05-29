@@ -268,10 +268,10 @@ class AgenciaDeViaje():
             messagebox.showerror("Hay errores en el formulario", texto_errores)
         else:
             self.viajes[nuevo_billete.viaje] = viaje_seleccionado
-            self.guardar_viajes()
+            self.guardar_json()
             messagebox.showinfo("Agregado", "Se ha guardado el billete con éxito")
     
-    def guardar_viajes(self):
+    def guardar_json(self):
         f = open(self.ruta_guardado,'w')
         
         
@@ -280,10 +280,7 @@ class AgenciaDeViaje():
         
         for viaje in self.viajes: 
             dict_viajes.update(self.viajes[viaje].diccionario())
-        #hace lo mismo    
-        #for key_viaje, viaje in self.viajes.items(): 
-        #    dict_viajes.update(viaje.diccionario())
-            
+        
         f.write(json.dumps(dict_viajes, indent=4))
             
     
@@ -351,7 +348,7 @@ class AgenciaDeViaje():
         
         self.viajes.update(viajes_externos)
         
-        self.guardar_viajes()
+        self.guardar_json()
         
         #self.viajes
 
@@ -399,7 +396,7 @@ class AgenciaDeViaje():
         else:
             viaje = Viaje(Aeropuerto(self.origen.get()),Aeropuerto(self.destino.get()), Avion(self.avion.get()))
             self.viajes[self.origen.get() + '-' + self.destino.get()] = viaje
-            self.guardar_viajes()
+            self.guardar_json()
             messagebox.showinfo("Éxito", "Viaje creado con éxito")
     
     def leer_usuarios(self, ruta = ruta_usuarios):
