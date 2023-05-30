@@ -1,4 +1,4 @@
-var txt = "Hola, como estas?"
+var txt = "Hola, como estas PUTA GUARRA?"
 
 
 
