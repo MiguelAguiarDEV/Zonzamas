@@ -19,8 +19,9 @@ class BBDD():
         
     def hacer_consulta(self,consulta):
         self.cur.execute(consulta)
-        for resultado_consulta in self.cur.fetchall():
-            resultado_consulta += resultado_consulta
+        resultado_consulta = []
+        for x in self.cur.fetchall():
+            resultado_consulta.append(x)
         return resultado_consulta
     
     def insertar_datos(self,insercion):
