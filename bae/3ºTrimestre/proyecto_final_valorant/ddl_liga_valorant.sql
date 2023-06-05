@@ -75,7 +75,7 @@ CREATE TABLE partidas (
     cod_bo3 INT,
     cod_equipo_1 INT,
     cod_equipo_2 INT,
-    num_partida INT,
+    num_partida INT CHECK (num_partida IN ('1', '2', '3')),
     rondas_equipo1 INT,
     rondas_equipo2 INT,
     cod_mapa VARCHAR(20),
@@ -88,7 +88,6 @@ CREATE TABLE partidas (
 CREATE TABLE clasificacion (
     posicion INT,
     cod_equipo INT,
-    nombre_eq VARCHAR(30),
     PRIMARY KEY (cod_equipo),
     FOREIGN KEY (cod_equipo) REFERENCES equipos(cod_equipo)
 );
@@ -96,6 +95,7 @@ CREATE TABLE clasificacion (
 CREATE TABLE mapas (
     cod_mapa INT AUTO_INCREMENT,
     partidas_jugadas INT DEFAULT 0,
+    nombre VARCHAR(20),
     PRIMARY KEY (cod_mapa)
 );
 
