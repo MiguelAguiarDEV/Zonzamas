@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS liga_valorant;
+DROP DATABASE IF EXISTS bd_analisis_valorant;
 
-CREATE DATABASE liga_valorant;
+CREATE DATABASE bd_analisis_valorant;
 
-USE liga_valorant;
+USE bd_analisis_valorant;
 
 DROP TABLE IF EXISTS partidas;
 DROP TABLE IF EXISTS clasificacion;
@@ -31,6 +31,7 @@ CREATE TABLE jugadores (
     PRIMARY KEY (cod_jugador),
     FOREIGN KEY (cod_persona) REFERENCES personas(cod_persona)
 );
+
 
 CREATE TABLE entrenadores (
     cod_entrenador INT AUTO_INCREMENT,
@@ -64,7 +65,7 @@ CREATE TABLE BO3 (
     cod_bo3 INT AUTO_INCREMENT,
     cod_equipo_1 INT,
     cod_equipo_2 INT,
-    fecha DATE,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (cod_bo3),
     FOREIGN KEY (cod_equipo_1) REFERENCES equipos(cod_equipo),
     FOREIGN KEY (cod_equipo_2) REFERENCES equipos(cod_equipo)
@@ -97,3 +98,7 @@ CREATE TABLE mapas (
     partidas_jugadas INT DEFAULT 0,
     PRIMARY KEY (cod_mapa)
 );
+
+
+ALTER TABLE jugadores AUTO_INCREMENT = 100;
+ALTER TABLE entrenadores AUTO_INCREMENT = 200;
