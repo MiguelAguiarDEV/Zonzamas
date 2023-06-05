@@ -32,12 +32,20 @@ CREATE TABLE jugadores (
     CONSTRAINT fk_cod_jugador FOREIGN KEY (cod_jugador) REFERENCES personas(cod_persona)
 );
 
+ALTER TABLE jugadores ADD CONSTRAINT chk_jugador_entrenador CHECK (cod_jugador NOT IN (SELECT cod_entrenador FROM entrenadores));
+
+
+
 CREATE TABLE entrenadores (
     cod_entrenador INT,
     nombre VARCHAR(30),
     CONSTRAINT pk_cod_entrenador PRIMARY KEY (cod_entrenador),
-    CONSTRAINT fk_cod_entrenador FOREIGN KEY (cod_entrenador) REFERENCES personas(cod_persona)
+    CONSTRAINT fk_cod_entrenador FOREIGN KEY (cod_entrenador) REFERENCES personas(cod_persona)    
 );
+
+ALTER TABLE entrenadores ADD CONSTRAINT chk_entrenador_jugador CHECK (cod_entrenador NOT IN (SELECT cod_jugador FROM jugadores));
+
+
 
 CREATE TABLE equipos (
     cod_equipo INT AUTO_INCREMENT,
