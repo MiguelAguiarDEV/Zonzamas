@@ -1,38 +1,52 @@
-personas (cod_persona, nombre, apellido1, apellido2, edad, nacionalidad)
-    PK: cod_persona
+Tabla: personas
+   - cod_persona (PK)
+   - nombre
+   - apellido1
+   - apellido2
+   - edad
+   - nacionalidad
 
-jugadores (cod_jugador, nick)
-    PK: cod_jugador
-    FK: cod_jugador REFERENCES personas(cod_persona)
+Tabla: jugadores
+   - cod_jugador (PK)
+   - nick
+   - rol
+   - cod_persona (FK a personas)
 
-entrenadores (cod_entrenador, nombre)
-    PK: cod_entrenador
-    FK: cod_entrenador REFERENCES personas(cod_persona)
+Tabla: entrenadores
+   - cod_entrenador (PK)
+   - nombre
+   - cod_persona (FK a personas)
 
-equipos (cod_equipo, nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_suplente6, cod_entrenador)
-    PK: cod_equipo
-    FK: cod_jugador1 REFERENCES jugadores(cod_jugador)
-    FK: cod_jugador2 REFERENCES jugadores(cod_jugador)
-    FK: cod_jugador3 REFERENCES jugadores(cod_jugador)
-    FK: cod_jugador4 REFERENCES jugadores(cod_jugador)
-    FK: cod_jugador5 REFERENCES jugadores(cod_jugador)
-    FK: cod_suplente6 REFERENCES jugadores(cod_jugador)
-    FK: cod_entrenador REFERENCES entrenadores(cod_entrenador)
+Tabla: equipos
+   - cod_equipo (PK)
+   - nombre_equipo
+   - cod_jugador1 (FK a jugadores)
+   - cod_jugador2 (FK a jugadores)
+   - cod_jugador3 (FK a jugadores)
+   - cod_jugador4 (FK a jugadores)
+   - cod_jugador5 (FK a jugadores)
+   - cod_jugador6 (FK a jugadores)
+   - cod_entrenador (FK a entrenadores)
 
-BO3 (cod_bo3, cod_equipo_1, cod_equipo_2, fecha)
-    PK: cod_bo3
-    FK: cod_equipo_1 REFERENCES equipos(cod_equipo)
-    FK: cod_equipo_2 REFERENCES equipos(cod_equipo)
+Tabla: BO3
+   - cod_bo3 (PK)
+   - cod_equipo_1 (FK a equipos)
+   - cod_equipo_2 (FK a equipos)
+   - fecha
 
-partidas (cod_bo3, cod_equipo_1, cod_equipo_2, num_partida, rondas_equipo1, rondas_equipo2, cod_mapa)
-    PK: cod_bo3, num_partida, cod_mapa
-    FK: cod_bo3 REFERENCES BO3(cod_bo3)
-    FK: cod_equipo_1 REFERENCES equipos(cod_equipo)
-    FK: cod_equipo_2 REFERENCES equipos(cod_equipo)
+Tabla: partidas
+   - cod_bo3 (PK, FK a BO3)
+   - cod_equipo_1 (FK a equipos)
+   - cod_equipo_2 (FK a equipos)
+   - num_partida (PK)
+   - rondas_equipo1
+   - rondas_equipo2
+   - cod_mapa
 
-clasificacion (posicion, cod_equipo, nombre_eq)
-    PK: cod_equipo
-    FK: cod_equipo REFERENCES equipos(cod_equipo)
+Tabla: clasificacion
+   - posicion
+   - cod_equipo (PK, FK a equipos)
 
-mapas (cod_mapa, partidas_jugadas)
-    PK: cod_mapa
+Tabla: mapas
+   - cod_mapa (PK)
+   - partidas_jugadas
