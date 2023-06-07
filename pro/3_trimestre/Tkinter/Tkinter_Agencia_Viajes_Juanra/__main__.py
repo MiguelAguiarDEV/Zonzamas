@@ -372,14 +372,7 @@ class AgenciaDeViaje():
             dict_usuario = {usuario : {"nombre": usuario,"contrasenha" : self.usuarios[usuario].contrasenha}}
             dict_viajes_usuarios["Usuarios"].update(dict_usuario)
         
-<<<<<<< HEAD
-        for viaje in self.viajes: 
-            dict_viajes.update(self.viajes[viaje].diccionario())
-        
-        f.write(json.dumps(dict_viajes, indent=4))
-=======
         f.write(json.dumps(dict_viajes_usuarios, indent=4))
->>>>>>> 00a2bf42204268e2952eb5a546f9d6c21118c53a
             
     
     def listado_viajes(self):
@@ -472,30 +465,6 @@ class AgenciaDeViaje():
         guardar.pack(side=TOP, fill=BOTH, padx=5, pady=5)
     
     
-<<<<<<< HEAD
-    def guardar_viaje(self):
-        texto_errores = ''
-        
-        if not self.origen.get():
-            texto_errores += " - No se ha especificado un origen.\n"
-        if not self.destino.get():
-            texto_errores += " - No se ha especificado un destino.\n"
-        if not self.avion.get():
-            texto_errores += " - No se ha especificado un avion.\n"
-        if self.origen.get() and self.origen.get() == self.destino.get():
-            texto_errores += " - Origen, no puede ser igual a destino.\n"
-        if self.viajes.get(self.origen.get() + '-' + self.destino.get()):
-            texto_errores += " - El viaje ya se encuentra en nuestra BBDD.\n"
-            
-        if texto_errores:
-            messagebox.showerror("Hay errores en el formulario", texto_errores)
-        else:
-            viaje = Viaje(Aeropuerto(self.origen.get()),Aeropuerto(self.destino.get()), Avion(self.avion.get()))
-            self.viajes[self.origen.get() + '-' + self.destino.get()] = viaje
-            self.guardar_json()
-            messagebox.showinfo("Éxito", "Viaje creado con éxito")
-=======
->>>>>>> 00a2bf42204268e2952eb5a546f9d6c21118c53a
     
     def leer_usuarios(self):
         f = open(self.ruta_guardado,'r')

@@ -46,3 +46,107 @@ INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES (
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('Laura', 'García', 'Hernández', 32, 'Española');
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('Javier', 'Sánchez', 'Fernández', 50, 'Española');
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('María', 'Rodríguez', 'Martínez', 29, 'Española');
+
+
+
+/* INSERTS ENTRENADORES*/
+INSERT INTO entrenadores (nombre, cod_persona) VALUES ('Juan',1);
+INSERT INTO entrenadores (nombre, cod_persona) VALUES ('María',2);
+INSERT INTO entrenadores (nombre, cod_persona) VALUES ('Carlos',3);
+INSERT INTO entrenadores (nombre, cod_persona) VALUES ('Ana',4);
+INSERT INTO entrenadores (nombre, cod_persona) VALUES ('Pedro',5);
+INSERT INTO entrenadores (nombre, cod_persona) VALUES ('Laura',6);
+INSERT INTO entrenadores (nombre, cod_persona) VALUES ('Luis',7);
+INSERT INTO entrenadores (nombre, cod_persona) VALUES ('Sofía',8);
+
+
+/*INSERTS JUGADORES*/
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Jxvier', 'Iniciador', 9);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('ShadowBlade', 'Controlador', 10);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('SteelFury', 'Duelista', 11);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Sentinel', 'Centinela', 12);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('MysticEcho', 'Iniciador', 13);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('PhantomShade', 'Controlador', 14);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('BladeStorm', 'Duelista', 15);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('GuardianAngel', 'Centinela', 16);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Serenity', 'Iniciador', 17);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('MindBender', 'Controlador', 18);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('RapidSlash', 'Duelista', 19);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Vigilant', 'Centinela', 20);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('LoneWolf', 'Iniciador', 21);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('SoulTaker', 'Controlador', 22);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Blaze', 'Duelista', 23);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Warden', 'Centinela', 24);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Nova', 'Iniciador', 25);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('MindControl', 'Controlador', 26);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Phoenix', 'Duelista', 27);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('WatchfulEye', 'Centinela', 28);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Vortex', 'Iniciador', 29);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('ShadowStep', 'Controlador', 30);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('BladeMaster', 'Duelista', 31);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Protector', 'Centinela', 32);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Echo', 'Iniciador', 33);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Illusionist', 'Controlador', 34);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Savage', 'Duelista', 35);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Sentry', 'Centinela', 36);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Mystique', 'Iniciador', 37);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Arcane', 'Controlador', 38);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('SwordDancer', 'Duelista', 39);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Defender', 'Centinela', 40);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('SolarFlare', 'Iniciador', 41);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('MindReader', 'Controlador', 42);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Rage', 'Duelista', 43);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Watcher', 'Centinela', 44);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Nightshade', 'Iniciador', 45);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Elementalist', 'Controlador', 46);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('BladeFury', 'Duelista', 47);
+INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Vigilante', 'Centinela', 48);
+
+
+/*INSERTS EQUIPOS*/
+/* INSERTS EQUIPOS */
+
+-- Equipo 1
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
+VALUES ('Equipo 1', 9, 10, 11, 12, 13, 14, 1);
+
+-- Equipo 2
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
+VALUES ('Equipo 2', 15, 16, 17, 18, 19, 20, 2);
+
+-- Equipo 3
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
+VALUES ('Equipo 3', 21, 22, 23, 24, 25, 26, 3);
+
+-- Equipo 4
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
+VALUES ('Equipo 4', 27, 28, 29, 30, 31, 32, 4);
+
+-- Equipo 5
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
+VALUES ('Equipo 5', 33, 34, 35, 36, 37, 38, 5);
+
+-- Equipo 6
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
+VALUES ('Equipo 6', 39, 40, 41, 42, 43, 44, 6);
+
+-- Equipo 7
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
+VALUES ('Equipo 7', 45, 46, 47, 48, 9, 10, 7);
+
+-- Equipo 8
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
+VALUES ('Equipo 8', 11, 12, 13, 14, 15, 16, 8);
+
+/*INSERTS MAPAS*/
+
+
+
+
+/*INSERTS BO3*/
+
+
+
+/*INSERTS PARTIDAS*/
+
+
