@@ -47,8 +47,6 @@ INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES (
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('Javier', 'Sánchez', 'Fernández', 50, 'Española');
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('María', 'Rodríguez', 'Martínez', 29, 'Española');
 
-
-
 /* INSERTS ENTRENADORES*/
 INSERT INTO entrenadores (nombre, cod_persona) VALUES ('Juan',1);
 INSERT INTO entrenadores (nombre, cod_persona) VALUES ('María',2);
@@ -106,37 +104,40 @@ INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Vigilante', 'Centinela',
 /*INSERTS EQUIPOS*/
 /* INSERTS EQUIPOS */
 
+/* INSERTS EQUIPOS */
+
+/* INSERTS EQUIPOS */
+
 -- Equipo 1
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
-VALUES ('Equipo 1', 9, 10, 11, 12, 13, 14, 1);
+VALUES ('Equipo 1', 100, 101, 102, 103, 104, 105, 200);
 
 -- Equipo 2
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
-VALUES ('Equipo 2', 15, 16, 17, 18, 19, 20, 2);
+VALUES ('Equipo 2', 106, 107, 108, 109, 110, 111, 201);
 
 -- Equipo 3
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
-VALUES ('Equipo 3', 21, 22, 23, 24, 25, 26, 3);
+VALUES ('Equipo 3', 112, 113, 114, 115, 116, 117, 202);
 
 -- Equipo 4
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
-VALUES ('Equipo 4', 27, 28, 29, 30, 31, 32, 4);
+VALUES ('Equipo 4', 118, 119, 120, 121, 122, 123, 203);
 
 -- Equipo 5
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
-VALUES ('Equipo 5', 33, 34, 35, 36, 37, 38, 5);
+VALUES ('Equipo 5', 124, 125, 126, 127, 128, 129, 204);
 
 -- Equipo 6
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
-VALUES ('Equipo 6', 39, 40, 41, 42, 43, 44, 6);
+VALUES ('Equipo 6', 130, 131, 132, 133, 134, 135, 205);
 
 -- Equipo 7
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
-VALUES ('Equipo 7', 45, 46, 47, 48, 9, 10, 7);
+VALUES ('Equipo 7', 136, 137, 138, 139, NULL, NULL, 206);
 
 -- Equipo 8
-INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
-VALUES ('Equipo 8', 11, 12, 13, 14, 15, 16, 8);
+INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)VALUES ('Equipo 8', NULL, NULL, NULL, NULL, NULL, NULL, 207);
 
 /*INSERTS MAPAS*/
 
