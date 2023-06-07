@@ -23,14 +23,14 @@ CREATE TABLE personas (
     PRIMARY KEY (cod_persona)
 );
 
-CREATE TABLE jugadores (
-    cod_jugador INT AUTO_INCREMENT,
-    nick VARCHAR(20) UNIQUE NOT NULL,
-    rol VARCHAR(40) CHECK (rol IN ('Iniciador', 'Controlador', 'Duelista', 'Centinela')),
-    cod_persona INT,
-    PRIMARY KEY (cod_jugador),
-    FOREIGN KEY (cod_persona) REFERENCES personas(cod_persona)
-);
+    CREATE TABLE jugadores (
+        cod_jugador INT AUTO_INCREMENT,
+        nick VARCHAR(20) UNIQUE NOT NULL,
+        rol VARCHAR(40) CHECK (rol IN ('Iniciador', 'Controlador', 'Duelista', 'Centinela')),
+        cod_persona INT,
+        PRIMARY KEY (cod_jugador),
+        FOREIGN KEY (cod_persona) REFERENCES personas(cod_persona)
+    );
 
 
 CREATE TABLE entrenadores (
