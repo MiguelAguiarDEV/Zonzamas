@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS bd_analisis_valorant;
+DROP DATABASE IF EXISTS valorant;
 
-CREATE DATABASE bd_analisis_valorant;
+CREATE DATABASE valorant;
 
-USE bd_analisis_valorant;
+USE valorant;
 
 DROP TABLE IF EXISTS partidas;
 DROP TABLE IF EXISTS clasificacion;
@@ -29,7 +29,7 @@ CREATE TABLE personas (
         rol VARCHAR(40) CHECK (rol IN ('Iniciador', 'Controlador', 'Duelista', 'Centinela')),
         cod_persona INT,
         PRIMARY KEY (cod_jugador),
-        FOREIGN KEY (cod_persona) REFERENCES personas(cod_persona)
+        FOREIGN KEY (cod_persona) REFERENCES personas(cod_persona) ON DELETE CASCADE
     );
 
 
@@ -57,7 +57,7 @@ CREATE TABLE equipos (
     FOREIGN KEY (cod_jugador3) REFERENCES jugadores(cod_jugador),
     FOREIGN KEY (cod_jugador4) REFERENCES jugadores(cod_jugador),
     FOREIGN KEY (cod_jugador5) REFERENCES jugadores(cod_jugador),
-    FOREIGN KEY (cod_jugador6) REFERENCES jugadores(cod_jugador),
+    FOREIGN KEY (cod_jugador6) REFERENCES jugadores(cod_jugador), 
     FOREIGN KEY (cod_entrenador) REFERENCES entrenadores(cod_entrenador)
 );
 
@@ -89,7 +89,7 @@ CREATE TABLE clasificacion (
     posicion INT,
     cod_equipo INT,
     PRIMARY KEY (cod_equipo),
-    FOREIGN KEY (cod_equipo) REFERENCES equipos(cod_equipo)
+    FOREIGN KEY (cod_equipo) REFERENCES equipos(cod_equipo) ON DELETE CASCADE
 );
 
 CREATE TABLE mapas (

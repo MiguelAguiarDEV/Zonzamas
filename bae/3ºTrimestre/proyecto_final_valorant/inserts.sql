@@ -1,3 +1,7 @@
+TRUNCATE TABLE personas;
+TRUNCATE TABLE B03;
+
+
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('Juan', 'Gómez', 'López', 25, 'Española');
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('María', 'Rodríguez', 'Sánchez', 30, 'Española');
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('Carlos', 'Fernández', 'García', 40, 'Española');
@@ -102,52 +106,89 @@ INSERT INTO jugadores (nick, rol, cod_persona) VALUES ('Vigilante', 'Centinela',
 
 
 /*INSERTS EQUIPOS*/
-/* INSERTS EQUIPOS */
 
-/* INSERTS EQUIPOS */
 
-/* INSERTS EQUIPOS */
-
--- Equipo 1
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
 VALUES ('Equipo 1', 100, 101, 102, 103, 104, 105, 200);
 
--- Equipo 2
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
 VALUES ('Equipo 2', 106, 107, 108, 109, 110, 111, 201);
 
--- Equipo 3
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
 VALUES ('Equipo 3', 112, 113, 114, 115, 116, 117, 202);
 
--- Equipo 4
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
 VALUES ('Equipo 4', 118, 119, 120, 121, 122, 123, 203);
 
--- Equipo 5
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
 VALUES ('Equipo 5', 124, 125, 126, 127, 128, 129, 204);
 
--- Equipo 6
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
 VALUES ('Equipo 6', 130, 131, 132, 133, 134, 135, 205);
 
--- Equipo 7
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)
 VALUES ('Equipo 7', 136, 137, 138, 139, NULL, NULL, 206);
 
--- Equipo 8
 INSERT INTO equipos (nombre_equipo, cod_jugador1, cod_jugador2, cod_jugador3, cod_jugador4, cod_jugador5, cod_jugador6, cod_entrenador)VALUES ('Equipo 8', NULL, NULL, NULL, NULL, NULL, NULL, 207);
 
 /*INSERTS MAPAS*/
+INSERT INTO mapas (nombre) VALUES ('Split');
+
+INSERT INTO mapas (nombre) VALUES ('Ascent');
+
+INSERT INTO mapas (nombre) VALUES ('Fracture');
+
+INSERT INTO mapas (nombre) VALUES ('Haven');
+
+INSERT INTO mapas (nombre) VALUES ('Icebox');
+
+INSERT INTO mapas (nombre) VALUES ('Pearl');
+
+INSERT INTO mapas (nombre) VALUES ('Lotus');
 
 
 
 
 /*INSERTS BO3*/
+INSERT INTO BO3 (cod_equipo_1, cod_equipo_2) 
+VALUES (1, 2);
+
+INSERT INTO BO3 (cod_equipo_1, cod_equipo_2) 
+VALUES (3, 4);
+
+INSERT INTO BO3 (cod_equipo_1, cod_equipo_2) 
+VALUES (2, 3);
 
 
 
 /*INSERTS PARTIDAS*/
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (1, 1,2,1, 13, 7, 1);
+
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (1, 1,2,2, 10, 13, 2);
+
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (1, 1,2,3, 15, 13, 3);
+
+
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (2, 3,4,1, 9, 13, 1);
+
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (2, 3,4,2, 13, 11, 4);
+
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (2, 3,4,3, 14, 12, 5);
+
+
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (3, 2,3,1, 8, 13, 1);
+
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (3, 2,3,2, 12, 14, 6);
+
+INSERT INTO partidas (cod_bo3, cod_equipo_1, cod_equipo_2,num_partida, rondas_equipo1, rondas_equipo2,cod_mapa) 
+VALUES (3, 2,3,3, 15, 13, 7);
 
 
