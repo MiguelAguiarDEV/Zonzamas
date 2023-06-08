@@ -1,0 +1,141 @@
+/*
+Ejercicio 1
+*/
+
+// 1.1 
+
+function mostrarEnlaces() {
+    enlances = document.querySelectorAll('a'); //seleciono todas las etiquetas <a>
+
+    myArray = [...enlances] // convierto el objeto tipo nodehtml a array usando literlmente esto
+    myArray.forEach(function(elto, index, array) { //lo recorro 
+        elto.style.backgroundColor = '#ff000080' //elto = elemento, le cambio el estilo
+    }) 
+}
+// 1.2 
+function mostrarDrieccion() {
+    enlances = document.querySelectorAll('a');
+
+    myArray = [...enlances];
+
+    penultimoEnlace = myArray[myArray.length-2]; //accedo al penúltimo elemento del array al que he transformado el queryselector
+    direccion = penultimoEnlace.href;
+
+    document.getElementById('resultado_ej1.2').innerHTML += direccion; //innerhtml me mete dentro del elemento con el id lo que le +=
+}
+// 1.3
+function enlacesPrueba() {
+    enlances = document.querySelectorAll('a');
+
+    myArray = [...enlances];
+
+    myArray.forEach(function(elto, index, array) {
+        if (elto.href == 'http://prueba/') {
+            elto.style.backgroundColor = '#0000ff80'
+        }
+    }) 
+}
+// 1.4 Número de enlaces del tercer párrafo
+function enlacesTercerParrafo() {
+    parrafos = document.querySelectorAll('p');
+    parrafos = [...parrafos];
+
+    tercerParrafo = parrafos[2];
+
+    enlaces = tercerParrafo.children;
+    enlaces = [...enlaces];
+
+    enlaces.forEach(function(elto, index, array) {
+        elto.style.backgroundColor = '#00ff0080'
+    }) 
+
+}
+// 1.5
+function crearNuevoNodo() { //con nodo nos referimos a elemento
+    nuevoNodo = document.createElement('nuevoNodo'); 
+    nuevoNodo.innerText = 'CIFP Zonzamas';  //.innerText me mete texto dentro de la etiqueta o elemento asociado
+    document.body.appendChild(nuevoNodo); //appendChild me lo mete como hijo en el body (me lo pinta en el body)
+}
+//1.6
+function clonarParrafo() {
+    parrafos = document.querySelectorAll('p'); //me pilla todos los <p>
+    parrafos = [...parrafos]; //lo transformo a array
+
+    segundoParrafo = parrafos[1]; //pillo el segundo párrafo
+
+    parrafoClonado = segundoParrafo.cloneNode('true'); //me duplica lo que tengo en segundoParrafo JUNTO CON el contenido de la etiqueta. Si no tiene el true solo clona la etiqueta
+
+    document.body.appendChild(parrafoClonado); //en el body le meto el p
+
+    parrafoClonado.insertAdjacentElement('beforebegin', parrafos[2]); //esto era para insertar de forma adyacente a un elemento (beforebegin afterbegin y todo eso) el segundo elemento
+}
+
+/*
+Ejercicio 2
+*/
+
+function anadelista() {
+    lista = document.getElementById('lista'); //cogemos el id lista que tenemos creado
+
+    lista.innerHTML += '<li>Nodo nuevo</li>' //le añadimos un nodo más de forma inner, por dentro, simple
+}
+
+function eliminalista() {
+    lista = document.getElementById('lista'); //cogemos el nodo
+
+    hijos = lista.children; //cogemos los hijos del nodo (los li de dentro de la lista)
+    hijos = [...hijos]; // pasamos los hijos a array
+    hijos[hijos.length-1].remove(); //quitamos el último
+}
+
+/*
+Ejercicio 3
+*/
+
+nuevo_parrafo = document.getElementsByTagName("p")[1].cloneNode(true) //cogemos de los que tengan de tag <p>, el segundo elemento ([1]) y el contenido (cloneNode(true))
+document.getElementsByTagName("p")[2].insertAdjacentElement("afterend", nuevo_parrafo) //insertamos después del  tercer <p> ([2]) en modo afterend el nuevo_parrafo
+
+
+//2 La función anadelista() crea un nuevo elemento de lista con el contenido de texto "Lorem ipsum" 
+//y lo agrega al final de la lista existente en el documento HTML identificada por el ID "lista".
+function anadelista() {
+    lista = document.getElementById("lista") //seleccionamos el elementoId lista
+    nuevo_elemento = document.createElement("li") //creamos un elemento nuevo_elemento que sea un li
+    nuevo_elemento.innerText= "Lorem ipsum" //le metemos como innerText algo
+    lista.appendChild(nuevo_elemento) //a lista le metemos como hijo el nuevo_elemento
+} 
+
+function eliminalista() {
+    lista = document.getElementById("lista")
+    lista.children[lista.children.length-1].remove()
+
+} //elimina la lista
+
+//3
+function anadefila() {
+    tabla = document.querySelector("table") //seleccionamos el PRIMER elemento table
+    fila = document.createElement("tr") //creamos tr
+
+    color = Math.floor(Math.random() * 16777215).toString(16); //colorines random
+    color = "#" + color
+    fila.style.backgroundColor = color
+
+    celda1 = document.createElement("td") //creamos elemento td
+    celda1.innerText = "celda " + (tabla.children.length +2) + "1" //le metemos como texto celda + longitud+2 + 1
+    
+    celda2 = document.createElement("td") //creamos elemento td
+    celda2.innerText = "celda " + (tabla.children.length + 2) + "2"
+    
+    celda3 = document.createElement("td") //creamos elemento td
+    celda3.innerText = "celda " + (tabla.children.length + 2) + "3"
+
+    fila.appendChild(celda1) //a la fila le metemos como hijo la celda1
+    fila.appendChild(celda2) // fila celda 2
+    fila.appendChild(celda3) // fila celda 3
+    tabla.appendChild(fila) // a la tabla le añadimos una fila
+}
+
+function eliminafila() {
+    tabla = document.querySelector("table") //cogemos tabla como nodo
+    tabla.children[tabla.children.length -1].remove() //eliminamos último elemento
+}

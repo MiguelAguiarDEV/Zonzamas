@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="indexdom.css">
+    <title>EXPLICACIÓN DOM</title>
+</head>
+<body>
+    <script src="indexdom.js">
+
+    // Metodos para acceder elementos de la página
+
+    
+        document.getElementById('identificador')
+            // devuelve la estructura que tiene ese id
+        
+        document.getElementByClassNAme('clase')
+            /*devuelve un HTMLCollection que contiene los elementos que pertenecen
+            a esa clase. Se puede acceder a ese objeto como si fuera un array.*/
+
+        document.getElementByTagName('etiqueta')
+            /*devuelve un objeto que contiene las etiquetas que sean iguales
+            a la pasada.*/
+
+        document.querySelector('section') // busca el elemento con esa etiqueta
+            /*querySelector -> devuelve la primera aparicion
+            querySelectorAll -> devuelve un NodeList con todas las apariciones*/
+
+        parent & children
+            paso = document.querySelector('section')
+
+            paso.parentElement
+                // devuelve el padre de la etiqueta
+
+            paso.children
+                // devuelve un HTMLCollection con los hijos de la etiqueta
+    
+
+    // Metodos para crear elementos
+
+    
+        titulo = document.createElemento('h2')
+
+        texto = document.createTextNode('Esto es una prueba')
+
+        comentario = document.createComment('Esto es un comentario')
+
+        // | El texto y el comentario no se suelen usar |
+
+        paso = document.getElementById('section')
+
+        pasoClonado = paso.cloneNode() //clona elemento
+
+        pasoClonadoAll = paso.cloneNode(true) // clona elemento + hijos
+
+        pasoClonadoAll.isConnected // devuelve si el elemento está en el HTML
+
+        // Para insertarlo en el HTML hacemos (NO MODIFICA LA PAGINA):
+        
+        conte = document.getElementById('contenedor')
+
+        conte.appendChild(pasoClonadoAll) 
+
+        // Este SI modifica la pagina
+
+        conte.insertAdjacentElement('beforebegin', pasoClonado) //Primer parametro es donde se va a poner dentro de la 
+                                                                //etiqueta pasado como segundo paramero
+        // A parte del beforebegin, hay 3 opciones más:
+        //  - beforeend  - afterbegin  -afterend
+
+        // Como eliminar elementos
+
+        pasoClonado.remove()
+
+        // Como modificar contenido elementos
+
+        paso = document.querySelectorAll('.border-gris')
+
+        paso[4].innerText = 'Hola como estas?' //cambia el contenido de la etiqueta
+
+        innerHTML // permite añadir etiquetas html
+
+        // Ver y añadir clases
+
+        paso.classList           // Devuelve las clases a las que pertenece la etiqueta
+        paso.className           // Duvuelve el nombre de las clases
+        paso.className += 'rojo' // Añade nueva clase
+
+        // Cambiar estilos del css
+
+        paso.style.color = 'red';
+        paso.style.border = '4px solid blue';
+
+    </script>
+
+</body>
+</html>
