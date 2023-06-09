@@ -7,7 +7,6 @@ from tkinter import filedialog as fd
 from tkinter import *
 from tkinter import ttk, font, messagebox
 import tkinter as tk
-from libro import Libro
 
 
 class GestionBiblioteca():
@@ -30,15 +29,7 @@ class GestionBiblioteca():
         
         
         #VARIABLES
-        self.nombre_libro = StringVar()
-        self.nombre_autor = StringVar()
-        self.anho = StringVar()
-        self.libros = self.leer_libros()
-        self.usuarios = self.leer_usuarios()
-        self.filtro    = StringVar(value="")
-        print(self.libros)
-        print(self.usuarios)
-        self.lista_editoriales = ["Santillana","no_me_se_editoriales"]
+        
         
         
         
@@ -64,12 +55,15 @@ class GestionBiblioteca():
         )
         
         barramenu.add_command(
-            label = 'Carga'
+            label = 'Ventas Mensuales'
             ,command= self.ventana_carga
             ,underline= 0
             ,accelerator='Ctrl+o'
             ,compound=LEFT
         )
+        
+        
+        
         
         #FRAME DONDE APARECERA TODO
         self.frame_ventana = Frame(self.raiz)
@@ -95,19 +89,16 @@ class GestionBiblioteca():
         
         #CREAR ETIQUETAS NOMBRE LIBRO
         
-        self.etiqueta_nombre_libro = ttk.Label(self.frame_alta , text="Nombre: "   , justify="left", width=40, padding=[10])
-        self.etiqueta_nombre_libro.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        self.etiqueta_nombre_articulo = ttk.Label(self.frame_alta , text="Nombre Articulo: "   , justify="left", width=40, padding=[10])
+        self.etiqueta_nombre_articulo.pack(side=TOP, fill=BOTH, padx=5, pady=5)
         
-        self.nombre_libro_entry = ttk.Entry(self.frame_alta, justify="left", textvariable=self.nombre_libro)
-        self.nombre_libro_entry.pack(side=TOP, fill=BOTH, padx=5, pady=5)
-        
-        self.etiqueta_editorial = ttk.Label(self.frame_alta , text="Editorial: "   , justify="left", width=40, padding=[10])
-        self.etiqueta_editorial.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        self.nombre_articulo_entry = ttk.Entry(self.frame_alta, justify="left", textvariable=self.nombre_articulo)
+        self.nombre_articulo_entry.pack(side=TOP, fill=BOTH, padx=5, pady=5)
 
         #COMBOBOX
-        self.combo_editorial = ttk.Combobox(self.frame_alta, values = self.lista_editoriales)
-        self.combo_editorial.set("Elige una editorial")
-        self.combo_editorial.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+        self.combo_tipo_artiulo = ttk.Combobox(self.frame_alta, values = self.lista_articulos)
+        self.combo_tipo_artiulo.set("Elige una editorial")
+        self.combo_tipo_artiulo.pack(side=TOP, fill=BOTH, padx=5, pady=5)
         
         self.etiqueta_autor = ttk.Label(self.frame_alta , text="Autor: "   , justify="left", width=40, padding=[10])
         self.etiqueta_autor.pack(side=TOP, fill=BOTH, padx=5, pady=5)
@@ -147,9 +138,9 @@ class GestionBiblioteca():
     def registrar_libro(self):
         texto_errores = ""
         
-        if not self.nombre_libro.get():
+        if not self.nombre_articulo.get():
             texto_errores += " - No se ha especificado un Nombre.\n"
-        if not self.combo_editorial.get():
+        if not self.combo_tipo_artiulo.get():
             texto_errores += " - No se ha especificado una Editorial.\n"
         if not self.nombre_autor.get():
             texto_errores += " - No se ha especificado un Autor.\n"
@@ -159,7 +150,7 @@ class GestionBiblioteca():
         if texto_errores:
             messagebox.showerror("Hay errores en el formulario", texto_errores)
         else:
-            libro = Libro(self.nombre_libro.get(),self.combo_editorial.get(), self.nombre_autor.get(),self.anho.get())
+            libro = Libro(self.nombre_articulo.get(),self.combo_tipo_artiulo.get(), self.nombre_autor.get(),self.anho.get())
             self.libros[libro.nombre] = libro
             self.guardar_fichero()
             messagebox.showinfo("Éxito", "Libro registrado con éxito")
