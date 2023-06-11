@@ -1,5 +1,3 @@
-TRUNCATE TABLE personas;
-TRUNCATE TABLE B03;
 
 
 INSERT INTO personas (nombre, apellido1, apellido2, edad, nacionalidad) VALUES ('Juan', 'Gómez', 'López', 25, 'Española');

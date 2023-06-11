@@ -86,9 +86,10 @@ CREATE TABLE partidas (
 );
 
 CREATE TABLE clasificacion (
-    posicion INT,
+    posicion VARCHAR(5),
     cod_equipo INT,
-    PRIMARY KEY (cod_equipo),
+    bo3_ganados INT,
+    PRIMARY KEY (posicion),
     FOREIGN KEY (cod_equipo) REFERENCES equipos(cod_equipo) ON DELETE CASCADE
 );
 
@@ -100,5 +101,24 @@ CREATE TABLE mapas (
 );
 
 
+
+
 ALTER TABLE jugadores AUTO_INCREMENT = 100;
 ALTER TABLE entrenadores AUTO_INCREMENT = 200;
+
+
+-- Crear el usuario root con todos los privilegios
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'csas1234';
+GRANT ALL PRIVILEGES ON valorant.* TO 'root'@'localhost';
+
+-- Crear el usuario analista con permisos de inserción
+CREATE USER 'analista'@'localhost' IDENTIFIED BY 'csas1234';
+GRANT INSERT, SELECT, SHOW VIEW ON valorant.* TO 'analista'@'localhost';
+
+-- Crear el usuario entrenador con permisos de consulta y ejecución de procedimientos
+CREATE USER 'entrenador'@'localhost' IDENTIFIED BY 'csas1234';
+GRANT SELECT, EXECUTE ON valorant.* TO 'entrenador'@'localhost';
+
+-- Crear el usuario jugador con permisos de consulta
+CREATE USER 'jugador'@'localhost' IDENTIFIED BY 'csas1234';
+GRANT SELECT ON valorant.* TO 'jugador'@'localhost';

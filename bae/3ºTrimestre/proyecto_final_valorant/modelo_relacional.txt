@@ -44,8 +44,8 @@ Tabla: partidas
    - cod_mapa
 
 Tabla: clasificacion
-   - posicion
-   - cod_equipo (PK, FK a equipos)
+   - posicion (PK)
+   - cod_equipo (FK a equipos)
 
 Tabla: mapas
    - cod_mapa (PK)
