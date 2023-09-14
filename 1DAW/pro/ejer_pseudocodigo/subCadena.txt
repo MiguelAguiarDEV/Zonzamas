@@ -1,0 +1,18 @@
+Funcion subCadena(Cadena texto, int inicio, int fin)
+
+    Cadena subCadena = '';
+
+    if(inicio <= fin and inicio < texto.tamanho and fin < texto.tamanho)
+    {
+        Mientras(inicio <= fin)
+        {
+            //subCadena = subCadena + texto[inicio];
+            subCadena += texto[inicio];
+
+            inicio++;
+        }            
+    }
+
+    devolver subCadena;
+
+Fin Funcion

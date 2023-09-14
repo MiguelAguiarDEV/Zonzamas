@@ -1,0 +1,20 @@
+{
+        ""
+    "Fuerteventura-Gran Canaria": {
+        "origen": "Fuerteventura",
+        "destino": "Gran Canaria",
+        "avion": "Airbus 320",
+        "billetes_comprados": {
+            "1": {
+                "viaje": "Fuerteventura-Gran Canaria",
+                "nombre": "Juan Rafael",
+                "apellidos": "Curbelo Arrocha"
+            },
+            "2": {
+                "viaje": "Fuerteventura-Gran Canaria",
+                "nombre": "Andr\u00e9s",
+                "apellidos": "Calamaro"
+            }
+        }
+    }
+}

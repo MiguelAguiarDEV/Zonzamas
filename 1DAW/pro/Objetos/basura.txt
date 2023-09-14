@@ -1,0 +1,25 @@
+
+
+
+class Email():
+    
+    def __init__(self) -> None:
+        pass
+    
+    
+    
+    def enviar_email():
+        None
+        #Aquí el código para enviar un email
+        #self.email
+    
+    @staticmethod
+    def validar(email):
+        
+        None
+        #código para validar un email
+        
+        
+        
+        
+if Email.validar("juan_curbelo@cifpzonzamas.es"):

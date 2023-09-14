@@ -1,0 +1,34 @@
+                        Tema 2 - Bases De Datos
+
+INTRODUCCIÓN    
+    
+
+DISEÑO DE BD
+	-Fase de Análisis: Especificación de requisitos Software (E.R.S.)
+	-Fase 1 del diseño. Diseño Conceptual: Modelo Entidad/Relación (E/R)
+	-Fase 2 del diseño. Diseño Lógico: Modelo Relacional
+	-Fase 3 del diseño. Diseño Físico: Modelo Físico
+    
+    
+MODELO ENTIDAD/RELACIÓN
+	-Entidades
+	-Atributos
+	-Relaciones
+    
+    
+MODELO E/R EXTENDIDO
+	-Relaciones de Jerarquía
+	-MODELO RELACIONAL
+	-Introducción
+	-Estructura de datos relacional
+	-Elementos y propiedades del modelo relacional
+	-Transformación de un esquema E/R a esquema relacional
+
+
+NORMALIZACIÓN
+	-Primera Forma Normal: 1FN
+	-Segunda Forma Normal: 2FN
+	-Tercera Forma Normal: 3FN
+	-Forma Normal de Boyce-Codd: FNBC
+	-Cuarta Forma Normal: 4FN
+	-Quinta Forma Normal: 5FN
