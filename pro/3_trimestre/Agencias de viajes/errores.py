@@ -1,2 +1,0 @@
-class NifNoValido(Exception):
-    pass
