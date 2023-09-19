@@ -1,0 +1,62 @@
+
+
+.preguntas {
+    border: solid 1px black;
+    width: 50%;
+    margin: 2rem auto;
+
+}
+
+.pregunta-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px;
+}
+
+.texto-pregunta {
+    padding: 0 2rem;
+    font-size: 20px;
+}
+
+.input-container {
+
+    padding: 0 2rem;
+    width: fit-content;
+}
+
+.input{
+    width: 100px; /* El input ocupa todo el ancho del div */
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+img {
+    width: 200px;
+    height: auto;
+}
+
+.contenedor-img {
+    width: 200px;
+}
+
+#sel-color, option{
+    width: 104px;
+    font-size: 20px;
+    color: black;
+}
+
+.container-boton {
+    margin: 25px auto 25px  auto;
+    width: max-content;
+}
+
+#boton {
+    background-color: rgb(48, 255, 48);
+    font-size: 20px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+
+
