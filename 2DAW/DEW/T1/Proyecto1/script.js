@@ -1,14 +1,14 @@
 
 
 
-const escaparate = "<img src='escaparate.png' alt='escaparate' width='200px'>";
-const puerta = "<img src='puerta.png' alt='puerta' width='200px'>";
-const cartel = "<img src='cartel.png' alt='cartel' width='200px'>";
-const reloj = "<img src='reloj.jpg' alt='reloj' width='200px'>";
-const coche = "<img src='coche.jpg' alt='coche' width='200px'>";
-const semaforoRojo = "<img src='semaforo_rojo.jpg' alt='semaforo' width=200px'>";
-const semaforoVerde = "<img src='semaforo_verde.jpg' alt='semaforo' width=200px'>";
-const semaforoAmarillo = "<img src='semaforo_amarillo.jpg' alt='semaforo' width=200px'>";
+const escaparate = "<img src='escaparate.png' alt='escaparate' width='100px'>";
+const puerta = "<img src='puerta.png' alt='puerta' width='100px'>";
+const cartel = "<img src='cartel.png' alt='cartel' width='100px'>";
+const reloj = "<img src='reloj.jpg' alt='reloj' width='100px'>";
+const coche = "<img src='coche.jpg' alt='coche' width='100px'>";
+const semaforoRojo = "<img src='semaforo_rojo.jpg' alt='semaforo' width=100px'>";
+const semaforoVerde = "<img src='semaforo_verde.jpg' alt='semaforo' width=100px'>";
+const semaforoAmarillo = "<img src='semaforo_amarillo.jpg' alt='semaforo' width=100px'>";
 
 
 
@@ -19,12 +19,11 @@ function generar() {
     var numCoches = document.getElementById("input-num-coches").value;    
     var numPuerta = document.getElementById("input-num-puerta").value;    
 
- 
 
+	document.write("<style>");
 
-
-
-
+	document.write("* { font-size: 200px;font-weight: bold;}img,font {border:1px solid black;padding:0;margin:0;}img {width:100px;height:100px;}");
+	document.write("</style <br>")
     document.write(cartel.repeat(numCarteles)+"<br>");
 
     if (numPuerta > 0) {
@@ -33,7 +32,7 @@ function generar() {
 
     document.write(escaparate,"<br>");
 
-    document.write(reloj.repeat(numCoches));
+    document.write(reloj);
 
     switch (colSemaforo) {
         case "Verde":
