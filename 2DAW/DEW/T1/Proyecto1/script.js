@@ -12,13 +12,19 @@ const semaforoAmarillo = "<img src='semaforo_amarillo.jpg' alt='semaforo' width=
 
 
 
-function generar() {
+var numCarteles ;    
+var colSemaforo ;    
+var numCoches ;    
+var numPuerta ;
 
-    var numCarteles = document.getElementById("input-num-carteles").value;    
-    var colSemaforo = document.getElementById("sel-color").value;    
-    var numCoches = document.getElementById("input-num-coches").value;    
-    var numPuerta = document.getElementById("input-num-puerta").value;    
+numCarteles = prompt("Ingrese el numero de carteles") ;
+colSemaforo = prompt("Ingrese el color de la semaforo") ;
+numCoches = prompt("Ingrese el numero de coches") ;
+numPuerta = prompt("Ingrese el numero de puertas") ;
 
+console.log(colSemaforo)
+
+var coloreSemaforo = ["verde", "rojo", "amarillo"] 
 
 	document.write("<style>");
 
@@ -34,22 +40,30 @@ function generar() {
 
     document.write(reloj);
 
-    switch (colSemaforo) {
-        case "Verde":
-          document.write(semaforoVerde);
-          break;
-        case "Rojo":
-          document.write(semaforoRojo);
-          break;
-        case "Amarillo":
-          document.write(semaforoAmarillo);
-          break;
-        default:
-            alert("estado no valido");
-        }
+
+    if (typeof colSemaforo !== "string" && coloreSemaforo.includes()) {
+      if (coloreSemaforo.includes(colSemaforo)) {
+        switch (colSemaforo) {
+          case "Verde":
+            document.write(semaforoVerde);
+            break;
+          case "Rojo":
+            document.write(semaforoRojo);
+            break;
+          case "Amarillo":
+            document.write(semaforoAmarillo);
+            break;
+          default:
+              alert("estado no valido");
+          }
+        };
+      }else {
+        alert("Color no valido");
+      };
+
         document.write("<br>");
     document.write(coche.repeat(numCoches));
-};
+
 
 
 
