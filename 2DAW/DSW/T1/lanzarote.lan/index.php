@@ -18,17 +18,7 @@ function gen_fibonacci($lenght){
         }
         return $fibonacci;
 	}
-}
-
-
-function gen_tabla($n_casillas){
-	
-}
-
-
-
-
-
+};
 	
 ?>
 
@@ -37,7 +27,6 @@ function gen_tabla($n_casillas){
 <head>
     <meta charset="UTF-8">
     <title>Mi Página PHP con Estilos</title>
-    <!-- Importa la hoja de estilos CSS -->
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -74,7 +63,7 @@ function gen_tabla($n_casillas){
         };
         $tabla.= "</table>";
         echo $tabla;
-    }
+    };
 
 
     

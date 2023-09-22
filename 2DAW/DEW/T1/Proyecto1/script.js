@@ -32,19 +32,33 @@ function esColorValido(color) {
 
 
 
-var numCartelesValido = false;
-var numCarteles
-while (numCartelesValido == false){
-  numCarteles = Number(prompt("Ingrese el numero de carteles"));
-  numCartelesValido = numValido(numCarteles, 10);
-  if (numCartelesValido == false){
+
+var numEscaparatesValido = false;
+var numEscaparates;
+while (numEscaparatesValido == false){
+  numEscaparates = Number(prompt("Ingrese el numero de escaparates"));
+  numEscaparatesValido = numValido(numEscaparates, 10);
+  console.log("hola")
+  if (numEscaparatesValido == false){
     alert("Numero no valido");
   }
 };
 
 
+var carteles = [];
+var oferta;
+var i=1;
+while (carteles.length < numEscaparates){
+  oferta = prompt("Ingrese el texto del cartel numero"+i);
+
+  carteles.push(oferta);
+  console.log(oferta)
+  i++
+  
+};
+
 var coloresSemaforoEsValido = false;  
-var colSemaforo
+var colSemaforo;
 while (coloresSemaforoEsValido == false){
   colSemaforo = prompt("Ingrese el color de la semaforo");
   coloresSemaforoEsValido = esColorValido(colSemaforo);
@@ -57,23 +71,11 @@ var numCochesValido = false;
 var numCoches
 while (numCochesValido == false){
   numCoches = Number(prompt("Ingrese el numero de coches"));
-  numCochesValido = numValido(numCoches, 10);
+  numCochesValido = numValido(numCoches, 100);
   if (numCochesValido == false){
     alert("Numero no valido");
   }
 };
-
-
-var numPuertasValido = false;
-var numPuertas;
-while (numPuertasValido == false){
-  numPuertas = Number(prompt("Ingrese el numero de puertas que hay"));
-  numPuertasValido = numValido(numPuertas, 10);
-  if (numPuertasValido == false){
-    alert("Numero no valido");
-  }
-};
-
 
 
 var numPuertaValido = false;
@@ -88,34 +90,22 @@ while (numPuertaValido == false){
 
 var numerosPuertas = [];
 
-for (i=0; i<numPuertas; i++){ 
+for (i=0; i<numEscaparates; i++){ 
   numerosPuertas.push(numPuerta);
   numPuerta += 2;
 }; 
 
 
-var numEscaparatesValido = false;
-var numEscaparates;
-while (numEscaparatesValido == false){
-  numEscaparates = Number(prompt("Ingrese el numero de escaparates"));
-  numEscaparatesValido = numValido(numEscaparates, 10);
-  console.log("hola")
-  if (numEscaparatesValido == false){
-    alert("Numero no valido");
-  }
-};
-
-
 var ofertas = [];
 var oferta;
-var i = 0;
+var i=1;
 while (ofertas.length < numEscaparates){
-  oferta = Number(prompt("Ingrese el numero de la oferta del escaparate numero",i));
-  if (numValido(oferta, 100)){
+  oferta = prompt("Ingrese el numero de la oferta del escaparate numero"+i+"º");
+
   ofertas.push(oferta);
   console.log(oferta)
-  i++;
-  }
+  i++
+  
 };
 
 
@@ -144,60 +134,53 @@ function verTiempo() {
   };
 
 
+//Pintar las imagenes de los carteles
+document.write("<div class='contenedor max-contenedor'>")
+document.write("<div class='contenedor sub-contenedor'>"+("<div class='contenedor sub2-contenedor'>"+cartel+"</div>").repeat(numEscaparates)+"</div></div>");
+document.write("</div>")	
+
+
+//Pintar los numero de las puertas
+document.write("<div class='contenedor max-contenedor'><div class='contenedor sub-contenedor'>");
+numerosPuertas.forEach(numero => {
+	document.write("<div class='contenedor sub2-contenedor'>",numero,"</div>");
+});
+document.write("</div>")
+
+//Pintar las imagenes de las puertas
+document.write("<div class='contenedor sub-contenedor'>"+("<div class='contenedor sub2-contenedor'>"+puerta+"</div>").repeat(numEscaparates)+"</div></div>");
 
 
 
-
-
-
-document.write(cartel.repeat(numCarteles),"<br>");
-document.write(escaparate.repeat(numEscaparates),"<br>");
-
-
-
-
-document.write("<div>");
+//Pintar las ofertas
+document.write("<div class='contenedor max-contenedor'><div class='contenedor sub-contenedor'>");
 ofertas.forEach(oferta => {
-  document.write("<div class='oferta'>",oferta,"%</div>");
+	document.write("<div class='contenedor sub2-contenedor'>",oferta,"</div>");
 });
-document.write("</div>");
+document.write("</div>")
+
+//Pintar las imagenes de los escaparates
+document.write("<div class='contenedor sub-contenedor'>"+("<div class='contenedor sub2-contenedor'>"+escaparate+"</div>").repeat(numEscaparates)+"</div></div>");
 
 
-document.write(puerta.repeat(numPuertas),"<br>");
-console.log(numPuertas,"Numero de puertas");
 
 
 
 
-document.write("<div>");
 
-
-numerosPuertas.forEach(puerta => {
-  document.write("<div>",puerta,"</div>");
-});
-document.write("</div>");
-
-
-document.write("<br>");
-
-
-document.write("<div id='contenedor-reloj-semaforo'>");
-document.write("<div id='reloj'></div>")
 setInterval(verTiempo, 1000);
 
-switch (colSemaforo) {
-  case "verde":
-    document.write(semaforoVerde);
-    break;
-  case "rojo":
-    document.write(semaforoRojo);
-    break;
-  case "amarillo":
-    document.write(semaforoAmarillo);
-    break;
-};
-document.write("</div>");
+// switch (colSemaforo) {
+//   case "verde":
+//     document.write(semaforoVerde);
+//     break;
+//   case "rojo":
+//     document.write(semaforoRojo);
+//     break;
+//   case "amarillo":
+//     document.write(semaforoAmarillo);
+//     break;
+// };
 
 
-document.write("<br>");
-document.write(coche.repeat(numCoches));
+
