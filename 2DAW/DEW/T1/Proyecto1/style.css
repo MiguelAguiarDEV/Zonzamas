@@ -4,7 +4,6 @@
     min-height: 100px;
 }
 
-
 .max-contenedor {
     margin: 10px;
     border: 1px solid black;
@@ -14,6 +13,7 @@
     border: 1px solid blue;
     display: flex;
 }
+
 .sub2-contenedor {
     width: 100px;
     height: 100px;
@@ -23,6 +23,7 @@
     align-items: center;
     border: 1px solid black;
 }
+
 img {
     width: 100px;
     height: 100px;

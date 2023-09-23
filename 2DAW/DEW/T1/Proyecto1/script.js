@@ -159,9 +159,31 @@ ofertas.forEach(oferta => {
 });
 document.write("</div>")
 
+
 //Pintar las imagenes de los escaparates
 document.write("<div class='contenedor sub-contenedor'>"+("<div class='contenedor sub2-contenedor'>"+escaparate+"</div>").repeat(numEscaparates)+"</div></div>");
 
+
+document.write("<div class='contenedor max-contenedor'><div class='contenedor sub-contenedor'>");
+document.write("<div class='contenedor sub2-contenedor' id='reloj'></div>");
+
+
+document.write("<div class='contenedor sub2-contenedor'>");
+switch (colSemaforo) {
+  case "verde":
+    document.write(semaforoVerde);
+    break;
+  case "rojo":
+    document.write(semaforoRojo);
+    break;
+  case "amarillo":
+    document.write(semaforoAmarillo);
+    break;
+};
+document.write("</div></div></div>")
+
+
+document.write("<div class='contenedor max-contenedor'><div class='contenedor sub-contenedor'>"+("<div class='contenedor sub2-contenedor'>"+coche+"</div>").repeat(numCoches)+"</div></div></div>");
 
 
 
@@ -170,17 +192,7 @@ document.write("<div class='contenedor sub-contenedor'>"+("<div class='contenedo
 
 setInterval(verTiempo, 1000);
 
-// switch (colSemaforo) {
-//   case "verde":
-//     document.write(semaforoVerde);
-//     break;
-//   case "rojo":
-//     document.write(semaforoRojo);
-//     break;
-//   case "amarillo":
-//     document.write(semaforoAmarillo);
-//     break;
-// };
+
 
 
 
