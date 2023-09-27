@@ -1,21 +1,3 @@
-    
-
-    
-    
-//              [
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ["✅","✅","✅","✅","✅","✅","✅","✅","✅","✅"],
-//              ];
-
-
 
 function crearMatriz(col,fil){
     var matriz = [];
@@ -23,45 +5,85 @@ function crearMatriz(col,fil){
     for (i = 0; i < col; i++) {
         matriz[i] = [];
         for (j = 0; j < fil; j++) {
-            matriz[i][j] = i.toString()+"-"+ j.toString();
+            matriz[i][j] = 0;
         }
     }
     return matriz
 }
 
 
-function dibujarMatriz(matriz) {
+class Cine {
+	constructor() {
+		this.salas = [];
+		const cine = document.createElement("div");
 
-    // Crear un contenedor para la matriz
-    var contMatriz = document.createElement("div");
-    contMatriz.setAttribute("class", "cont-matriz");
-    contMatriz.setAttribute("id", "matriz1");
-  
-    // Agregar el contenedor al cuerpo del documento
-    document.body.appendChild(contMatriz);
-  
-    // Recorrer la matriz y crear elementos de columna y celdas de texto
-    for (var i = 0; i < matriz.length; i++) {
-      // Crear una columna para cada fila
-      var col = document.createElement("div");
-      col.setAttribute("class", "col-matriz");
-  
-      // Agregar la columna al contenedor de la matriz
-      document.getElementById("matriz1").appendChild(col);
-  
-      for (var j = 0; j < matriz[i].length; j++) {
-        // Crear un nodo de texto para cada elemento de la matriz
-        var elementoDiv = document.createElement("div");
+		cine.setAttribute("id", "cine");
+		cine.setAttribute("class", "contenedor cine");
 
-        elementoDiv.textContent = matriz[i][j];
+		document.body.appendChild(cine);
+	}	
+
+	crearSala(numColumna, numFila,nomPelicula,precEntrada) {
+		var nombre = this.salas.length
+		const nuevaSala = new salaCine(nombre,numColumna, numFila,nomPelicula,precEntrada);
+		this.salas.push(nuevaSala);
+	}
+	mostrarSalas(){
+		for (var i = 0; i < this.salas.length; i++) {
+			this.cine.appendChild(this.salas[i].contenedor);
+        }
+	}
+}
+
   
-        // Agregar el elemento div a la columna
-        col.appendChild((elementoDiv).setAttribute("class", "celda-matriz","id",+i.toString()+j.toString()));
-      }
-    }
-  }
+
+class salaCine {
+	
+  	constructor(nombreSala,numColumna,numFila,nomPelicula,precEntrada){
+		this.nombreSala = nombreSala;
+		this.nomPelicula = nomPelicula;
+		this.precEntrada = precEntrada;
+		this.asientos = crearMatriz(numColumna,numFila);  
 
 
-var matriz = crearMatriz(10,10);
+		// Crear un contenedor para la sala
+		const contenedor = document.createElement("div");
 
-dibujarMatriz(matriz);
+		// Establecer los atributos id y class
+		contenedor.setAttribute("id", this.nombreSala);
+		contenedor.setAttribute("class", "contenedor contenedor-sala");		
+		contenedor.setAttribute("onclick", "salaCine.verAsientos()");
+		document.getElementById("cine").appendChild(contenedor);
+		contenedor.textContent = this.nomPelicula;
+	}
+
+	verAsientos(){
+		console.log(this.asientos);
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
+Cine = new Cine()
+
+sala1 = Cine.crearSala(10,10, "Avatar", 6.00);
+
+sala2 = Cine.crearSala(20,10, "Ninja",6.00);
+
+console.log(Cine.salas)
+
+
+
+
+
+
+function main(){
+	Cine.mostrarSalas();
+}
