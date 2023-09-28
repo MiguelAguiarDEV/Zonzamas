@@ -7,36 +7,12 @@
     <link rel="stylesheet" href="proyecto2.css">
 </head>
 <body>
-    <h1>Reserva de Butacas de Cine</h1>
-    
-    <div id="peliculas">
-        <h2>Seleccione una película:</h2>
-        <select id="peliculaSelect">
-            <option value="pelicula1">Película 1</option>
-            <option value="pelicula2">Película 2</option>
-            <option value="pelicula3">Película 3</option>
-            
-        </select>
-        <button onclick="mostrarButacas()">Mostrar Butacas</button>
-    </div>
-    
-    <div id="butacas" style="display: none;">
-        <h2>Butacas para la película:</h2>
-        <table id="tablaButacas">
-            <!-- Aquí se generará la tabla de butacas dinámicamente -->
-        </table>
+
+    <div id="cine">
         
-        <h3>Seleccione sus butacas:</h3>
-        <p>Formato de selección: Fila,Columna</p>
-        <input type="text" id="seleccionButacas" placeholder="Ejemplo: 1,2">
-        <button onclick="reservarButacas()">Reservar</button>
-        
-        <h3>Total a pagar:</h3>
-        <p id="totalAPagar">0</p>
-        
-        <button onclick="cambiarSeleccion()">Cambiar Selección</button>
     </div>
 
-    <script src="proyecto2.js"></script>
+
+    <script type="module" src="proyecto2.js"></script>
 </body>
 </html>
