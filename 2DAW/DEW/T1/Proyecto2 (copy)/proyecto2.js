@@ -37,12 +37,20 @@ function crearSala(nombrePelicula, filas, columnas, precioButaca,portada)
         
         
     }
-
+{{[^]}}
 
 
     
 function mostrarCine()
     {
+        const cine = document.getElementById('cine');
+        cine.innerHTML =    
+        `<h1>Cine Atlantida</h1>
+
+        <p>Seleccione la pelicula que quiera reservar</p>
+        <div id="contenedorPeliculas">
+
+        </div>`;
         const contenedorPeliculas = document.getElementById('contenedorPeliculas');
 
         for (let i=0; i < salas.length; i++)
@@ -91,9 +99,32 @@ function mostrarCine()
         };
 
         mostrarSala() {
-            console.log("hola")
+            cine.innerHTML = ""
+            cine.appendChild(crearBoton())
+
+            this.portada.className = "portada-sala";
+            cine.appendChild(this.portada)
+            
+
+            sala = 
+            
         };
         
+}
+
+
+function crearBoton(){
+    const boton = document.createElement("div");
+    boton.className = "boton-inicio"
+    let imgAtras = document.createElement("img");
+    imgAtras.setAttribute("src","img/flecha-izquierda.png");
+    
+    boton.onclick = function ()
+    {
+        mostrarCine()
+    }
+    boton.appendChild(imgAtras)
+    return boton
 }
 
 

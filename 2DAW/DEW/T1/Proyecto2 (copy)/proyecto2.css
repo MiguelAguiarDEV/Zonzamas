@@ -24,3 +24,18 @@ body {
 .portada:hover {
     transform: scale(1.1);
 }
+
+.portada-sala {
+    height: 150px;
+    margin: 10px;
+}
+
+.boton-inicio {
+    width: fit-content;
+    position:absolute;
+    left: 0;
+}
+
+.boton-inicio img {
+    width: 100px;
+}
