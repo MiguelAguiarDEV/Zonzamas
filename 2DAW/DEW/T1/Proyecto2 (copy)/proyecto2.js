@@ -37,7 +37,7 @@ function crearSala(nombrePelicula, filas, columnas, precioButaca,portada)
         
         
     }
-{{[^]}}
+
 
 
     
@@ -87,7 +87,19 @@ function mostrarCine()
             
             console.log('Sala de cine creada');
             
-            
+        
+        
+        }
+        mostrarButacas() {
+        
+            const tablaButacas = document.getElementsByClassName("tabla-butacas");
+            let columna = document.createElement("tr");
+            tablaButacas.appendChild(columna)
+
+
+
+
+            console.log("mostrarButacas")
         }
         mostrarPortada() {
             var self = this; // Almacenamos una referencia al objeto actual
@@ -101,14 +113,32 @@ function mostrarCine()
         mostrarSala() {
             cine.innerHTML = ""
             cine.appendChild(crearBoton())
+            const sala = document.createElement("div");
+            sala.className = "div-sala";
 
-            this.portada.className = "portada-sala";
-            cine.appendChild(this.portada)
-            
+            const cabecera = document.createElement("div");
+            cabecera.className = "cabecera"
 
-            sala = 
+            const img = document.crea
             
+            sala.innerHTML = `
+            
+            
+            <div class="cabecera">
+                <img class="portada-sala" src="${this.portada.getAttribute("src")}">
+                <font class='nombre'>nombre:<font class="pelicula">${this.nombrePelicula}</font></font>
+            </div>
+            <div class = "contenedor-butacas">
+                <table class = "tabla-butacas"></table>
+            </div>
+            `
+
+            
+            cine.appendChild(sala);
+            this.mostrarButacas()
         };
+        
+
         
 }
 
@@ -133,7 +163,7 @@ function crearBoton(){
 
 const sala1 = crearSala('Megalodon',5,5,10,"img/megalodon.jpg")
 const sala2 = crearSala('La Monja',15,10,5,"img/lamonja.jpg")
-const sala3 = crearSala('La Monja',10,10,5,"img/time.jpg")
+const sala3 = crearSala('Time',10,10,5,"img/time.jpg")
 const sala4 = crearSala('La Monja',10,10,5,"img/time.jpg")
 const sala5 = crearSala('La Monja',10,10,5,"img/time.jpg")
 
