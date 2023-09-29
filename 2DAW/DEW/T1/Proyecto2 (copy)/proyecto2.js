@@ -11,79 +11,99 @@ import { numeroRandom } from './functions/numeroRandom.js';
 
 
 
-class Cine 
-{   
-    constructor()
-    {
-        const cine = document.getElementById('cine');
-        cine.innerHTML =    
-        `<h1>Cine Atlantida</h1>
-        
-        <div id="contenedorPeliculas">
-            <p>Seleccione la pelicula que quiera reservar</p>
 
-        </div>`;
-        
-    }
-    static salas = [];
-    static crearSala(nombrePelicula, filas, columnas, precioButaca,portada)
+const cine = document.getElementById('cine');
+cine.innerHTML =    
+`<h1>Cine Atlantida</h1>
+
+<p>Seleccione la pelicula que quiera reservar</p>
+<div id="contenedorPeliculas">
+
+</div>`;
+
+
+var salas = [];
+
+
+
+function crearSala(nombrePelicula, filas, columnas, precioButaca,portada)
     {
         let sala = new salaCine(nombrePelicula, filas, columnas, precioButaca,portada);
-        Cine.salas.push(sala);
+        salas.push(sala);
 
         console.log('Sala creada');
-        console.log(Cine.salas);
+        console.log(salas);
         
         
         
     }
 
+
+
     
-    static mostrarSalas()
+function mostrarCine()
     {
         const contenedorPeliculas = document.getElementById('contenedorPeliculas');
 
+        for (let i=0; i < salas.length; i++)
+        {
+            contenedorPeliculas.appendChild(salas[i].mostrarPortada());
+        }
 
 
     }
-}
 
-//Clase sala cine: 
-class salaCine
+    
+    
+    //Clase sala cine: 
+    class salaCine
     {    
-    constructor(nombrePelicula, filas, columnas, precioButaca,portada)
-    {
-        this.nombrePelicula = nombrePelicula;
-        this.precioButaca = precioButaca;
-        this.filas = filas;
-        this.columnas = columnas;
-        this.butacas = [];
-        this.portada = portada;
-        for (let i = 0; i < filas; i++)
+        constructor(nombrePelicula, filas, columnas, precioButaca,portada)
         {
-            this.butacas[i] = [];
-
-            for (let j = 0; j < columnas; j++)
+            this.nombrePelicula = nombrePelicula;
+            this.precioButaca = precioButaca;
+            this.filas = filas;
+            this.columnas = columnas;
+            this.butacas = [];
+            this.portada = document.createElement("img");
+            this.portada.setAttribute("src",portada)
+            for (let i = 0; i < filas; i++)
             {
-                this.butacas[i][j] = numeroRandom(0, 1); // 0 significa libre
+                this.butacas[i] = [];
+                
+                for (let j = 0; j < columnas; j++)
+                {
+                    this.butacas[i][j] = numeroRandom(0, 1); // 0 significa libre
+                }
             }
-        }
-
-        console.log('Sala de cine creada');
-        
-
-        function mostrarSala()
-        {
-            const contenedorPeliculas = document.getElementById('contenedorPeliculas');
-
-            contenedorPeliculas.appendChild(this.portada);
+            
+            console.log('Sala de cine creada');
+            
             
         }
+        mostrarPortada() {
+            var self = this; // Almacenamos una referencia al objeto actual
+            this.portada.className = "portada";
+            this.portada.onclick = function () {
+                self.mostrarSala(); // Usamos "self" en lugar de "this" para acceder a mostrarSala()
+            };
+            return this.portada;
+        };
+
+        mostrarSala() {
+            console.log("hola")
+        };
         
-    }
 }
 
 
 
-const sala1 = Cine.crearSala('Megalodon',5,5,10,"<img src='img/megalodon.jpg'>")
-const sala2 = Cine.crearSala('La Monja',10,5,5,"<img src='img/monja.jpg'>")
+
+
+const sala1 = crearSala('Megalodon',5,5,10,"img/megalodon.jpg")
+const sala2 = crearSala('La Monja',15,10,5,"img/lamonja.jpg")
+const sala3 = crearSala('La Monja',10,10,5,"img/time.jpg")
+const sala4 = crearSala('La Monja',10,10,5,"img/time.jpg")
+const sala5 = crearSala('La Monja',10,10,5,"img/time.jpg")
+
+mostrarCine() 

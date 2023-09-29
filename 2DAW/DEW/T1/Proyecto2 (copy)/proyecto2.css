@@ -1,37 +1,26 @@
 body {
-    font-family: Arial, sans-serif;
+    background-color: #484848;
+}
+
+
+#cine {
+    width: 70%;
+    margin: 0 auto;
     text-align: center;
 }
 
-h1 {
-    color: #333;
+.cotenedorPeliculas {
+    width: 60%;
 }
 
-#peliculas, #butacas {
-    margin-top: 20px;
-}
 
-select, button {
+
+.portada {
+    width: 200px;
+    height: 300px;
     margin: 10px;
 }
 
-table {
-    margin: 10px auto;
-}
-
-td {
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    border: 1px solid #333;
-    border-radius: 25%;
-}
-
-td.libre {
-    background-color: rgb(40, 238, 40);
-    cursor: pointer;
-}
-
-td.ocupado {
-    background-color: red;
+.portada:hover {
+    transform: scale(1.1);
 }
