@@ -1,0 +1,45 @@
+ 
+Resumen de la clase sobre despliegue de aplicaciones web:
+
+**Comunicación en Internet:**
+- Internet es un medio compartido con muchas personas escuchando las conversaciones.
+- Se pueden utilizar mecanismos de cifrado para proteger la comunicación.
+
+**Clave simétrica:**
+- Ambas partes comparten una clave secreta.
+- Utilizan la misma clave para cifrar y descifrar mensajes.
+- Es eficiente, pero el desafío es compartir la clave de manera segura.
+
+**Clave asimétrica:**
+- Cada parte tiene una clave privada y una clave pública.
+- La clave privada es secreta y única para cada usuario.
+- La clave pública puede ser compartida con otros.
+- Un usuario puede cifrar un mensaje con la clave pública del destinatario.
+- Solo el destinatario puede descifrar el mensaje con su clave privada.
+
+**Firma digital:**
+- Un usuario puede firmar un documento con su clave privada.
+- Otros pueden verificar que el documento fue firmado por ese usuario utilizando su clave pública.
+
+**Cifrado híbrido (con detalle adicional):**
+- El cifrado híbrido combina el uso de cifrado simétrico y asimétrico para obtener la máxima eficiencia y seguridad.
+- Inicialmente, se utiliza la clave pública del destinatario (clave asimétrica) para cifrar una clave simétrica aleatoria.
+- Esta clave simétrica se utiliza para cifrar y descifrar el mensaje real.
+- La ventaja principal del cifrado híbrido es que, aunque la clave asimétrica se utiliza para el intercambio seguro de la clave simétrica, una vez que la clave simétrica está establecida, la comunicación subsiguiente es mucho más eficiente y rápida al utilizar el cifrado simétrico.
+- Esto es esencial porque mantener una comunicación continua utilizando el cifrado asimétrico resultaría en un rendimiento insatisfactorio debido a su carga pesada.
+
+El cifrado híbrido proporciona un equilibrio óptimo entre seguridad y eficiencia al aprovechar las fortalezas de ambos tipos de cifrado en situaciones de comunicación segura en línea.
+- Más eficiente que el cifrado asimétrico para archivos grandes.
+
+**Protocolo HTTPS:**
+- Utilizado para comunicaciones seguras en la web.
+- El servidor envía un certificado digital acreditado por una autoridad de certificación.
+- El navegador verifica el certificado antes de establecer una conexión cifrada con el servidor.
+- La comunicación entre el navegador y el servidor se cifra para mayor seguridad.
+
+**Consideraciones finales:**
+- Los cifrados asimétricos son más pesados, por lo que no se utilizan para cifrar archivos grandes.
+- Los protocolos como HTTPS aseguran la privacidad y seguridad en las comunicaciones web.
+
+Este resumen proporciona una visión general de los conceptos clave discutidos en la clase sobre despliegue de aplicaciones web y la importancia de la seguridad en las comunicaciones en línea.
+

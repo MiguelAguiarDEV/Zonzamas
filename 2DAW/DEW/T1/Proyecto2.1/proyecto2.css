@@ -46,8 +46,8 @@ h1 {
 
 .div-sala {
 
-    margin-top: 40px;
-
+    margin: 40px auto;
+    width: fit-content;
 }
 
 
