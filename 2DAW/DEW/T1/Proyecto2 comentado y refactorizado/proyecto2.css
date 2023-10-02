@@ -1,0 +1,132 @@
+body {
+    background-color: #484848;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+#cine {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cotenedorPeliculas {
+    width: 60%;
+}
+
+
+h1 {
+    margin: 20px;
+    font-size: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+.portada {
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+.portada:hover {
+    transform: scale(1.05);
+    transition: transform 0.25s ease-in-out;
+    opacity: 0.5;
+}
+
+    
+  
+.celda {
+    font-size: 0;
+}
+
+.div-sala {
+
+    margin-top: 40px;
+
+}
+
+
+
+.boton-inicio {
+    width: fit-content;
+    position:absolute;
+    left: 0;
+}
+
+.boton-inicio img {
+    width: 100px;
+}
+
+
+.cabecera {
+    display: flex;
+}
+
+.cabecera img {
+    height: 200px;
+}
+
+
+.cabecera .nombre {
+    margin-top: 120px;
+    color: white;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+}
+.cabecera .pelicula {
+    height: 80px;
+    width: fit-content;
+    font-size: 5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: bolder;
+}
+
+#tabla-butacas {
+    border-collapse: collapse;
+}
+.seleccionada img{
+    background-color:yellow;
+}
+
+.libre img{
+    background-color: rgb(51, 255, 0);
+}
+.ocupado img{
+    background-color: rgb(255, 55, 55);
+}
+
+.butaca {
+    width: 50px;
+    margin: 2px;
+    border-radius: 4px;
+}
+.contenedor-butacas {
+    display: flex;
+}
+
+.boton-confirmar {
+    display: flex;
+    font-family: Roboto, sans-serif;
+    font-weight: bolder;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    margin: 3px 10px;
+    border: 1px solid white;
+    border-radius: 4px;
+    align-items: center;
+    background-color: rgb(255, 0, 0);
+    color: white;
+  }
+  
+  .boton-confirmar:hover {
+    background-color: #fd4646;
+  }
+  
