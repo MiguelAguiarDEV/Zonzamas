@@ -95,7 +95,7 @@ function mostrarCine()
                 const fila = document.createElement("tr");
                 for (let j = 0; j < self.columnas; j++) {
                     const columna = document.createElement("td");
-                    columna.innerHTML = "<img class='butaca' src='img/sofa.png'>";
+                    columna.innerHTML = `<img class='butaca' src='img/sofa.png'>`;
         
                     if (self.butacas[i][j] == 1) {
                         columna.className = "celda libre";

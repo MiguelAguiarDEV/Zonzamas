@@ -42,7 +42,15 @@ h1 {
   
 .celda {
     font-size: 0;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin: 3px;
 }
+
+
 
 .div-sala {
 
@@ -112,6 +120,8 @@ h1 {
 }
 .contenedor-butacas {
     display: flex;
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .boton-confirmar {
