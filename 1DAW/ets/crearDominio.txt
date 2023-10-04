@@ -4,25 +4,25 @@ sudo apt upgrade
 sudo apt install apache2
 sudo apt install php libapache2-mod-php php-mysql
 
-##crea el directorio patronatodeturismo.lan
-sudo mkdir /var/www/html/patronatodeturismo.lan
+##crea el directorio miguel.lan
+sudo mkdir /var/www/html/miguel.lan
 
 ##copia el archivo index.html y le cambia el nombre a index.php
-sudo cp /var/www/html/index.html /var/www/html/patronatodeturismo.lan/index.php
+sudo cp /var/www/html/index.html /var/www/html/miguel.lan/index.php
 
-##ruta del directorio patronatodeturismo.lan
+##ruta del directorio miguel.lan
 pwd
-/var/www/html/patronatodeturismo.lan
+/var/www/html/miguel.lan
 
-##lista el contenido del directorio patronatodeturismo.lan
+##lista el contenido del directorio miguel.lan
 ls
 index.php
 
 ##abre el directorio donde vamos a crear nuestro archivo .conf
 cd /etc/apache2/sites-enabled/
 
-##crea el archivo patronatodeturismo.lan.conf y copia el contenido de 000-default.conf a patronatodeturismo.lan.conf
-sudo cp ./000-default.conf ./patronatodeturismo.lan.conf
+##crea el archivo miguel.lan.conf y copia el contenido de 000-default.conf a miguel.lan.conf
+sudo cp ./000-default.conf ./miguel.lan.conf
 
 ##ruta del directorio sites-enabled en el que se encuentra el archivo .conf
 pwd
@@ -30,10 +30,10 @@ pwd
 
 ##contenido del directorio sites-enabled
 ls
-000-default.conf  patronatodeturismo.lan.conf
+000-default.conf  miguel.lan.conf
 
-sudo vim patronatodeturismo.lan.conf 
-##Este es el contenido de patronatodeturismo.lan.conf despues de modificarlo
+sudo vim miguel.lan.conf
+##Este es el contenido de miguel.lan.conf despues de modificarlo
 
 <VirtualHost *:80>
         # The ServerName directive sets the request scheme, hostname and port that
@@ -43,10 +43,10 @@ sudo vim patronatodeturismo.lan.conf
         # match this virtual host. For the default virtual host (this file) this
         # value is not decisive as it is used as a last resort host regardless.
         # However, you must set it for any further virtual host explicitly.
-        ServerName www.patronatodeturismo.lan
+        ServerName www.miguel.lan
 
         ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/html/patronatodeturismo.lan
+        DocumentRoot /var/www/html/miguel.lan
 
         # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
         # error, crit, alert, emerg.
@@ -75,7 +75,7 @@ cat /etc/hosts
 ## contenido de hosts despues de modificarlo
 127.0.0.1       localhost
 127.0.1.1       alumnoVM
-127.0.1.1       www.patronatodeturismo.lan
+127.0.1.1       www.miguel.lan
 # The following lines are desirable for IPv6 capable hosts
 ::1     ip6-localhost ip6-loopback
 fe00::0 ip6-localnet

@@ -1,102 +1,190 @@
 *{
-    margin: 10px;
-    padding: 10px;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
 
+body{font-family: 'Montserrat', sans-serif;}
+
+a{text-decoration: none;}
+
 .padre{
-    display: flex; 
+    display: flex;
     flex-flow: column nowrap; 
 }
-.header{
-    background-color: #000;
-    display: flex;
-    flex-flow: column nowrap;
-}
-.menu{
-    background-color: #2d4059;
-    display: flex;
-    flex-flow: row nowrap;
-    height: 100px;
-    align-items: center; 
-}
-/* https://the-echoplex.net/flexyboxes/ para visualizar la distribución de las cajas hijo dentro del contenedor padre. */
-.logo{
-    background-color: #ea5455;
-    flex: 0 1 auto;
-    height: 50px;
-    width: fit-content;
+.margen-interno{padding: 0px 50px;}
+    .header{
+        background: url(../Imagenes/dog-3277416.jpg);
+        background-position: center;
+        background-attachment: contain;
+        background-size: cover;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+        .menu{
+            background-color: rgb(0,0,0);
+            display: flex;
+            flex-flow: row nowrap; 
+            height: 60px;
+            align-items: center; 
+            border-bottom: 1px solid rgb(255,255,255); 
+        }
+            .logo{flex: 1 1 auto;}
+                .logo a{ 
+                    color: white;
+                    font-size: 30px;
+                }
+                .logo a:hover{color: #343434;}
 
+            .nav{flex: 5 1 auto;}
+            
+                .nav a{
+                    color: white;
+                    font-size: 11px;
+                    text-transform: uppercase; 
+                    padding: 0 10px; 
+                    letter-spacing: 2px; 
+                }
+                .nav a:hover{
+                    color: #343434;
+                }
+
+            .social{                
+                flex: 1 1 auto;
+                display: flex;
+            }
+                .social a{
+                    color: white;
+                    font-size: 18px;
+                    padding: 0 5px;
+                }
+                .social a:hover{color: #343434;}
+
+        .texto-principal{
+            /*background-color: #f07b3f;*/
+            height: 580px;
+            display: flex;
+            align-items: center;
+        }
+            h1{
+                font-family: 'Lora', serif;
+                font-size: 21px;
+                color: #fff;
+                font-weight: 300;
+                text-align: center;
+                line-height: 1.6;
+            }
+
+    .section{
+        background-color: #444;
+        display: flex;
+    }
+        .articulos{
+            background-color: #444;
+            flex: 2 1 auto;
+            display: flex;
+            flex-flow: row wrap; 
+        }
+            .article{
+                background-color: #ececec;
+                flex: 1 1 45%;
+                color: #444;
+                font-size: 13px;
+                letter-spacing: 1px;
+                margin: 10px 10px 0px 0px;
+            }
+            .article img{width: 100%;}
+            .article a{
+                background-color: #000;
+                color: #fff;
+                font-size: 13px;
+                padding: 10px;
+                margin: 10px 0px;
+                display: inline-block;
+            }
+            .article a:hover{background-color: #546cc3;} 
+            h3{
+                color: #fff;
+                font-size: 13px;
+                padding: 10px 0px;
+                margin-top: -80px;
+            }
+            h2{
+                color: #fff;
+                font-size: 25px;
+                text-transform: uppercase;
+                padding: 0px 0px 10px 0px;
+            }
+            .navegacion{
+                background-color: #000;
+                flex: 1 1 100%;
+                margin: 10px 10px 0px 0px;
+            }
+            .navegacion a{
+                color: #fff;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                padding: 0px 10px;
+            }
+
+        .aside{
+            /*background-color: #7DCE13;*/
+            flex: 1 1 auto;
+            margin: 10px 5px 10px 0px;
+        }
+        .aside img{width: 100%;}
+        h4{
+            background-color: #000;
+            color: #fff;
+            text-transform: uppercase;
+            padding: 10px;
+        }
+            /*.publicidad{
+                background-color: #2B7A0B;
+            }*/
+
+    .footer{
+        background-color: #000;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+        .pie{
+            /*background-color: #e6af2e;*/
+            text-align: center;
+        }
+        .pie a{
+            color: #fff;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0px 10px;
+        }
+
+@media all and (max-width: 1120px){
+    .section{flex-direction: column;}
+    .menu{
+        flex-direction: column;
+        height: auto;
+    }
+    .aside{
+        display: flex;
+        justify-content: center;
+    }
+    h1{font-size: 15px;}
+    .texto-principal{height: 450px;}
 }
 
-a {
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-a img {
-    width: 30px;
-    margin: 0;
-    padding: 0;
-}
-.nav{
-    background-color: #ea5455;
-    flex: 5 1 auto;
-    height: 50px; 
-    display: flex;
-}
-.social{
-    background-color: #ea5455;
-    flex: 1 1 auto;
-    height: 50px; 
-}
-.texto-principal{
-    background-color: #f07b3f;
-}
-h1{
-    background-color: #ffd460;
+@media all and (max-width: 762px){
+    .articulos{flex-direction: column;}
 }
 
-.section{
-    background-color: #000;
-    display: flex;
-}
-.articulos{
-    background-color: #4e4e6a;
-    flex: 2 1 auto;
-    display: flex;
-    flex-flow: row wrap;
-}
-.article{
-    background-color: #1f6cb0;
-    flex: 1 1 40%;
-}
-.navegacion{
-    background-color: #70a3c4;
-    flex: 1 1 100%;
-}
-.aside{
-    background-color: #7DCE13;
-    flex: 1 1 auto;
-}
-.publicidad{
-    background-color: #2B7A0B;
+@media all and (max-width: 650px){
+    .off{display: none;}
+    .nav a{font-size: 25px;}
 }
 
-.footer{
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-}
-.pie{
-    font-size: 0;
-    padding: 0;
-    margin: 0;
-
-}
-.pie img {
-    width: 100%;
-    height: auto;
-    padding: 0;
-    margin: 0;
+@media all and (max-width: 400px){
+    .aside{flex-direction: column;}
 }
