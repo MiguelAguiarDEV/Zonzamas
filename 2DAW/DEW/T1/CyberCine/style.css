@@ -1,0 +1,31 @@
+#header {
+    text-align: center;
+    width: 100%;
+}
+
+.texto-cabecera, .texto-cabecera span{
+    font-size: 300%;
+}
+
+#main {
+    padding: 3rem;
+    text-align: center;
+}
+span.mini-cine{
+    font-family: none;
+    font-style:oblique;
+    font-size: 20px;
+}
+/* Portada Inicio */
+.portada-inicio {
+    margin: 2%;
+    text-align: start;
+    display: inline-block;
+}
+
+.portada-inicio span{
+    font-size: 20px;
+}
+
+
+
