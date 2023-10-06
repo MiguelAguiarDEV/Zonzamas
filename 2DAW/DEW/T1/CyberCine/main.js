@@ -11,17 +11,16 @@ var salas = [];
 
 
 
-function crearSala(nombrePelicula, filas, columnas, precioButaca,portada)
-    {
-        let sala = new salaCine(nombrePelicula, filas, columnas, precioButaca,portada);
-        salas.push(sala);
+function crearSala(nombrePelicula, filas, columnas, precioButaca, portada) {
+    let sala = new salaCine(nombrePelicula, filas, columnas, precioButaca, portada);
+    salas.push(sala);
 
-        console.log('Sala creada');
-        console.log(salas);
-        
-        
-        
-    }
+    console.log('Sala creada');
+    console.log(salas);
+
+    return sala; // Devuelve la sala creada
+}
+
 
 
 
@@ -48,6 +47,7 @@ function mostrarCine()
 
     }
 
+
     
     
     //Clase sala cine: 
@@ -65,21 +65,40 @@ function mostrarCine()
             
             
             this.portada.setAttribute("src",portada)
-            for (let i = 0; i < filas; i++)
-            {
-                this.butacas[i] = [];
-                
-                for (let j = 0; j < columnas; j++)
-                {
-                    this.butacas[i][j] = numeroRandom(0, 1); // 0 significa libre
-                }
+            // Verificar si ya existen las butacas en el localStorage
+            const butacasGuardadasJSON = localStorage.getItem(`${nombrePelicula}_butacas`);
+            if (butacasGuardadasJSON) {
+                // Si existen, recuperarlas del localStorage
+                this.butacas = JSON.parse(butacasGuardadasJSON);
+            } else {
+                // Si no existen, crear nuevas butacas
+                this.butacas = this.crearButacasAleatorias();
+                // Guardar las butacas en el localStorage
+                this.guardarButacasEnLocalStorage();
             }
-            
+        
             console.log('Sala de cine creada');
-            
+            }
         
-        
+        // Resto de la definición de la clase
+    
+        // Método para crear butacas aleatorias
+        crearButacasAleatorias() {
+        const butacas = [];
+        for (let i = 0; i < this.filas; i++) {
+            butacas[i] = [];
+            for (let j = 0; j < this.columnas; j++) {
+            butacas[i][j] = numeroRandom(0, 1); // 0 significa libre
+            }
         }
+        return butacas;
+        }
+    
+        // Método para guardar todas las butacas en el localStorage
+        guardarButacasEnLocalStorage() {
+            localStorage.setItem(`${this.nombrePelicula}_butacas`, JSON.stringify(this.butacas));
+        }
+       
         mostrarButacas() {
             var self = this;
             const tablaButacas = document.getElementById("tabla-butacas");
@@ -97,7 +116,7 @@ function mostrarCine()
                             columna.className = "celda seleccionada";
                             
                             self.butacas[i][j] = 2;
-                            
+                            self.guardarButacasEnLocalStorage()
                             
                         };
                     } else {
@@ -163,6 +182,7 @@ function mostrarCine()
                     }
                 }
             }
+            this.guardarButacasEnLocalStorage()
             this.mostrarSala();
         }
 
@@ -175,6 +195,7 @@ function mostrarCine()
                 this.mostrarSala();
                 
             } 
+            this.guardarButacasEnLocalStorage()
         };
     
         // // Método para liberar asientos
@@ -185,6 +206,7 @@ function mostrarCine()
         //         this.butacas[fila][columna] = 1; // true significa libre
         //     }
         // };
+
 
         mostrarPortada() 
         {
@@ -210,7 +232,7 @@ function mostrarCine()
         mostrarSala() 
         {
             cine.innerHTML = ""
-            cine.appendChild(crearBoton("img/flecha-izquierda.png","boton-inicio"));
+            cine.appendChild(crearBoton("img/flecha3.png","boton-inicio"));
             const sala = document.createElement("div");
             sala.className = "div-sala";
 
@@ -228,10 +250,7 @@ function mostrarCine()
             
             cine.appendChild(sala);
             this.mostrarButacas()
-        };
-        
-
-        
+        };   
 };
 
 
@@ -254,10 +273,11 @@ function crearBoton(ruta,clase){
 
 
 
-const sala1 =  crearSala('Megalodón', 5, 5, 10, "./img/megalodon.jpg");
-const sala2 =  crearSala('La Monja', 15, 10, 5, "./img/lamonja.jpg");
-const sala3 =  crearSala('Time', 10, 10, 5, "./img/time.jpg");
-const sala4 =  crearSala('El Exorcista', 8, 8, 8, "./img/exorcista.jpg");
-const sala5 =  crearSala('Titanic', 12, 12, 6, "./img/titanic.jpg");
+    const sala1 = crearSala('Megalodón', 5, 5, 10, "./img/megalodon.jpg");
+    const sala2 = crearSala('La Monja', 15, 10, 5, "./img/lamonja.jpg");
+    const sala3 = crearSala('Time', 10, 10, 5, "./img/time.jpg");
+    const sala4 = crearSala('El Exorcista', 8, 8, 8, "./img/exorcista.jpg");
+    const sala5 = crearSala('Titanic', 12, 12, 6, "./img/titanic.jpg");
+
 
 mostrarCine() 

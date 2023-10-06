@@ -29,3 +29,9 @@ span.mini-cine{
 
 
 
+.boton-inicio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+}
