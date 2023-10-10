@@ -109,14 +109,13 @@ function mostrarCine()
                 for (let j = 0; j < self.columnas; j++) {
                     const columna = document.createElement("td");
                     columna.innerHTML = `<img class='butaca' src='img/sofa.png'>`;
-        
+                    
                     if (self.butacas[i][j] == 1) {
                         columna.className = "celda libre";
                         columna.onclick = function () {
                             columna.className = "celda seleccionada";
-                            
+                            console.log(self.butacas[i][j] = 2)
                             self.butacas[i][j] = 2;
-                            self.guardarButacasEnLocalStorage()
                             
                         };
                     } else {

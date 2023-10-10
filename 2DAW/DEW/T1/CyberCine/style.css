@@ -1,3 +1,4 @@
+
 #header {
     text-align: center;
     width: 100%;
@@ -34,4 +35,42 @@ span.mini-cine{
     top: 0;
     left: 0;
     width: 20px;
+}
+
+
+
+
+.boton-inicio img {
+    width: 40px;
+}
+.portada-sala {
+    width: 40px;
+}
+
+td img {
+    width: 40px;
+}
+
+
+.boton-inicio {
+    background-color: blue;
+    padding: 20px;
+    display: flex;
+}
+
+.ocupado img {
+    background-color: rgb(255, 0, 0);
+    border-radius: 10%;
+    padding: 3px;
+}
+.seleccionado img {
+    background-color: rgb(0, 122, 0);
+    border-radius: 10%;
+    padding: 3px;
+}
+
+.libre img {
+    background-color: rgb(0, 255, 0);
+    border-radius: 10%;
+    padding: 3px;
 }

@@ -112,6 +112,9 @@ h1 {
     background-color: rgb(255, 55, 55);
 }
 
+td {
+    display: inline;
+}
 .butaca {
     width: 50px;
     margin: 2px;
@@ -145,3 +148,17 @@ h1 {
     background-color: #fd4646;
   }
   
+
+  .estado {
+    font-size: 20px;
+    position: relative;
+    width: fit-content;
+    padding: 0.5em;
+    border-radius: 1em 1em 0em 1em;
+    border: 1px solid white;
+    top: -4em;
+    right: 2.5em;
+    color: #ffffff;
+    background-color: #ff7300;
+    z-index: 10;
+  }

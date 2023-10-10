@@ -15,22 +15,38 @@ cine.innerHTML =
 </div>`;
 
 
+
+
 var salas = [];
 
 
 
-function crearSala(nombrePelicula, filas, columnas, precioButaca,portada)
-    {
-        let sala = new salaCine(nombrePelicula, filas, columnas, precioButaca,portada);
-        salas.push(sala);
 
-        console.log('Sala creada');
-        console.log(salas);
-        
-        
-        
+function crearSala(nombrePelicula, filas, columnas, precioButaca, portada) {
+    // Verificar si las butacas ya están en el localStorage
+    const localStorageKey = `sala_${nombrePelicula}`;
+    const butacasGuardadas = localStorage.getItem(localStorageKey);
+  
+    let sala;
+  
+    if (butacasGuardadas) {
+      // Si las butacas ya están en el localStorage, cargarlas
+      const butacas = JSON.parse(butacasGuardadas);
+      sala = new salaCine(nombrePelicula, filas, columnas, precioButaca, portada, butacas);
+    } else {
+      // Si las butacas no están en el localStorage, crear butacas aleatorias
+      sala = new salaCine(nombrePelicula, filas, columnas, precioButaca, portada);
+      
+      // Guardar las butacas en el localStorage
+      localStorage.setItem(localStorageKey, JSON.stringify(sala.butacas));
     }
-
+  
+    // Agregar la sala al arreglo de salas
+    salas.push(sala);
+  
+    console.log('Sala creada');
+    console.log(salas);
+  }
 
 
     
@@ -59,25 +75,28 @@ function mostrarCine()
     //Clase sala cine: 
     class salaCine
     {    
-        constructor(nombrePelicula, filas, columnas, precioButaca,portada)
+        constructor(nombrePelicula, filas, columnas, precioButaca,portada,butacas)
         {
             this.nombrePelicula = nombrePelicula;
             this.precioButaca = precioButaca;
             this.filas = filas;
             this.columnas = columnas;
-            this.butacas = [];
+            this.butacas = butacas;
             this.portada = document.createElement("img");
             this.boton = document.createElement("div");
             
             
             this.portada.setAttribute("src",portada)
-            for (let i = 0; i < filas; i++)
-            {
-                this.butacas[i] = [];
-                
-                for (let j = 0; j < columnas; j++)
+            
+            if(this.butacas.length < 1){
+                for (let i = 0; i < filas; i++)
                 {
-                    this.butacas[i][j] = numeroRandom(0, 1); // 0 significa libre
+                    this.butacas[i] = [];
+                    
+                    for (let j = 0; j < columnas; j++)
+                    {
+                        this.butacas[i][j] = numeroRandom(0, 1); // 0 significa libre
+                    }
                 }
             }
             
@@ -99,13 +118,22 @@ function mostrarCine()
         
                     if (self.butacas[i][j] == 1) {
                         columna.className = "celda libre";
-                        columna.onclick = function () {
+                        columna.addEventListener("click",function () {
                             columna.className = "celda seleccionada";
                             
-                            self.butacas[i][j] = 2;
-                            
-                            
-                        };
+                            self.butacas[i][j] = 2;  
+                        })
+                        const estado = document.createElement("div");
+                        estado.className = "estado";
+                        estado.innerText = "libre"
+                        columna.addEventListener("mouseover",function () {
+                            columna.appendChild(estado);
+                        })
+
+                        columna.addEventListener("mouseout",function () {
+                            columna.removeChild(estado);
+                        })
+                        
                     } else {
                         columna.className = "celda ocupado";
                         // columna.onclick = function () {
@@ -240,6 +268,7 @@ function crearBoton(ruta,clase){
     boton.appendChild(imgAtras)
     return boton
 }
+
 
 
 
