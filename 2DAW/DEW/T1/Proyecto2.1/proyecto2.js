@@ -17,65 +17,63 @@ cine.innerHTML =
 
 
 
-var salas = [];
+const salas = [];
 
 
 
 
 function crearSala(nombrePelicula, filas, columnas, precioButaca, portada) {
-    // Verificar si las butacas ya están en el localStorage
-    const localStorageKey = `sala_${nombrePelicula}`;
-    const butacasGuardadas = localStorage.getItem(localStorageKey);
-  
+	// Verificar si las butacas ya están en el localStorage
+    const butacasId = `butacas_${nombrePelicula}`;
+    //
+	const butacasGuardadas = JSON.stringify(localStorage.getItem(butacasId));
+	console.log(butacasGuardadas);
+	
     let sala;
-  
-    if (butacasGuardadas) {
-      // Si las butacas ya están en el localStorage, cargarlas
-      const butacas = JSON.parse(butacasGuardadas);
-      sala = new salaCine(nombrePelicula, filas, columnas, precioButaca, portada, butacas);
+	//
+    if (butacasGuardadas === "null") {
+			console.log("Crear aleatorias")
+			  // Si las butacas no están en el localStorage, crear butacas aleatorias
+			  sala = new salaCine(nombrePelicula, filas, columnas, precioButaca, portada,true);
+			  localStorage.setItem(butacasId, JSON.stringify(sala.butacas));
+		
     } else {
-      // Si las butacas no están en el localStorage, crear butacas aleatorias
-      sala = new salaCine(nombrePelicula, filas, columnas, precioButaca, portada);
-      
-      // Guardar las butacas en el localStorage
-      localStorage.setItem(localStorageKey, JSON.stringify(sala.butacas));
+		// Si las butacas ya están en el localStorage, cargarlas
+		console.log("No crear aleatorias")
+		const butacas = JSON.parse(localStorage.getItem(butacasId));
+		console.log(butacas)
+		sala = new salaCine(nombrePelicula, filas, columnas, precioButaca, portada, false, butacas);
+		
     }
-  
-    // Agregar la sala al arreglo de salas
+    //
+    //Agregar la sala a la array "salas"
     salas.push(sala);
-  
-    console.log('Sala creada');
-    console.log(salas);
-  }
+    //
+    //console.log('Sala creada ');
+}
 
 
-    
-function mostrarCine()
-    {
-        const cine = document.getElementById('cine');
-        cine.innerHTML =    
-        `<h1>Cine Atlantida</h1>
+function mostrarCine(){
 
-        <p>Seleccione la pelicula que quiera reservar</p>
-        <div id="contenedorPeliculas">
+	const cine = document.getElementById('cine');
+	cine.innerHTML =    
+	`<h1>Cine Atlantida</h1>
 
-        </div>`;
-        const contenedorPeliculas = document.getElementById('contenedorPeliculas');
+	<div id="contenedorPeliculas">
 
-        for (let i=0; i < salas.length; i++)
-        {
-            contenedorPeliculas.appendChild(salas[i].mostrarPortada());
-        }
+	</div>`;
+	const contenedorPeliculas = document.getElementById('contenedorPeliculas');
 
-
-    }
+	for (let i=0; i < salas.length; i++){
+		contenedorPeliculas.appendChild(salas[i].mostrarPortada());
+	}
+}
 
     
-    
-    //Clase sala cine: 
+
     class salaCine
     {    
-        constructor(nombrePelicula, filas, columnas, precioButaca,portada,butacas)
+        constructor(nombrePelicula, filas, columnas, precioButaca,portada,generar,butacas)
         {
             this.nombrePelicula = nombrePelicula;
             this.precioButaca = precioButaca;
@@ -84,11 +82,13 @@ function mostrarCine()
             this.butacas = butacas;
             this.portada = document.createElement("img");
             this.boton = document.createElement("div");
-            
+            this.generar = generar
             
             this.portada.setAttribute("src",portada)
             
-            if(this.butacas.length < 1){
+            if(generar){
+				console.log(generar)
+                this.butacas = []
                 for (let i = 0; i < filas; i++)
                 {
                     this.butacas[i] = [];
@@ -118,11 +118,15 @@ function mostrarCine()
         
                     if (self.butacas[i][j] == 1) {
                         columna.className = "celda libre";
-                        columna.addEventListener("click",function () {
-                            columna.className = "celda seleccionada";
-                            
-                            self.butacas[i][j] = 2;  
-                        })
+                        columna.addEventListener("mousedown", function () {
+							columna.className = "celda seleccionada";
+							
+						});
+						  
+						  // Agregar el evento "mouseup" para cuando se suelta el botón del mouse
+						columna.addEventListener("mouseup", function () {
+							self.butacas[i][j] = 2;
+						});
                         const estado = document.createElement("div");
                         estado.className = "estado";
                         estado.innerText = "libre"
@@ -136,10 +140,12 @@ function mostrarCine()
                         
                     } else {
                         columna.className = "celda ocupado";
-                        // columna.onclick = function () {
-                        //     columna.className = "celda libre";
-                        //     self.liberar(i, j);
-                        // };
+						//Descomentar si quiere poder liberar los asientos ocupados al clicar.
+                        columna.onclick = function () {
+							
+                            //columna.className = "celda libre";
+                            //self.liberar(i, j);
+                        };
                     }
         
                     fila.appendChild(columna);
@@ -256,7 +262,7 @@ function mostrarCine()
 
 
 function crearBoton(ruta,clase){
-    const boton = document.createElement("div");
+        const boton = document.createElement("div");
     boton.className = clase;
     let imgAtras = document.createElement("img");
     imgAtras.setAttribute("src",ruta);
@@ -280,5 +286,7 @@ const sala2 =  crearSala('La Monja', 15, 10, 5, "img/lamonja.jpg");
 const sala3 =  crearSala('Time', 10, 10, 5, "img/time.jpg");
 const sala4 =  crearSala('El Exorcista', 8, 8, 8, "img/exorcista.jpg");
 const sala5 =  crearSala('Titanic', 12, 12, 6, "img/titanic.jpg");
+
+console.log('-Salas Creadas: ',salas);
 
 mostrarCine() 
