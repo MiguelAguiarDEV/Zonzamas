@@ -131,7 +131,8 @@ html, body{
 
 
 /* TODO timer */
-.timer {
+.competitivo {
+    margin-bottom: 10px;
     width: 200px;
     height: 70px;
     border: 3px solid var(--blanco);

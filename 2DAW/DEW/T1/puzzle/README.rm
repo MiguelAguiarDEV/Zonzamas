@@ -1,0 +1,22 @@
+Diseña un juego en línea para resolver un rompecabezas deslizante. 
+
+
+    TODO: PRGUNTAR SI DA IGUAL LA EZQUINA 
+    
+
+    TODO :-Después de presionar un botón de INICIO, las piezas aparecerán mezcladas aleatoriamente y comienza el juego. 
+    El jugador podrá hacer clic en las piezas vecinas al espacio para dejarlas deslizarse a su posición (la pieza y el espacio intercambian lugares sólo si no están colocados en diagonal). 
+
+    TODO:-Una variable aumentará después de mover cada pieza para contar los movimientos realizados durante la partida. 
+    Cuando finalice el rompecabezas, aparecerá un mensaje anunciando el número de movimientos realizados. 
+
+    TODO:-También incluye un objeto de tiempo que cuente los minutos y segundos necesarios para resolver el rompecabezas y una puntuación con el mejor tiempo o el menor tiempo necesario hasta el momento que se almacenará mediante localStorage.
+
+    TODO: -Se podrá almacenar la partida con su estado (posiciones y tiempo) para continuarla en  otro momento.
+
+    TODO:-Haz uso de funciones.
+
+    TODO: -Utiliza un objeto para el rompecabezas que incluya todas las propiedades.
+
+    TODO: -Usa un array auxiliar para controlar el orden de las piezas. 
+    No utilices los métodos document.write(), alert() o prompt().

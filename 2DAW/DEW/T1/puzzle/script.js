@@ -79,37 +79,42 @@ const arrayPiezasDesordenadas = [].concat(arrayPiezas);
 var arrayJuego = [].concat(arrayPiezasDesordenadas);
 
 //Añado el evento onclick a las piezas
+function asignarEvento(){
+    arrayJuego.forEach(pieza => {
+        pieza.onclick = () => {
+            //Funcion para intercambiar el hueco por la pieza clicda si es que la pieza clicada se puede mover al lugar del hueco
+            const posicionPieza = arrayJuego.indexOf(pieza);
+            const posicionHueco = arrayJuego.findIndex((elemento) => {
+                return elemento.classList.contains("hueco");
+            }); 
+            const piezaSiguiente = arrayJuego[posicionPieza+1];
+            const piezaAnterior = arrayJuego[posicionPieza-1];
+            const piezaArriba = arrayJuego[posicionPieza-3];
+            const piezaAbajo = arrayJuego[posicionPieza+3];
+            const posicionAnterior = arrayJuego.indexOf(piezaAnterior);
+            const posicionSiguiente = arrayJuego.indexOf(piezaSiguiente);
+            const posicionArriba = arrayJuego.indexOf(piezaArriba);
+            const posicionAbajo = arrayJuego.indexOf(piezaAbajo);
 
-arrayJuego.forEach(pieza => {
-    pieza.addEventListener("click", () => {
-        //Funcion para intercambiar el hueco por la pieza clicda si es que la pieza clicada se puede mover al lugar del hueco
-        const posicionPieza = arrayJuego.indexOf(pieza);
-        const posicionHueco = arrayJuego.findIndex((elemento) => {
-            return elemento.classList.contains("hueco");
-        }); 
-        const piezaSiguiente = arrayJuego[posicionPieza+1];
-        const piezaAnterior = arrayJuego[posicionPieza-1];
-        const piezaArriba = arrayJuego[posicionPieza-3];
-        const piezaAbajo = arrayJuego[posicionPieza+3];
-        const posicionAnterior = arrayJuego.indexOf(piezaAnterior);
-        const posicionSiguiente = arrayJuego.indexOf(piezaSiguiente);
-        const posicionArriba = arrayJuego.indexOf(piezaArriba);
-        const posicionAbajo = arrayJuego.indexOf(piezaAbajo);
 
-
-        if (posicionAnterior == posicionHueco || posicionSiguiente == posicionHueco || posicionArriba == posicionHueco || posicionAbajo == posicionHueco) {
-            [arrayJuego[posicionPieza], arrayJuego[posicionHueco]] = [arrayJuego[posicionHueco], arrayJuego[posicionPieza]];
-        }
-        ponerPiezas(arrayJuego);
+            if (posicionAnterior == posicionHueco || posicionSiguiente == posicionHueco || posicionArriba == posicionHueco || posicionAbajo == posicionHueco) {
+                [arrayJuego[posicionPieza], arrayJuego[posicionHueco]] = [arrayJuego[posicionHueco], arrayJuego[posicionPieza]];
+                console.log("Se ha intercambiado",arrayJuego[posicionPieza]);
+            }
+            ponerPiezas(arrayJuego);
+            
+        };
+        console.log("Se asigno un evento")
         
-    })
-    
-});
+    });
+};
+
 
 
 
 function iniciarJuego() {
     arrayJuego = [].concat(arrayPiezasDesordenadas);
+    asignarEvento();
     ponerPiezas(arrayPiezasDesordenadas);
 };
 
@@ -135,11 +140,7 @@ ponerPiezas(arrayPiezas)
 
 
 
-
-
-
 //TODO : HACER EL TIMER
 //TODO : GUARDAR EL MEJOR TIEMPO EN EL LOCAL STORAGE
 //TODO : GURDAR PARTIDA EN EL LOCAL STORAGE
-
-
+//TODO : AÑADIR CLICKS
