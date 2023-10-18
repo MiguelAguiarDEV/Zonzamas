@@ -1,0 +1,60 @@
+:root {
+    --oscuro: #02010a;
+    --oscuro1: #04052e;
+    --vileta:#140152;
+    --azul: #22007c;
+    --blanco: #f1f1f1;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: none;
+    font-size: 0;
+    font-family: 'Poppins';
+}
+
+.app {
+    background-color: var(--oscuro1);
+    height: 100vh;
+    margin:0 auto;
+    display: grid;
+}
+
+/* HEADER */
+.header {
+    color: var(--blanco);
+    display: flex;
+}
+
+.header-title {
+    font-size: 3vh;
+    margin: auto;
+}
+
+.header-name {
+    font-size: 3vh;
+    margin: auto;
+}
+/* HEADER */
+
+
+/* CONTENET */
+.content {
+    background-color: #140152;
+    color: #f1f1f1;
+    font-size: 10vh;
+    height: 100%;
+}
+/* CONTENT */
+
+
+
+/* FOOTER */
+.footer {
+    background-color: #02010a;
+    position: relative;
+    bottom: 0;
+}
+/* FOOTER */
