@@ -1,11 +1,13 @@
 Diseña un juego en línea para resolver un rompecabezas deslizante. 
 
+    TODO: -Primero crea en el archivo index.html una tabla de 3x3 con identificadores para cada celda y cualquier división que puedas necesitar para mostrar mensajes usando clases o 
+    identificadores. 
 
-    TODO: PRGUNTAR SI DA IGUAL LA EZQUINA 
-    
+    TODO:-Luego busca cualquier imagen para el rompecabezas y recórtala en 9 piezas usando cualquier editor de fotos, descarta una de ellas, la que está en la esquina inferior derecha, y luego muestra las piezas restantes en su orden correcto en la tabla del documento y con el hueco correspondiente a la pieza desechada. 
 
-    TODO :-Después de presionar un botón de INICIO, las piezas aparecerán mezcladas aleatoriamente y comienza el juego. 
-    El jugador podrá hacer clic en las piezas vecinas al espacio para dejarlas deslizarse a su posición (la pieza y el espacio intercambian lugares sólo si no están colocados en diagonal). 
+    TODO:-Después de presionar un botón de INICIO, las piezas aparecerán mezcladas aleatoriamente y comienza el juego. 
+
+    TODO:El jugador podrá hacer clic en las piezas vecinas al espacio para dejarlas deslizarse a su posición (la pieza y el espacio intercambian lugares sólo si no están colocados en diagonal). 
 
     TODO:-Una variable aumentará después de mover cada pieza para contar los movimientos realizados durante la partida. 
     Cuando finalice el rompecabezas, aparecerá un mensaje anunciando el número de movimientos realizados. 

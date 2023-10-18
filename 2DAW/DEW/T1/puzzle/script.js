@@ -13,13 +13,14 @@ function desordenarArray(array) {
 //Funcion para poner las piezas en el tablero
 function ponerPiezas (array) {
     tablero.innerHTML = "";
+    const contenedorClicks = document.getElementById("clicks");
+
     for(pieza of array) {
+        contenedorClicks.innerHTML = clicks;
         tablero.appendChild(pieza);
     }
 
     if (comprobarSiGana()) {
-        
-        
         setTimeout(function() {
             tablero.innerHTML = "Ganaste";
         }, 200);
@@ -29,20 +30,23 @@ function ponerPiezas (array) {
 
 
 const imagenes = [
-    "./img/row-1-column-1.png",
-    "./img/row-1-column-2.png",
-    "./img/row-1-column-3.png",
-    "./img/row-2-column-1.png",
-    "./img/row-2-column-2.png",
-    "./img/row-2-column-3.png",
-    "./img/row-3-column-1.png",
-    "./img/row-3-column-2.png",
-    "./img/row-3-column-3.png"
-  ];
+        "./img/row-1-column-1.png",
+        "./img/row-1-column-2.png",
+        "./img/row-1-column-3.png",
+        "./img/row-2-column-1.png",
+        "./img/row-2-column-2.png",
+        "./img/row-2-column-3.png",
+        "./img/row-3-column-1.png",
+        "./img/row-3-column-2.png",
+        "./img/row-3-column-3.png"
+        ];
   
-  const tablero = document.getElementById("tablero");
-  const arrayPiezas = [];
-
+const tablero = document.getElementById("tablero");
+const arrayPiezas = [];
+let cronometroInterval; // Variable para almacenar el ID del intervalo del cronómetro
+let segundos = 0;
+let minutos = 0;
+let clicks = 0;
 
 for (let i = 0; i < imagenes.length; i++) {
     const pieza = document.createElement("div");
@@ -101,6 +105,9 @@ function asignarEvento(){
                 [arrayJuego[posicionPieza], arrayJuego[posicionHueco]] = [arrayJuego[posicionHueco], arrayJuego[posicionPieza]];
                 console.log("Se ha intercambiado",arrayJuego[posicionPieza]);
             }
+            
+            clicks++;
+            
             ponerPiezas(arrayJuego);
             
         };
@@ -113,10 +120,57 @@ function asignarEvento(){
 
 
 function iniciarJuego() {
+    clicks = 0;
+    reiniciarCronometro();
+    iniciarCronometro(cronometroInterval,segundos,minutos);
     arrayJuego = [].concat(arrayPiezasDesordenadas);
     asignarEvento();
     ponerPiezas(arrayPiezasDesordenadas);
 };
+
+
+
+
+// Función para iniciar el cronómetro
+function iniciarCronometro() {
+    const cronometro = document.getElementById("cronometro");
+    if (!cronometroInterval) {
+        cronometroInterval = setInterval(function () {
+        segundos++;
+        if (segundos === 60) {
+            minutos++;
+            segundos = 0;
+        }
+        
+        // Actualizar la interfaz o realizar acciones con los valores de minutos y segundos
+        console.log(`Tiempo transcurrido: ${minutos} minutos y ${segundos} segundos`);
+        cronometro.innerHTML = `${minutos} : ${segundos}`;
+        }, 1000); // El cronómetro se actualiza cada 1000 milisegundos (1 segundo)
+    } else {
+        console.log('El cronómetro ya está en funcionamiento');
+    }
+};
+
+
+
+// Función para detener el cronómetro
+function detenerCronometro() {
+    if (cronometroInterval) {
+        clearInterval(cronometroInterval); // Detiene el cronómetro
+        cronometroInterval = null; // Borra el ID del intervalo
+        console.log('Cronómetro detenido');
+    } else {
+        console.log('El cronómetro no está en funcionamiento');
+    }
+}
+
+function reiniciarCronometro() {
+    detenerCronometro();
+    segundos = 0;
+    minutos = 0;
+    console.log('Cronómetro reiniciado');
+}
+
 
 
 function comprobarSiGana() {
@@ -130,6 +184,7 @@ function comprobarSiGana() {
         }
     }
     console.log("Ganaste");
+    detenerCronometro();
     return true;
 }
   
