@@ -20,21 +20,73 @@
 
         <section class="content">
             <!-- CONTENIDO DE LA WEB -->
-            <article id="tablero">
+            <section class="jugo" id="jugo">
+                <article id="tablero">
+                    <div class="pieza pieza0">
+                        <img src="./img/row-1-column-1.png" alt="">
+                    </div>
+                    <div class="pieza pieza1">
+                        <img src="./img/row-1-column-2.png" alt="">
+                    </div>
+                    <div class="pieza pieza2">
+                        <img src="./img/row-1-column-3.png" alt="">
+                    </div>
+                    <div class="pieza pieza3">
+                        <img src="./img/row-2-column-1.png" alt="">
+                    </div>
+                    <div class="pieza pieza4">
+                        <img src="./img/row-2-column-2.png" alt="">
+                    </div>
+                    <div class="pieza pieza5">
+                        <img src="./img/row-2-column-3.png" alt="">
+                    </div>
+                    <div class="pieza pieza6">
+                        <img src="./img/row-3-column-1.png" alt="">
+                    </div>
+                    <div class="pieza pieza7">
+                        <img src="./img/row-3-column-2.png" alt="">
+                    </div>
+                    <div class="pieza hueco">
+                        <img src="./img/row-3-column-3.png" alt="">
+                    </div>
+                </article>
+
+                <article id="contenedor-botones" class="incio">
+                    <button id="boton-iniciar-partida" class="boton">
+                        Nueva Partida
+                    </button>
+                    <button id="boton-cargar-partida" class="boton">
+                        Cargar Partida
+                    </button>
+                    <button id="boton-parar-partida" class="boton">
+                        Parar Partida
+                    </button>
+                    <form id="formulario-modos">
+                        <input type="radio" name="modo" id="radio-facil" class="radio">
+                        <label for="radio-facil">Facil</label>    
+                        <input type="radio" name="modo" id="radio-medio" class="radio">
+                        <label for="radio-medio">Dificil</label>
+                    </form>
+                </article>
                 
-            </article>
-            <article class="contenedor-boton">
-                <div onclick="iniciarJuego()" class="boton">
-                    Iniciar
-                </div>
-            </article>
-            <article class="competitivo cronometro" id="cronometro">
-                00:00
-            </article>
-            <article class="competitivo clicks" id="clicks">
-                0
-            </article>
+                <article class="competitivo cronometro" id="cronometro">
+                    Tiempo: 00:00
+                </article>
+                <article class="competitivo clicks" id="clicks">
+                    Clicks: 0
+                </article>
+                <article class="competitivo mejor-partida" id="mejor-partida">        
+                    Mejor Partida:
+                    <article class="competitivo cronometro" id="mejor-tiempo">
+                        -Clicks: 00:00
+                    </article>
+                    <article class="competitivo clicks" id="mejor-clicks">
+                        -Clicks: 0
+                    </article>
+                </article>
+            </section>
         </section>
+         
 
         
         
