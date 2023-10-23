@@ -21,9 +21,44 @@
         <img src="./img/row-3-column-3.png" alt="">
     </article>
 
+    <section id="contenedor-leaderboard">
+        <table>
+            <h1>Leaderboard</h1>
+            <thead>
+                
+                <tr>
+                    <td>
+                        Nombre
+                    </td>
+                    <td>
+                        Clicks
+                    </td>
+                    <td>
+                        Tiempo
+                    </td>
+                </tr>
+            </thead>
+            
+            <tbody id="contendio-laderboard">
+
+            </tbody>
+            
+        </table>
+    </section>
+
     <section id="contenedor-botones">
 
-    </section>
+            <button class="boton" id="boton-iniciar">Iniciar Partida</button>
+            <button class="boton" id="boton-parar">Parar Partida</button>
+            <form id="formulario">
+                <input type="radio" name="modo" value="facil" id="modo-facil">
+                <label for="modoFacil">Fácil</label>
+                <input type="radio" name="modo" value="dificil" id="modo-dificil">
+                <label for="modoDificil">Difícil</label>
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre">
+            </form>
+        </section>
     <script src="script.js"></script>
 </body>
 </html>

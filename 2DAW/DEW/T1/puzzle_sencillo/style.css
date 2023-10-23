@@ -1,12 +1,18 @@
 
 #contenedor-puzzle {
     border: 1px solid blue;
-    padding: 10px;
+    padding: 5px;
     display: grid;
     grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(3, auto);
     width: 40%;
     margin:0 auto;
+    gap: 5px;
+}
+
+
+table {
+    border: 1px solid black;
 }
 
 img {
