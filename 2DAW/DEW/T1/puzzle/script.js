@@ -37,7 +37,10 @@ class puzzle {
 
 
     }   
-
+    
+    iniciarPuzzle () {
+        
+    }
 
 }
 
