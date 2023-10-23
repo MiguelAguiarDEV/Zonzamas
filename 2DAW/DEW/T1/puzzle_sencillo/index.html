@@ -18,9 +18,18 @@
         <img src="./img/row-2-column-3.png" alt="">
         <img src="./img/row-3-column-1.png" alt="">
         <img src="./img/row-3-column-2.png" alt="">
-        <img src="./img/row-3-column-3.png" alt="">
+        <img class="hueco" src="./img/row-3-column-3.png" alt="">
     </article>
 
+
+    <article id="contenedor-crono-clicks">
+        <div id="cronometro">
+            
+        </div>
+        <div id="clicks">
+
+        </div>
+    </article>
     <section id="contenedor-leaderboard">
         <table>
             <h1>Leaderboard</h1>
@@ -50,13 +59,14 @@
 
             <button class="boton" id="boton-iniciar">Iniciar Partida</button>
             <button class="boton" id="boton-parar">Parar Partida</button>
+            <button class="boton" id="boton-nueva-partida">Nueva partida</button>
             <form id="formulario">
                 <input type="radio" name="modo" value="facil" id="modo-facil">
                 <label for="modoFacil">Fácil</label>
                 <input type="radio" name="modo" value="dificil" id="modo-dificil">
                 <label for="modoDificil">Difícil</label>
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre">
+                <input type="text" name="nombre" maxlength="16">
             </form>
         </section>
     <script src="script.js"></script>
