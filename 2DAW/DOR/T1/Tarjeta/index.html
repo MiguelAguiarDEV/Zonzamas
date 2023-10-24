@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta de Crédito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .contenedor {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label, input, select {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="text"]::-webkit-inner-spin-button, 
+        input[type="text"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number]{
+            -moz-appearance:button;
+        }
+
+        .contenedor-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
+        }
+
+        .cvc, .caducidad {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cvc label, .caducidad label {
+            margin-bottom: 10px; 
+        }
+
+        .cvc input {
+            width: 40%;
+        }
+
+        .caducidad input {
+            width: 10%; 
+            margin-right: 5px; 
+        }
+
+        .caducidad label {
+            margin-right: 5px; 
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h2>Tarjeta de Crédito</h2>
+        <form>
+            <label for="nombre">Titular:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="numero">Número de Tarjeta:</label>
+            <input type="number" id="numero" name="numero" pattern="\d{16}" required placeholder="E.g. 1234 5678 912 0000" maxlength="16">
+
+            <div class="contenedor-flex">
+                <div class="cvc">
+                    <label for="cvc">CVC:</label>
+                    <input type="number" id="cvc" name="cvc" required placeholder="E.g. 123" maxlength="3">
+                </div>
+
+                <div class="caducidad">
+                
+                    <label for="caducidad">Ex. Date:</label>
+                    <div style="display: flex;">
+                        <input type="number" inputmode="numeric" id="mes" name="mes" required placeholder="MM" maxlength="2">
+                        <input type="number" id="ano" name="ano" required placeholder="YY" maxlength="2" pattern="[0-9]">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>

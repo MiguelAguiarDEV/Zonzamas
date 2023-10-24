@@ -15,6 +15,7 @@ const contenedorBotones = document.getElementById('contenedor-botones');
 const contenedorClicks = document.getElementById('clicks');
 const contenedorCronometro = document.getElementById('cronometro');
 const contenedorLeaderboard = document.getElementById('contenedor-leaderboard');
+const contenidoLeaderboard = document.getElementById('contenido-leaderboard')
 const botonNuevaPartida = document.getElementById('boton-nueva-partida');
 const botonIniciarPartida = document.getElementById('boton-iniciar');
 const botonPararPartidas = document.getElementById('boton-parar');
@@ -24,28 +25,44 @@ const radioDificil = document.getElementById('modo-dificil');
 const nombreInput = document.getElementById('nombre');
 const leaderboard = [];
 
+
+
 function anadirLeaderboard() {
     const nombre = nombreInput.value;
-    const clicks = puzzle.clicks;
     const tiempo = cronometro.tiempo;
-    
-    const registro = {
-    nombre: nombre,
-    clicks: clicks,
-    tiempo: tiempo
-    };
-    
+    const clicks = puzzle.clicks;
+  
+    const registro = { nombre, tiempo, clicks };
     leaderboard.push(registro);
-    
+  
     // Limpia los campos después de agregar al leaderboard
     nombreInput.value = "";
     puzzle.clicks = 0;
     puzzle.mostrarPuzzle();
     cronometro.reiniciarCronometro();
-}
+  }
+
+function mostrarLeaderboard() {
+    // Ordenar el leaderboard por tiempo en orden ascendente
+    const leaderboardOrdenado = leaderboard.slice().sort((a, b) => a.tiempo - b.tiempo);
   
-
-
+    // Limpia el contenido actual del contenedor del leaderboard
+    borrarContenido(contenidoLeaderboard);
+  
+    // Agrega filas a la tabla con los datos del leaderboard
+    leaderboardOrdenado.forEach((jugador) => {
+      const fila = document.createElement("tr");
+      fila.innerHTML = `
+        <td>${jugador.nombre}</td>
+        <td>${jugador.tiempo} s</td>
+        <td>${jugador.clicks}</td>
+      `;
+      contenidoLeaderboard.appendChild(fila);
+    });
+  
+    // Agrega la tabla al contenedor del leaderboard
+  }
+  
 
 function borrarContenido(contenedor) {
     while (contenedor.firstChild) {
@@ -92,7 +109,7 @@ const cronometro = {
             const minutosStr = minutos.toString().padStart(2, '0'); // Formatear minutos a dos dígitos
             const segundosStr = segundos.toString().padStart(2, '0'); // Formatear segundos a dos dígitos
         
-            contenedorCronometro.textContent = `Tiempo: ${minutosStr}:${segundosStr}`;
+            contenedorCronometro.textContent = `${minutosStr}:${segundosStr}`;
         }
     };
   
@@ -123,9 +140,11 @@ const puzzle = {
         puzzle.quitarEventos();
         cronometro.pararCronometro(); // Parar el cronómetro
         console.log('Se quito los eventos');
+        mostrarLeaderboard();
     },
       
     nuevaPartida() {
+        console.log(nombreInput.value)
         console.log(puzzle.modo);
         puzzle.clicks = 0;
         puzzle.piezasAux = [].concat(arrayCompletada);
@@ -165,6 +184,7 @@ const puzzle = {
         }
         console.log("Gano la partida")
         anadirLeaderboard();
+        mostrarLeaderboard();
         puzzle.pararPartida();
         return true;
     },
