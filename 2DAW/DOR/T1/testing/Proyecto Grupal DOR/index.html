@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarjeta de Crédito</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="form">
+    <form>
+      <label for="nombre">Titular:</label>
+      <input type="text" id="nombre" name="nombre" required />
+      <label for="numero">Número de Tarjeta:</label>
+      <input type="number" id="numero" name="numero" maxlength="16" required oninput="mostrarTexto()" placeholder="E.g. 1234 5678 912 0000"  />
+        
+      <div class="contenedor-date-cvc">
+        <div class="caducidad">
+          <label for="caducidad">Ex. Date:</label>
+          <div class="date">
+            <input type="number" id="mes" name="mes" required placeholder="MM" maxlength="2" />
+            <input type="number" id="ano" name="ano" required placeholder="YY" maxlength="2" />
+          </div>
+        </div>
+        <div class="cvc">
+          <label for="cvc">CVC:</label>
+          <input type="number" id="cvc" name="cvc" required placeholder="E.g. 123" maxlength="3" />
+        </div>
+      </div>
+      
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+   <!-- Card -->
+   <div class="card-container">
+    <div class="card">
+      <div class="card-front">
+        <div class="visa_logo">
+          <img src="img/visa.png" alt="" />
+        </div>
+        <div class="visa_info">
+          <img src="img/chip.png" alt="" />
+          <p id="p_numero">4586 7985 9271 6388</p>
+        </div>
+        <div class="visa_crinfo">
+          <p>02/12</p>
+          <p>Nikhil Bobade</p>
+        </div>
+      </div>
+      <div class="card-back">
+        <div class="black-belt"></div>
+        <div class="cvc-card">100</div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="js/script.js"></script>
+
+</html>

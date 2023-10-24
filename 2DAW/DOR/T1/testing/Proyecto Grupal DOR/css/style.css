@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100vh;
+    padding: 0 2rem;
+    display: flex;
+    gap: 10rem;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(
+      109.6deg,
+      rgba(62, 161, 219, 1) 11.2%,
+      rgba(93, 52, 236, 1) 100.2%
+    );
+}
+
+.container {
+    display: flex;
+    gap: 10rem;
+}
+
+.form {
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.form {
+    min-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;   
+}
+
+label, input, select {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+
+.contenedor-date-cvc {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    flex-grow: 1;
+    gap: 1rem;
+}
+
+.date {
+  display: flex;
+  gap: 1rem;
+}
+
+.date * {
+  width: 3rem !important;
+}
+
+.cvc, .caducidad {
+    display: flex;
+    flex-direction: column;
+}
+
+.cvc label, .caducidad label {
+    margin-bottom: 10px; 
+}
+
+
+.caducidad label {
+    margin-right: 5px; 
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+  
+   /* Card */
+  
+
+   .card-container:hover .card{
+    transform: rotateY(180deg);
+  }
+
+  .card {
+    transform-style: preserve-3d;
+    transition: 1000ms;
+    transform: perspective(800px);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  .card-front {
+    width: 380px;
+    height: 230px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgb(78, 142, 153);
+    border-radius: 10px;
+    
+    position: absolute;
+  }
+  
+  
+  .visa_logo {
+    float: right;
+    padding: 10px;
+  }
+  
+  .visa_logo img {
+    width: 70px;
+    height: 40px;
+  }
+  
+  .visa_info {
+    padding: 10px;
+    margin: 30px 0;
+  }
+  .visa_info img {
+    width: 60px;
+    height: 45px;
+  }
+  
+  .visa_info p {
+    font-size: 22px;
+    padding: 10px 0;
+    letter-spacing: 2px;
+    color: #ffffff;
+  }
+  
+  .visa_crinfo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    color: #ffffff;
+  }
+
+/* card back */
+
+.card-back {
+  width: 380px;
+  height: 230px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgb(161, 161, 161);
+  border-radius: 10px;
+
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+
+.black-belt {
+  background-color: rgb(37, 37, 37);
+  width: 100%;
+  height: 3rem;
+  margin-top: 1rem;
+}
+
+.cvc-card {
+  background-color: rgb(216, 216, 216);
+  margin: 2rem auto;
+  width: 60%;
+  padding: 0.5rem 1rem;
+  text-align: end;
+}
+
+
+
+
+@media (max-width: 1100px) {
+  body {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+  
+}
