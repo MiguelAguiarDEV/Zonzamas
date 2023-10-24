@@ -13,13 +13,39 @@ function desordenarArray(array) {
 const contenedorPuzzle = document.getElementById('contenedor-puzzle');
 const contenedorBotones = document.getElementById('contenedor-botones');
 const contenedorClicks = document.getElementById('clicks');
+const contenedorCronometro = document.getElementById('cronometro');
+const contenedorLeaderboard = document.getElementById('contenedor-leaderboard');
 const botonNuevaPartida = document.getElementById('boton-nueva-partida');
 const botonIniciarPartida = document.getElementById('boton-iniciar');
 const botonPararPartidas = document.getElementById('boton-parar');
 const formularioModo = document.getElementById('formulario');
 const radioFacil = document.getElementById('modo-facil');
 const radioDificil = document.getElementById('modo-dificil');
-const laderboard = [];
+const nombreInput = document.getElementById('nombre');
+const leaderboard = [];
+
+function anadirLeaderboard() {
+    const nombre = nombreInput.value;
+    const clicks = puzzle.clicks;
+    const tiempo = cronometro.tiempo;
+    
+    const registro = {
+    nombre: nombre,
+    clicks: clicks,
+    tiempo: tiempo
+    };
+    
+    leaderboard.push(registro);
+    
+    // Limpia los campos después de agregar al leaderboard
+    nombreInput.value = "";
+    puzzle.clicks = 0;
+    puzzle.mostrarPuzzle();
+    cronometro.reiniciarCronometro();
+}
+  
+
+
 
 function borrarContenido(contenedor) {
     while (contenedor.firstChild) {
@@ -32,12 +58,49 @@ console.log('Este es el contenedor de los botones: ', contenedorBotones);
 
 const arrayCompletada = Array.from(document.querySelectorAll('img'));
 
-
+const cronometro = {
+    tiempo: 0,
+    iniciado: false,
+    intervalID: null,
+  
+    iniciarCronometro() {
+        if (!this.iniciado) {
+            this.intervalID = setInterval(() => {
+                this.tiempo++;
+                this.actualizarCronometro();
+            }, 1000); // Actualiza el cronómetro cada segundo (1000 ms)
+            this.iniciado = true;
+        }
+    },
+  
+    pararCronometro() {
+        if (this.iniciado) {
+            clearInterval(this.intervalID);
+            this.iniciado = false;
+        }
+    },
+  
+    reiniciarCronometro() {
+        this.tiempo = 0;
+        this.actualizarCronometro();
+    },
+  
+    actualizarCronometro() {
+            const minutos = Math.floor(this.tiempo / 60); // Obtener minutos
+            const segundos = this.tiempo % 60; // Obtener segundos
+        
+            const minutosStr = minutos.toString().padStart(2, '0'); // Formatear minutos a dos dígitos
+            const segundosStr = segundos.toString().padStart(2, '0'); // Formatear segundos a dos dígitos
+        
+            contenedorCronometro.textContent = `Tiempo: ${minutosStr}:${segundosStr}`;
+        }
+    };
+  
 
 const puzzle = {
     piezas : [].concat(arrayCompletada),
     piezasAux : [],
-    modo : "",
+    modo : "Modo no seleccionado",
     clicks : 0,
     mostrarPuzzle () {
         
@@ -46,65 +109,53 @@ const puzzle = {
         puzzle.piezasAux.forEach(pieza => {
             contenedorPuzzle.appendChild(pieza);
         })
-        console.log("Se inicio el puzzle")
+        console.log("Se actualizo el puzzle")
     },
-    nuevaPartida () {
-        
-        console.log('Nueva partida')
+    iniciarPartida() {
+        console.log('Se inicio la partida');
+        puzzle.anadirEventos();
+        cronometro.iniciarCronometro(); // Iniciar el cronómetro
+        puzzle.mostrarPuzzle();
+    },
+      
+    pararPartida() {
+        console.log('Se paro la partida');
+        puzzle.quitarEventos();
+        cronometro.pararCronometro(); // Parar el cronómetro
+        console.log('Se quito los eventos');
+    },
+      
+    nuevaPartida() {
         console.log(puzzle.modo);
         puzzle.clicks = 0;
         puzzle.piezasAux = [].concat(arrayCompletada);
         switch (puzzle.modo) {
             case "":
                 console.log("Seleccione un modo");
-                return
+                return;
             case "facil":
-                [puzzle.piezasAux[8],puzzle.piezasAux[2]] = [puzzle.piezasAux[2],puzzle.piezasAux[8]];
-                [puzzle.piezasAux[5],puzzle.piezasAux[8]] = [puzzle.piezasAux[8],puzzle.piezasAux[5]];
+                [puzzle.piezasAux[8], puzzle.piezasAux[2]] = [puzzle.piezasAux[2], puzzle.piezasAux[8]];
+                [puzzle.piezasAux[5], puzzle.piezasAux[8]] = [puzzle.piezasAux[8], puzzle.piezasAux[5]];
                 console.log(puzzle.piezasAux);
                 puzzle.anadirEventos();
                 puzzle.mostrarPuzzle();
+                cronometro.reiniciarCronometro(); // Reiniciar el cronómetro
+                cronometro.iniciarCronometro(); // Iniciar el cronómetro
+                console.log('Nueva partida iniciada');
                 break;
             case "dificil":
                 puzzle.piezasAux = desordenarArray(arrayCompletada);
                 puzzle.piezasAux = desordenarArray(arrayCompletada);
                 puzzle.mostrarPuzzle();
                 puzzle.anadirEventos();
-            break;
+                cronometro.reiniciarCronometro(); // Reiniciar el cronómetro
+                cronometro.iniciarCronometro(); // Iniciar el cronómetro
+                console.log('Nueva partida iniciada');
+                break;
         }
     },
-    iniciarPartida () {
-        console.log(puzzle.modo);
-
-        if (puzzle.piezasAux.length === 0) {
-            puzzle.piezasAux = [].concat(arrayCompletada);
-            switch (puzzle.modo) {
-                case "":
-                    console.log("Seleccione un modo");
-                    return
-                case "facil":
-                    [puzzle.piezasAux[8],puzzle.piezasAux[2]] = [puzzle.piezasAux[2],puzzle.piezasAux[8]];
-                    [puzzle.piezasAux[5],puzzle.piezasAux[8]] = [puzzle.piezasAux[8],puzzle.piezasAux[5]];
-                    console.log(puzzle.piezasAux);
-                    puzzle.anadirEventos();
-                    puzzle.mostrarPuzzle();
-                    break;
-                case "dificil":
-                    puzzle.piezasAux = desordenarArray(arrayCompletada);
-                    puzzle.piezasAux = desordenarArray(arrayCompletada);
-                    puzzle.mostrarPuzzle();
-                    puzzle.anadirEventos();
-                    break;
-            }
-        }
-        puzzle.anadirEventos();
-        puzzle.mostrarPuzzle();
-    },
-
-    pararPartida () {
-        console.log('Se paro la partida');
-        puzzle.quitarEventos()
-    },
+      
+      
 
     comprobarSiGana() {
         for (let i = 0; i < puzzle.piezasAux.length; i++) {
@@ -112,20 +163,21 @@ const puzzle = {
                 return false;
             }
         }
+        console.log("Gano la partida")
+        anadirLeaderboard();
+        puzzle.pararPartida();
         return true;
     },
-
 
     anadirEventos() {
         puzzle.piezasAux.forEach(pieza => {
             pieza.onclick = () => {
+
                 const posicionPieza = puzzle.piezasAux.indexOf(pieza);
                 const posicionHueco = puzzle.piezasAux.findIndex((elemento) => {
                     return elemento.classList.contains("hueco");
                 }); 
-                const piezaSiguiente = puzzle.piezasAux[posicionPieza+1];
-                console.log(piezaSiguiente)
-                const piezaAnterior = puzzle.piezasAux[posicionPieza-1];
+                const piezaSiguiente = puzzle.piezasAux[posicionPieza+1];                const piezaAnterior = puzzle.piezasAux[posicionPieza-1];
                 const piezaArriba = puzzle.piezasAux[posicionPieza-3];
                 const piezaAbajo = puzzle.piezasAux[posicionPieza+3];
                 const posicionAnterior = puzzle.piezasAux.indexOf(piezaAnterior);
@@ -140,7 +192,7 @@ const puzzle = {
                     
                     puzzle.mostrarPuzzle();
                 }
-                
+                puzzle.comprobarSiGana();
             };
             console.log("Se asigno un evento")
         });
