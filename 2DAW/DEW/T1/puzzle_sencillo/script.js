@@ -23,7 +23,10 @@ const formularioModo = document.getElementById('formulario');
 const radioFacil = document.getElementById('modo-facil');
 const radioDificil = document.getElementById('modo-dificil');
 const nombreInput = document.getElementById('nombre');
-const leaderboard = [];
+var leaderboard = [];
+
+
+
 
 
 
@@ -40,6 +43,7 @@ function anadirLeaderboard() {
     puzzle.clicks = 0;
     puzzle.mostrarPuzzle();
     cronometro.reiniciarCronometro();
+    
   }
 
 function mostrarLeaderboard() {
@@ -59,9 +63,13 @@ function mostrarLeaderboard() {
       `;
       contenidoLeaderboard.appendChild(fila);
     });
-  
-    // Agrega la tabla al contenedor del leaderboard
   }
+
+
+
+
+
+
   
 
 function borrarContenido(contenedor) {
@@ -74,7 +82,6 @@ console.log('Este es el contenedor del puzzle: ', contenedorPuzzle);
 console.log('Este es el contenedor de los botones: ', contenedorBotones);
 
 const arrayCompletada = Array.from(document.querySelectorAll('img'));
-
 const cronometro = {
     tiempo: 0,
     iniciado: false,
@@ -110,6 +117,7 @@ const cronometro = {
             const segundosStr = segundos.toString().padStart(2, '0'); // Formatear segundos a dos dígitos
         
             contenedorCronometro.textContent = `${minutosStr}:${segundosStr}`;
+            guardarDatosPartida();
         }
     };
   
@@ -119,8 +127,8 @@ const puzzle = {
     piezasAux : [],
     modo : "Modo no seleccionado",
     clicks : 0,
+
     mostrarPuzzle () {
-        
         borrarContenido(contenedorPuzzle);
         contenedorClicks.innerHTML = puzzle.clicks;
         puzzle.piezasAux.forEach(pieza => {
@@ -154,31 +162,27 @@ const puzzle = {
                 return;
             case "facil":
                 [puzzle.piezasAux[8], puzzle.piezasAux[2]] = [puzzle.piezasAux[2], puzzle.piezasAux[8]];
-                [puzzle.piezasAux[5], puzzle.piezasAux[8]] = [puzzle.piezasAux[8], puzzle.piezasAux[5]];
-                console.log(puzzle.piezasAux);
-                puzzle.anadirEventos();
-                puzzle.mostrarPuzzle();
-                cronometro.reiniciarCronometro(); // Reiniciar el cronómetro
-                cronometro.iniciarCronometro(); // Iniciar el cronómetro
-                console.log('Nueva partida iniciada');
+                [puzzle.piezasAux[5], puzzle.piezasAux[8]] = [puzzle.piezasAux[8], puzzle.piezasAux[5]];                
                 break;
             case "dificil":
                 puzzle.piezasAux = desordenarArray(arrayCompletada);
                 puzzle.piezasAux = desordenarArray(arrayCompletada);
-                puzzle.mostrarPuzzle();
-                puzzle.anadirEventos();
-                cronometro.reiniciarCronometro(); // Reiniciar el cronómetro
-                cronometro.iniciarCronometro(); // Iniciar el cronómetro
-                console.log('Nueva partida iniciada');
                 break;
         }
+        puzzle.anadirEventos();
+        puzzle.mostrarPuzzle();
+        cronometro.reiniciarCronometro(); // Reiniciar el cronómetro
+        cronometro.iniciarCronometro(); // Iniciar el cronómetro
+        console.log('Nueva partida iniciada');
     },
       
       
 
     comprobarSiGana() {
         for (let i = 0; i < puzzle.piezasAux.length; i++) {
-            if (puzzle.piezasAux[i] !== arrayCompletada[i]) {
+            if (puzzle.piezasAux[i].id !== arrayCompletada[i].id) {
+                console.log("puzzle",puzzle.piezasAux)
+                console.log("completa",arrayCompletada)
                 return false;
             }
         }
@@ -186,6 +190,10 @@ const puzzle = {
         anadirLeaderboard();
         mostrarLeaderboard();
         puzzle.pararPartida();
+        localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+        contenedorClicks.innerHTML = "";
+        contenedorCronometro.innerHTML = "";
+        localStorage.removeItem("partida");
         return true;
     },
 
@@ -197,7 +205,8 @@ const puzzle = {
                 const posicionHueco = puzzle.piezasAux.findIndex((elemento) => {
                     return elemento.classList.contains("hueco");
                 }); 
-                const piezaSiguiente = puzzle.piezasAux[posicionPieza+1];                const piezaAnterior = puzzle.piezasAux[posicionPieza-1];
+                const piezaSiguiente = puzzle.piezasAux[posicionPieza+1];                
+                const piezaAnterior = puzzle.piezasAux[posicionPieza-1];
                 const piezaArriba = puzzle.piezasAux[posicionPieza-3];
                 const piezaAbajo = puzzle.piezasAux[posicionPieza+3];
                 const posicionAnterior = puzzle.piezasAux.indexOf(piezaAnterior);
@@ -213,8 +222,10 @@ const puzzle = {
                     puzzle.mostrarPuzzle();
                 }
                 puzzle.comprobarSiGana();
+
             };
             console.log("Se asigno un evento")
+            
         });
     },
 
@@ -224,6 +235,48 @@ const puzzle = {
         })
     }
 };
+
+function guardarDatosPartida() {
+    console.log("Se guardo")
+    const datosPartida = {
+        tiempo: cronometro.tiempo,
+        clicks: puzzle.clicks,
+        nombre: nombreInput.value,
+        piezas: puzzle.piezasAux.map(pieza => pieza.outerHTML)
+    };
+    // Convierte los datos a una cadena JSON y guárdalos en el localStorage
+    localStorage.setItem("partida", JSON.stringify(datosPartida));
+}
+
+function recuperarDatosPartida() {
+    const datosPartida = JSON.parse(localStorage.getItem("partida"));
+
+    if (datosPartida) {
+        console.log("Se recupero")
+        cronometro.tiempo = datosPartida.tiempo;
+        puzzle.clicks = datosPartida.clicks;
+        nombreInput.value = datosPartida.nombre;
+        borrarContenido(contenedorPuzzle);
+
+        datosPartida.piezas.forEach(piezaHTML => {
+            const div = document.createElement('div');
+            div.innerHTML = piezaHTML;
+            const pieza = div.firstChild;
+            puzzle.piezasAux.push(pieza);
+        });
+
+        puzzle.mostrarPuzzle();
+        puzzle.anadirEventos();
+        puzzle.iniciarPartida();
+    }
+}
+
+recuperarDatosPartida();
+
+if(localStorage.getItem("leaderboard")) {
+    leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
+    mostrarLeaderboard();
+}
 
 botonIniciarPartida.addEventListener('click', puzzle.iniciarPartida);
 botonPararPartidas.addEventListener('click', puzzle.pararPartida);
