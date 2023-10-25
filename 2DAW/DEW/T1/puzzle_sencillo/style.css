@@ -18,3 +18,23 @@ table {
 img {
     width: 100%;
 }
+
+
+
+
+#mensaje {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    color: white;
+    position: absolute;
+    top: 50px;
+    font-size: 24px;
+}
+
+.visible {
+    opacity: 100%;
+}
+.oculto {
+    opacity: 0%;
+}

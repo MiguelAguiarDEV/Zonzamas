@@ -8,7 +8,7 @@
     <title>Puzzle</title>
 </head>
 <body>
-    
+    <article id="mensaje" class="oculto"></article>
     <article id="contenedor-puzzle">
         <img id="p1" src="./img/row-1-column-1.png" alt="">
         <img id="p2" src="./img/row-1-column-2.png" alt="">
@@ -24,10 +24,10 @@
 
     <article id="contenedor-crono-clicks">
         <div id="cronometro">
-            
+            00:00
         </div>
         <div id="clicks">
-
+            0
         </div>
     </article>
     <section id="contenedor-leaderboard">
@@ -58,14 +58,9 @@
             <button class="boton" id="boton-iniciar">Iniciar Partida</button>
             <button class="boton" id="boton-parar">Parar Partida</button>
             <button class="boton" id="boton-nueva-partida">Nueva partida</button>
-            <form id="formulario">
-                <input type="radio" name="modo" value="facil" id="modo-facil">
-                <label for="modoFacil">Fácil</label>
-                <input type="radio" name="modo" value="dificil" id="modo-dificil">
-                <label for="modoDificil">Difícil</label>
-                <label for="nombre">Nombre:</label>
-                <input id="nombre" type="text" name="nombre" maxlength="16">
-            </form>
+            <button class="boton" id="boton-modo-facil">Facil</button>
+            <button class="boton" id="boton-modo-dificil">Dificil</button>
+            <input type="text" placeholder="Nombre" id="nombre">
         </section>
     <script src="script.js"></script>
 </body>
