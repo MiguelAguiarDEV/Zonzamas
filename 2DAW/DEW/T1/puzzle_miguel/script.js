@@ -179,7 +179,7 @@ const puzzle = {
         puzzle.anadirEventos();
         puzzle.mostrarPuzzle();
         cronometro.reiniciarCronometro(); // Reiniciar el cronómetro
-        cronometro.iniciarCronómetro(); // Iniciar el cronómetro
+        cronometro.iniciarCronometro(); // Iniciar el cronómetro
         console.log('Nueva partida iniciada');
         puzzle.modo = "";
     },

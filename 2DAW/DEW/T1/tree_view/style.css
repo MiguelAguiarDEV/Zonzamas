@@ -1,19 +1,58 @@
-.carpeta {
-    width: 200px;
-    
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 50px 100px;
-    
+ul, #contenedor {
+  list-style-type: none;
+}
+#nombre {
+    width: 50%;
 }
 
-
-.carpeta img {
-    width: 100%;   
-}    
-
-* {
-    border: 1px solid black;
-    margin: 0;
-    padding: 0;
+#contenedor {
+  margin: 0;
+  padding: 0;
 }
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "\2610";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.check-box::before {
+  content: "\2611"; 
+  color: dodgerblue;
+}
+
+.hijo {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+#sugerencias {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  #sugerencias div {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  #sugerencias div:hover {
+    background-color: #d3d3d3;
+  }
+  
