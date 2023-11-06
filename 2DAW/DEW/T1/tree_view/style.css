@@ -1,0 +1,19 @@
+.carpeta {
+    width: 200px;
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 50px 100px;
+    
+}
+
+
+.carpeta img {
+    width: 100%;   
+}    
+
+* {
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}

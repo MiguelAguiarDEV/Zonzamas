@@ -1,0 +1,16 @@
+{
+    "name": "miguel/lanzarote.lan",
+    "description": "PHP facil",
+    "autoload": {
+        "psr-4": {
+            "Miguel\\LanzaroteLan\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Miguel",
+            "email": "l1f.migue@gmail.com"
+        }
+    ],
+    "require": {}
+}
