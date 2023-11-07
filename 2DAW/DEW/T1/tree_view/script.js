@@ -1,12 +1,15 @@
+// Obtener el elemento de la lista desordenada con el ID "myUL"
 const myUL = document.getElementById("myUL");
+
+// Estructura de datos JSON que representa la jerarquía de carpetas y archivos
 let jsonData = {
     "/": {
         "tipo": "directorio",
-		toggled: true,
+        toggled: false,
         "contenido": {
             "documentos": {
                 "tipo": "directorio",
-				toggled: false,
+                toggled: false,
                 "contenido": {
                     "resume.txt": {
                         "tipo": "archivo"
@@ -18,11 +21,11 @@ let jsonData = {
             },
             "imágenes": {
                 "tipo": "directorio",
-				toggled: false,
+                toggled: false,
                 "contenido": {
                     "vacaciones": {
                         "tipo": "directorio",
-						toggled: false,
+                        toggled: false,
                         "contenido": {
                             "playa.jpg": {
                                 "tipo": "archivo"
@@ -37,6 +40,8 @@ let jsonData = {
         }
     }
 };
+
+// Función para buscar un elemento por su nombre en la estructura JSON
 function buscarElementoPorNombre(node, nombre) {
     for (const key in node) {
         if (key === nombre) {
@@ -51,45 +56,50 @@ function buscarElementoPorNombre(node, nombre) {
     return null; // Elemento no encontrado
 }
 
+// Función para crear la estructura de árbol HTML
 function createTreeHTML(node, parentElement) {
-	parentElement.innerHTML = "";
+    // Limpiar el contenido del elemento padre
+    parentElement.innerHTML = "";
     for (const name in node) {
         const item = node[name];
         const li = document.createElement("li");
         const span = document.createElement("span");
-		const botonCrear = document.createElement("button");
-		const botonBorrar = document.createElement("button");
-        span.className = (item.tipo === "directorio" ? "box "+(item.toggled ? "check-box" : "") : "");
-        span.textContent = name;
-		botonCrear.className = "crearCarpeta";
-		botonCrear.innerText = "+";
-		botonBorrar.className = "borrar";
-		botonBorrar.innerText = "X";
-		botonBorrar.onclick = function(){
+        const botonCrear = document.createElement("button");
+        const botonBorrar = document.createElement("button");
 
-            if (item.tipo == "archivo") {
+        // Establecer la clase del elemento span según el tipo y el estado de 'toggled'
+        span.className = (item.tipo === "directorio" ? "box " + (item.toggled ? "check-box" : "") : "");
+        span.textContent = name;
+        botonCrear.className = "crearCarpeta";
+        botonCrear.innerText = "+";
+        botonBorrar.className = "borrar";
+        botonBorrar.innerText = "X";
+
+        // Evento de clic para el botón de borrar
+        botonBorrar.onclick = function () {
+            if (item.tipo === "archivo") {
                 delete node[this.parentElement.firstChild.innerText];
-                    createTreeHTML(jsonData, myUL);
-                    console.log("borrado")
+                createTreeHTML(jsonData, myUL);
+                console.log("Borrado: " + this.parentElement.firstChild.innerText);
+                input.dispatchEvent(keyupEvent);
             } else {
                 if (Object.keys(item.contenido).length === 0) {
                     delete node[this.parentElement.firstChild.innerText];
                     createTreeHTML(jsonData, myUL);
-                    console.log("borrado")
+                    console.log("Borrado: " + this.parentElement.firstChild.innerText);
+                    input.dispatchEvent(keyupEvent);
                 } else {
                     alert("No se puede borrar una carpeta con elementos dentro");
+                    input.dispatchEvent(keyupEvent);
                 }
             }
+        }
 
-		}
         li.appendChild(span);
         if (li.firstChild.innerText !== "/") {
             li.appendChild(botonBorrar);
         }
         if (item.tipo === "directorio" && item.contenido) {
-            
-            
-            
             const ul = document.createElement("ul");
             li.appendChild(botonCrear);
             ul.className = "hijo";
@@ -98,37 +108,35 @@ function createTreeHTML(node, parentElement) {
         }
         parentElement.appendChild(li);
     }
-	anadirEventoCrearCarpeta();
-	anadirToggler();
+    anadirEventoCrearCarpeta();
+    anadirToggler();
 }
 
-
-
+// Función para agregar eventos al hacer clic en los elementos del árbol
 function anadirToggler() {
-	
-	var toggler = document.getElementsByClassName("box");
-	var i;
+    var toggler = document.getElementsByClassName("box");
+    var i;
 
-	for (i = 0; i < toggler.length; i++) {
-		if (toggler[i].classList.contains("check-box")) {
-			toggler[i].parentElement.querySelector(".hijo").classList.add("active");
-		}
-			
-		
-		toggler[i].addEventListener("click", function() {
-			if (this.parentElement.querySelector(".hijo")) {
-				this.parentElement.querySelector(".hijo").classList.toggle("active");
-				this.classList.toggle("check-box");
+    for (i = 0; i < toggler.length; i++) {
+        if (toggler[i].classList.contains("check-box")) {
+            toggler[i].parentElement.querySelector(".hijo").classList.add("active");
+        }
 
-				let padre = buscarElementoPorNombre(jsonData, this.parentElement.firstChild.innerText);
-				padre.toggled = "true";
-			}
-		});
-	}
+        toggler[i].addEventListener("click", function () {
+            if (this.parentElement.querySelector(".hijo")) {
+                this.parentElement.querySelector(".hijo").classList.toggle("active");
+                this.classList.toggle("check-box");
+
+                // Actualizar el estado 'toggled' en la estructura JSON
+                let padre = buscarElementoPorNombre(jsonData, this.parentElement.firstChild.innerText);
+                padre.toggled = "true";
+                console.log("Toggler clicado: " + this.parentElement.firstChild.innerText);
+            }
+        });
+    }
 }
 
-
-
+// Función para agregar eventos al hacer clic en el botón de crear carpeta
 function anadirEventoCrearCarpeta() {
     const botonCrearesCrearCarpeta = document.querySelectorAll(".crearCarpeta");
 
@@ -136,119 +144,100 @@ function anadirEventoCrearCarpeta() {
         botonCrear.addEventListener("click", function () {
             const nombre = document.getElementById("nombre").value;
 
-			if (nombre) {
-
-				const padreHTML = this.parentElement.firstChild.innerText;
-				const padreJSON = buscarElementoPorNombre(jsonData, padreHTML)
+            if (nombre) {
+                const padreHTML = this.parentElement.firstChild.innerText;
+                const padreJSON = buscarElementoPorNombre(jsonData, padreHTML);
                 if (Object.keys(padreJSON.contenido).includes(nombre)) {
                     alert("Ya existe un elemento con ese nombre");
-                    
                 } else {
-
-                    if(nombre.includes(".")){
+                    if (nombre.includes(".")) {
                         padreJSON.contenido[nombre] = {
                             "tipo": "archivo",
+
                         }
-                    
                     } else {
                         padreJSON.contenido[nombre] = {
                             "tipo": "directorio",
                             "contenido": {},
                         }
-                    
-                    } 
+                    }
                 }
-                
-			}
-			console.log(jsonData);
-			createTreeHTML(jsonData, myUL);
-		});
+
+                console.log("Carpeta creada: " + nombre);
+                console.log(jsonData);
+                createTreeHTML(jsonData, myUL);
+                input.value = "";
+                input.dispatchEvent(keyupEvent);
+            }
+        });
     });
 }
-
+const input = document.getElementById('buscar');
+// Inicialización del árbol y eventos
 createTreeHTML(jsonData, myUL);
 
-document.getElementById("buscar").addEventListener("keyup", function () {
-	if (this.value !== "") {
-		let elementos = [];
+const keyupEvent = new Event("keyup");
+
+input.addEventListener("keyup", function () {
+    if (this.value !== "") {
+        let elementos = [];
         let spans = document.querySelectorAll("span");
-		spans.forEach(span => {
-			if(span.innerText === this.value){
-				elementos.push(span.parentElement);
-			}
-		});
-		if (elementos.length > 0 && elementos.length < 2) {
-			myUL.innerHTML = "";
-			elementos.forEach(elemento => {
-				myUL.appendChild(elemento);
-			});
-		} else {
-            createTreeHTML(jsonData, myUL);
-        }
-		
-	} else {
-		createTreeHTML(jsonData, myUL);
-	}
-})
+        spans.forEach(span => {
+            if (span.innerText.includes(this.value)) {
+                elementos.push(span.parentElement);
+            } else {
+                jsonData["/"].toggled = true;
+                createTreeHTML(jsonData, myUL);
+            }
+        });
+        if (elementos.length > 0) {
+            myUL.innerHTML = "";
 
-
-function obtenerNombresDeArchivosYCarpetas(node, listaNombres) {
-	for (const nombre in node) {
-        if (nombre !== "tipo" && nombre !== "contenido") {
-            listaNombres.push(nombre);
+            elementos.forEach(elemento => {
+                elemento.firstChild.classList = "box";
+                if (elemento.lastChild.classList.contains("hijo")) {
+                    elemento.lastChild.classList = "hijo";
+                }
+                myUL.appendChild(elemento);
+            });
         }
-        if (node[nombre].tipo === "directorio" && node[nombre].contenido) {
-            obtenerNombresDeArchivosYCarpetas(node[nombre].contenido, listaNombres);
-        }
+    } else {
+        createTreeHTML(jsonData, myUL);
     }
+});
+
+
+// Función para obtener nombres de archivos y carpetas
+function obtenerNombresDeArchivosYCarpetas() {
+    let array = [];
+    let spans = document.querySelectorAll("span");
+    spans.forEach(span => {
+        array.push(span.textContent);
+    });
+    return array;
 }
 
-const listaNombres = [];
 
-obtenerNombresDeArchivosYCarpetas(jsonData, listaNombres);
-console.log(listaNombres);
-
-
-
-function autocompletar(input, datos) {
-    if (input.value.length == input.selectionStart && input.value.length == input.selectionEnd) {
-        var candidatos = [];
-        for (var i = 0; i < datos.length; i++) {
-            if (datos[i].indexOf(input.value) == 0 && datos[i].length > input.value.length)
-                candidatos.push(datos[i]);
+function autocompletar() {
+    var coincidencias = [];
+    obtenerNombresDeArchivosYCarpetas().forEach(element => {
+        if (element.includes(input.value)) {
+            coincidencias.push(element);
         }
-
-        if (candidatos.length > 0) {
-            if (candidatos.length == 1) input.value = candidatos[0];
-            else input.value = masLargoEnComun(candidatos, input.value.length);
-            return true;
-        }
+    });
+    console.log("Coincidencias: " + coincidencias);
+    if (coincidencias.length == 1) {
+        input.value = coincidencias[0];
+        console.log("Autocompletado: " + coincidencias[0]);
     }
-    return false;
+    return true;
 }
-
-function masLargoEnComun(candidatos, indice) {
-    var i, ch, memo;
-    do {
-        memo = null;
-        for (i = 0; i < candidatos.length; i++) {
-            ch = candidatos[i].charAt(indice);
-            if (!ch) break;
-            if (!memo) memo = ch;
-            else if (ch != memo) break;
-        }
-    } while (i == candidatos.length && ++indice);
-
-    return candidatos[0].slice(0, indice);
-}
-
-var input = document.getElementById('buscar');
 
 input.addEventListener('keydown', function (e) {
-    obtenerNombresDeArchivosYCarpetas(jsonData, listaNombres);
-    if (e.keyCode === 9 && autocompletar(this, listaNombres)) {
+    if (e.key === "Tab" && autocompletar()) {
         e.preventDefault();
     }
 }, false);
 
+// Establecer el enfoque en el campo de búsqueda al cargar la página
 input.focus();
