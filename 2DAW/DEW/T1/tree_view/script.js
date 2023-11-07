@@ -64,20 +64,34 @@ function createTreeHTML(node, parentElement) {
 		botonCrear.className = "crearCarpeta";
 		botonCrear.innerText = "+";
 		botonBorrar.className = "borrar";
-		botonBorrar.innerText = "-";
+		botonBorrar.innerText = "X";
 		botonBorrar.onclick = function(){
-			delete node[this.parentElement.firstChild.innerText];
-			createTreeHTML(jsonData, myUL);
+
+            if (item.tipo == "archivo") {
+                delete node[this.parentElement.firstChild.innerText];
+                    createTreeHTML(jsonData, myUL);
+                    console.log("borrado")
+            } else {
+                if (Object.keys(item.contenido).length === 0) {
+                    delete node[this.parentElement.firstChild.innerText];
+                    createTreeHTML(jsonData, myUL);
+                    console.log("borrado")
+                } else {
+                    alert("No se puede borrar una carpeta con elementos dentro");
+                }
+            }
+
 		}
         li.appendChild(span);
+        if (li.firstChild.innerText !== "/") {
+            li.appendChild(botonBorrar);
+        }
         if (item.tipo === "directorio" && item.contenido) {
-			
-			li.appendChild(botonCrear);
-			if (li.firstChild.innerText !== "/") {
-				li.appendChild(botonBorrar);
-			}
-			
-			const ul = document.createElement("ul");
+            
+            
+            
+            const ul = document.createElement("ul");
+            li.appendChild(botonCrear);
             ul.className = "hijo";
             createTreeHTML(item.contenido, ul);
             li.appendChild(ul);
@@ -125,19 +139,26 @@ function anadirEventoCrearCarpeta() {
 			if (nombre) {
 
 				const padreHTML = this.parentElement.firstChild.innerText;
-
 				const padreJSON = buscarElementoPorNombre(jsonData, padreHTML)
+                if (Object.keys(padreJSON.contenido).includes(nombre)) {
+                    alert("Ya existe un elemento con ese nombre");
+                    
+                } else {
 
-				if(nombre.includes(".")){
-					padreJSON.contenido[nombre] = {
-						"tipo": "archivo",
-					}
-				} else {
-					padreJSON.contenido[nombre] = {
-						"tipo": "directorio",
-						"contenido": {},
-					}
-				}
+                    if(nombre.includes(".")){
+                        padreJSON.contenido[nombre] = {
+                            "tipo": "archivo",
+                        }
+                    
+                    } else {
+                        padreJSON.contenido[nombre] = {
+                            "tipo": "directorio",
+                            "contenido": {},
+                        }
+                    
+                    } 
+                }
+                
 			}
 			console.log(jsonData);
 			createTreeHTML(jsonData, myUL);
@@ -150,17 +171,20 @@ createTreeHTML(jsonData, myUL);
 document.getElementById("buscar").addEventListener("keyup", function () {
 	if (this.value !== "") {
 		let elementos = [];
-		document.querySelectorAll("span").forEach(span => {
+        let spans = document.querySelectorAll("span");
+		spans.forEach(span => {
 			if(span.innerText === this.value){
 				elementos.push(span.parentElement);
 			}
 		});
-		if (elementos.length > 0) {
+		if (elementos.length > 0 && elementos.length < 2) {
 			myUL.innerHTML = "";
 			elementos.forEach(elemento => {
 				myUL.appendChild(elemento);
 			});
-		} 
+		} else {
+            createTreeHTML(jsonData, myUL);
+        }
 		
 	} else {
 		createTreeHTML(jsonData, myUL);
@@ -180,8 +204,8 @@ function obtenerNombresDeArchivosYCarpetas(node, listaNombres) {
 }
 
 const listaNombres = [];
-obtenerNombresDeArchivosYCarpetas(jsonData, listaNombres);
 
+obtenerNombresDeArchivosYCarpetas(jsonData, listaNombres);
 console.log(listaNombres);
 
 
@@ -221,6 +245,7 @@ function masLargoEnComun(candidatos, indice) {
 var input = document.getElementById('buscar');
 
 input.addEventListener('keydown', function (e) {
+    obtenerNombresDeArchivosYCarpetas(jsonData, listaNombres);
     if (e.keyCode === 9 && autocompletar(this, listaNombres)) {
         e.preventDefault();
     }

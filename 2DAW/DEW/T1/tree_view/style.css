@@ -1,33 +1,46 @@
 ul, #contenedor {
   list-style-type: none;
 }
-#nombre {
-    width: 50%;
+
+
+* {
+  font-family: "Arial", sans-serif; /* Cambia la fuente a tu elección */
+  font-size: 30px;
 }
 
 #contenedor {
   margin: 0;
   padding: 0;
 }
-
+/* Estilo para los checkboxes y el texto */
 .box {
   cursor: pointer;
-  -webkit-user-select: none; /* Safari 3.1+ */
-  -moz-user-select: none; /* Firefox 2+ */
-  -ms-user-select: none; /* IE 10+ */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
+  margin: 5px 0;
 }
 
+/* Estilo para los checkboxes */
 .box::before {
   content: "\2610";
   color: black;
   display: inline-block;
-  margin-right: 6px;
+  margin-right: 10px; /* Aumenta el espacio entre el checkbox y el texto */
+  font-size: 24px; /* Aumenta el tamaño del checkbox */
 }
 
 .check-box::before {
-  content: "\2611"; 
+  content: "\2611";
   color: dodgerblue;
+  font-size: 24px; /* Aumenta el tamaño del checkbox seleccionado */
+}
+
+/* Estilo para el texto del checkbox */
+.box span {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .hijo {
@@ -36,23 +49,38 @@ ul, #contenedor {
 
 .active {
   display: block;
+  margin-left: 50px;
 }
-#sugerencias {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    max-height: 150px;
-    overflow-y: auto;
-    width: 100%;
-  }
-  
-  #sugerencias div {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  #sugerencias div:hover {
-    background-color: #d3d3d3;
-  }
-  
+
+button.crearCarpeta, button.borrar {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.crearCarpeta:hover, button.borrar:hover {
+  background-color: #2980b9;
+}
+
+button.crearCarpeta {
+  background-color: #27ae60;
+}
+
+button.crearCarpeta:hover {
+  background-color: #218c50;
+}
+
+label {
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(2);
+}
+
+label input {
+  width: fit-content;
+}
