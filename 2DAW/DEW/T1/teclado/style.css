@@ -1,0 +1,52 @@
+#teclado {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    width: max-content;
+}
+.fila {
+    display: flex;
+}
+.tecla {
+    width: 60px;
+    height: 60px;
+    background-color: aliceblue;
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 3px;
+}
+
+.Retroceso {
+    width: 120px;
+}
+.Espacio {
+    width: 240px;
+    margin-left: 300px;
+}
+.BloqMayus {
+    width: 120px;
+}
+.Tab {
+    width: 80px;
+}
+.Alt {
+    margin-left: 140px;
+}
+.Shift {
+    width: 90px;
+}
+
+#texto {
+    min-width: 400px;
+    width: fit-content;
+    min-height: 300px;
+    height:fit-content ;
+    border: 2px solid rgb(85, 85, 85);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    background-color: aliceblue;
+    font-size: 20px;
+}
