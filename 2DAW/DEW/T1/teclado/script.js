@@ -339,12 +339,24 @@ const teclas = {
             "shift": "AltGr",
             "altgr": "AltGr"
         },
+        {
+            "nombre": "🠔",
+            "normal": "🠔",
+            "shift": "🠔",
+            "altgr": "🠔"
+        },
+        {
+            "nombre": "🠖",
+            "normal": "🠖",
+            "shift": "🠖",
+            "altgr": "🠖"
+        }
     ]
 };
 
 
 
-
+const cursor = document.getElementById("cursor");
 const tecladoHTML = document.getElementById("teclado");
 const texto = document.getElementById("texto");
 bloqMayusActivo = false;
@@ -370,7 +382,6 @@ function crearTecladoHTML (evento){
 
         console.log('eventoumento válido: ' + evento);
     } else {
-        // El eventoumento no es una de las cadenas permitidas
         console.log('eventoumento no válido: ' + evento);
     
     }
@@ -378,19 +389,19 @@ function crearTecladoHTML (evento){
 crearTecladoHTML('normal');
 
 
-function anadirtipoTeclados(){
+function anadirEvento(){
     tecladoHTML.addEventListener('click', (event) => {
         if(event.target.classList[0] === 'tecla'){
-            switch (event.target.className) {
-            case 'tecla Shift':
+            switch (event.target.innerHTML) {
+            case 'Shift':
                 tipoTeclado = 'shift';
                 crearTecladoHTML(tipoTeclado);
                 break;
-            case 'tecla AltGr':
+            case 'AltGr':
                 tipoTeclado = 'altgr';
                 crearTecladoHTML(tipoTeclado);
-                break;
-            case 'tecla BloqMayus':
+                break;  
+            case 'BloqMayús':
                 if (bloqMayusActivo) {
                     bloqMayusActivo = false;
                     tipoTeclado = 'normal';
@@ -401,15 +412,19 @@ function anadirtipoTeclados(){
                 crearTecladoHTML(tipoTeclado);
 
                 break;
-            case 'tecla Retroceso':
+            case '🠖' || '🠔':
+                console.log(texto.innerHTML.indexOf(cursor.outerHTML));
+                break;
+                case 'Retroceso':
                 texto.innerHTML = texto.innerHTML.slice(0, -1);
                 break;
-            case 'tecla Enter':
+            case 'Enter':
                 texto.innerHTML += "<br>";
                 break;
             default:
-                if (event.target.className === "tecla Espacio") {
-                    texto.innerHTML += " ";                        
+                texto.removeChild(cursor);
+                if (event.target.innerHTML === "Espacio" || event.target.innerHTML === "Tab") {
+                    texto.innerHTML += event.target.innerHTML == "Espacio" ? "&ensp;" : "&ensp;&ensp;&ensp;&ensp;" ;
                 }else{
                     texto.innerHTML += event.target.innerHTML;
                 }
@@ -418,9 +433,16 @@ function anadirtipoTeclados(){
                 }else{
                     tipoTeclado = 'normal';
                 }
+                texto.appendChild(cursor);
                 crearTecladoHTML(tipoTeclado);
                 break;
         }}
     })
 };
-anadirtipoTeclados();
+anadirEvento();
+
+document.addEventListener('keydown', function(event) {
+        
+});
+
+
