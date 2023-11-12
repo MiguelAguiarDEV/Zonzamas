@@ -21,7 +21,7 @@ const teclas = {
         {
             "nombre": "3",
             "normal": "3",
-            "shift": "'",
+            "shift": "·",
             "altgr": "#"
         },
         {
@@ -79,7 +79,7 @@ const teclas = {
             "altgr": null
         },
         {
-            "nombre": "Retroceso",
+            "nombre": "Backspace",
             "normal": "Retroceso",
             "shift": "Retroceso",
             "altgr": "Retroceso"
@@ -169,7 +169,7 @@ const teclas = {
             "altgr": "Enter"
         }],
     2 : [{
-            "nombre": "BloqMayus",
+            "nombre": "CapsLock",
             "normal": "BloqMayús",
             "shift": "BloqMayús",
             "altgr": "BloqMayús"
@@ -328,25 +328,25 @@ const teclas = {
     ],
     4 : [
         {
-            "nombre": "Espacio",
+            "nombre": "",
             "normal": "Espacio",
             "shift": "Espacio",
             "altgr": "Espacio"
         },
         {
-            "nombre": "AltGr",
+            "nombre": "AltGraph",
             "normal": "AltGr",
             "shift": "AltGr",
             "altgr": "AltGr"
         },
         {
-            "nombre": "🠔",
+            "nombre": "ArrowLeft",
             "normal": "🠔",
             "shift": "🠔",
             "altgr": "🠔"
         },
         {
-            "nombre": "🠖",
+            "nombre": "ArrowRight",
             "normal": "🠖",
             "shift": "🠖",
             "altgr": "🠖"
@@ -355,11 +355,18 @@ const teclas = {
 };
 
 
+const teclasValidas = Object.values(teclas).map((nivelTeclas) => {
+    return nivelTeclas.map((tecla) => [tecla.nombre, tecla.shift, tecla.altgr].filter(Boolean));
+}).flat(2);
 
-const cursor = document.getElementById("cursor");
+console.log(teclasValidas);
+
+const cursor = (document.getElementById("cursor")).outerHTML;
 const tecladoHTML = document.getElementById("teclado");
 const texto = document.getElementById("texto");
-bloqMayusActivo = false;
+var tipoTeclado = 'normal';
+var posicionCursor = 0;
+var bloqMayusActivo = false;
 function crearTecladoHTML (evento){
     tecladoHTML.innerHTML = "";
     if (evento === 'normal' || evento === 'shift' || evento === 'altgr') {
@@ -370,79 +377,147 @@ function crearTecladoHTML (evento){
             teclas[i].forEach((tecla) => {
                 let teclaHTML = document.createElement("div");
                 teclaHTML.innerHTML = tecla[evento];
-                teclaHTML.className = "tecla "+tecla["nombre"];
-                
-                console.log(tecla);
+                teclaHTML.className = "tecla "+tecla["normal"];
                 fila.appendChild(teclaHTML);
             });
 
             tecladoHTML.appendChild(fila);
         });
-    
 
-        console.log('eventoumento válido: ' + evento);
     } else {
         console.log('eventoumento no válido: ' + evento);
     
     }
 }
-crearTecladoHTML('normal');
+crearTecladoHTML(tipoTeclado);
+texto.removeChild(document.getElementById("cursor"));
+texto.innerHTML = cursor;
+
+
+
+function modificarTexto(tecla){
+    texto.innerHTML = texto.innerHTML.replace(cursor,"");
+        let texto1
+        let texto2
+        console.log("posicion: ",posicionCursor)
+        if(texto.innerHTML.length > 0){
+            texto1 = texto.innerHTML.slice(0,posicionCursor);
+            texto2 = texto.innerHTML.slice(posicionCursor);
+        }else{
+            texto1 = '';
+            texto2 = '';
+        }
+
+        switch (tecla) {
+        case 'Shift':
+            tipoTeclado = 'shift';
+            break;
+        case 'AltGraph':
+        case 'AltGr':
+            tipoTeclado = 'altgr';
+            break;  
+        case 'CapsLock':
+        case 'BloqMayús':
+            if (bloqMayusActivo) {
+                tipoTeclado = 'normal';
+                bloqMayusActivo = false;
+            } else {
+                tipoTeclado = 'shift';
+                bloqMayusActivo = true;
+
+            }
+            console.log(bloqMayusActivo)
+            break;
+        case 'ArrowLeft':
+        case '🠔':
+            posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 1;
+            console.log(posicionCursor)
+            if(texto.innerHTML.length > 0){
+                texto1 = texto.innerHTML.slice(0,posicionCursor);
+                texto2 = texto.innerHTML.slice(posicionCursor);
+            }else{
+                texto1 = '';
+                texto2 = '';
+            }
+            break;
+        case 'ArrowRight':
+        case '🠖':
+            console.log(texto.innerHTML.length)
+            posicionCursor = posicionCursor >= texto.innerHTML.length ? posicionCursor : posicionCursor +1;
+            if(texto.innerHTML.length > 0){
+                texto1 = texto.innerHTML.slice(0,posicionCursor);
+                texto2 = texto.innerHTML.slice(posicionCursor);
+            }else{
+                texto1 = '';
+                texto2 = '';
+            }
+            break;
+        case 'Backspace':
+        case 'Retroceso':
+            if (/^&.{4};$/.test(texto1.slice(-6,))){
+                texto1 = texto1.slice(0,-6);
+                posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 5;
+
+            } else if (/^&.{3};$/.test(texto1.slice(-5,))){
+                texto1 = texto1.slice(0,-5);
+                posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 4;
+            }
+            else{
+                texto1 = texto1.slice(0, -1);
+                posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 1;
+            }
+            texto.innerHTML = texto1+cursor+texto2;
+            break;
+        case '&':
+            texto1 += "&amp;";
+            posicionCursor +=5;
+            break
+        case 'Enter':
+            texto1 += "<br>";
+            posicionCursor = texto1.length;
+            break;
+        case ' ': 
+        case 'Espacio':
+            texto1 += "&nbsp;";
+            posicionCursor = texto1.length;
+            break
+        case 'Tab':
+            texto1 += "&nbsp;".repeat(4) ;
+            posicionCursor = texto1.length;
+            break
+        default:
+            texto1 += tecla;
+            posicionCursor = texto1.length;
+            if (bloqMayusActivo) {
+                tipoTeclado = 'shift';
+            }else{
+                tipoTeclado = 'normal';
+            }
+            break;
+    }
+    texto.innerHTML = texto1+cursor+texto2;
+    crearTecladoHTML(tipoTeclado);
+}
+
+
+
 
 
 function anadirEvento(){
     tecladoHTML.addEventListener('click', (event) => {
         if(event.target.classList[0] === 'tecla'){
-            switch (event.target.innerHTML) {
-            case 'Shift':
-                tipoTeclado = 'shift';
-                crearTecladoHTML(tipoTeclado);
-                break;
-            case 'AltGr':
-                tipoTeclado = 'altgr';
-                crearTecladoHTML(tipoTeclado);
-                break;  
-            case 'BloqMayús':
-                if (bloqMayusActivo) {
-                    bloqMayusActivo = false;
-                    tipoTeclado = 'normal';
-                } else {
-                    bloqMayusActivo = true;
-                    tipoTeclado = 'shift';
-                }
-                crearTecladoHTML(tipoTeclado);
-
-                break;
-            case '🠖' || '🠔':
-                console.log(texto.innerHTML.indexOf(cursor.outerHTML));
-                break;
-                case 'Retroceso':
-                texto.innerHTML = texto.innerHTML.slice(0, -1);
-                break;
-            case 'Enter':
-                texto.innerHTML += "<br>";
-                break;
-            default:
-                texto.removeChild(cursor);
-                if (event.target.innerHTML === "Espacio" || event.target.innerHTML === "Tab") {
-                    texto.innerHTML += event.target.innerHTML == "Espacio" ? "&ensp;" : "&ensp;&ensp;&ensp;&ensp;" ;
-                }else{
-                    texto.innerHTML += event.target.innerHTML;
-                }
-                if (bloqMayusActivo) {
-                    tipoTeclado = 'shift';
-                }else{
-                    tipoTeclado = 'normal';
-                }
-                texto.appendChild(cursor);
-                crearTecladoHTML(tipoTeclado);
-                break;
-        }}
-    })
+            modificarTexto(event.target.innerHTML);
+        }
+    });
 };
 anadirEvento();
 
 document.addEventListener('keydown', function(event) {
-        
+    if(teclasValidas.includes(event.key) || teclasValidas.includes(event.key.toUpperCase())){
+        modificarTexto(event.key);
+    }
+    event.preventDefault();
+    console.log(event.key);
 });
 
 

@@ -37,7 +37,7 @@ body {
     width: 240px;
     margin-left: 300px;
 }
-.BloqMayus {
+.BloqMayús {
     width: 120px;
 }
 .Tab {
@@ -68,6 +68,5 @@ body {
     color: rgb(0, 4, 255);
     display: inline-block;
     height: fit-content;
-    margin: -5px;
 }
 
