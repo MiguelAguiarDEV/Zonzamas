@@ -28,6 +28,7 @@ body {
     align-items: center;
     display: flex;
     margin: 3px;
+    cursor:pointer;
 }
 
 .Retroceso {

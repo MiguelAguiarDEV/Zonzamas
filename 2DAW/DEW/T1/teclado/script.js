@@ -461,6 +461,10 @@ function modificarTexto(tecla){
             } else if (/^&.{3};$/.test(texto1.slice(-5,))){
                 texto1 = texto1.slice(0,-5);
                 posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 4;
+            } else if(texto1.slice(-4,) == "<br>"){
+                texto1 = texto1.slice(0,-4);
+                posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 1;
+
             }
             else{
                 texto1 = texto1.slice(0, -1);
