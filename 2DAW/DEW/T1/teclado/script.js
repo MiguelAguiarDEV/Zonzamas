@@ -87,8 +87,8 @@ const teclas = {
     1 : [{
             "nombre": "Tab",
             "normal": "Tab",
-            "shift": null,
-            "altgr": null
+            "shift": "Tab",
+            "altgr": "Tab"
         },
         {
             "nombre": "Q",
@@ -355,9 +355,9 @@ const teclas = {
 };
 
 
-const teclasValidas = Object.values(teclas).map((nivelTeclas) => {
+const teclasValidas = [...new Set(Object.values(teclas).map((nivelTeclas) => {
     return nivelTeclas.map((tecla) => [tecla.nombre, tecla.shift, tecla.altgr].filter(Boolean));
-}).flat(2);
+}).flat(2))];
 
 console.log(teclasValidas);
 
@@ -411,6 +411,7 @@ function modificarTexto(tecla){
         switch (tecla) {
         case 'Shift':
             tipoTeclado = 'shift';
+            console.log("Se cambio a shift")
             break;
         case 'AltGraph':
         case 'AltGr':
@@ -461,6 +462,9 @@ function modificarTexto(tecla){
             } else if (/^&.{3};$/.test(texto1.slice(-5,))){
                 texto1 = texto1.slice(0,-5);
                 posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 4;
+            } else if (/^&.{2};$/.test(texto1.slice(-4,))){
+                texto1 = texto1.slice(0,-5);
+                posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 3;
             } else if(texto1.slice(-4,) == "<br>"){
                 texto1 = texto1.slice(0,-4);
                 posicionCursor = posicionCursor <= 0 ? 0 : posicionCursor - 1;
@@ -475,6 +479,15 @@ function modificarTexto(tecla){
         case '&':
             texto1 += "&amp;";
             posicionCursor +=5;
+            break
+        case '<':
+        case '>':
+            if(tecla == '<'){
+                texto1 += "&lt;";
+            }else{
+                texto1 += "&gt;";
+            }
+            posicionCursor +=4;
             break
         case 'Enter':
             texto1 += "<br>";
@@ -507,21 +520,20 @@ function modificarTexto(tecla){
 
 
 
-function anadirEvento(){
-    tecladoHTML.addEventListener('click', (event) => {
-        if(event.target.classList[0] === 'tecla'){
-            modificarTexto(event.target.innerHTML);
-        }
-    });
-};
-anadirEvento();
+
+tecladoHTML.addEventListener('click', (event) => {
+    if(event.target.classList[0] === 'tecla'){
+        modificarTexto(event.target.innerHTML);
+    }
+});
+
 
 document.addEventListener('keydown', function(event) {
     if(teclasValidas.includes(event.key) || teclasValidas.includes(event.key.toUpperCase())){
+        console.log(event.key);
         modificarTexto(event.key);
     }
     event.preventDefault();
-    console.log(event.key);
 });
 
 
