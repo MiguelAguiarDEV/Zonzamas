@@ -134,3 +134,65 @@ Stack trace:
 #25 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
 #26 {main}
 "} 
+[2023-11-22 09:03:49] local.ERROR: Command "make:auth" is not defined.
+
+Did you mean one of these?
+    make:cast
+    make:channel
+    make:command
+    make:component
+    make:controller
+    make:event
+    make:exception
+    make:factory
+    make:job
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:observer
+    make:policy
+    make:provider
+    make:request
+    make:resource
+    make:rule
+    make:scope
+    make:seeder
+    make:test
+    make:view {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"make:auth\" is not defined.
+
+Did you mean one of these?
+    make:cast
+    make:channel
+    make:command
+    make:component
+    make:controller
+    make:event
+    make:exception
+    make:factory
+    make:job
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:observer
+    make:policy
+    make:provider
+    make:request
+    make:resource
+    make:rule
+    make:scope
+    make:seeder
+    make:test
+    make:view at /home/miguel/Repos/Zonzamas/2DAW/DPL/T1/laravel_app/vendor/symfony/console/Application.php:725)
+[stacktrace]
+#0 /home/miguel/Repos/Zonzamas/2DAW/DPL/T1/laravel_app/vendor/symfony/console/Application.php(262): Symfony\\Component\\Console\\Application->find()
+#1 /home/miguel/Repos/Zonzamas/2DAW/DPL/T1/laravel_app/vendor/symfony/console/Application.php(174): Symfony\\Component\\Console\\Application->doRun()
+#2 /home/miguel/Repos/Zonzamas/2DAW/DPL/T1/laravel_app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(201): Symfony\\Component\\Console\\Application->run()
+#3 /home/miguel/Repos/Zonzamas/2DAW/DPL/T1/laravel_app/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#4 {main}
+"} 
