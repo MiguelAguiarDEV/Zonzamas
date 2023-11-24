@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Registro en Tienda Online</title>
+</head>
+<body>
+    <form id="registrationForm">
+        <!-- Campos del formulario -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+        <div id="nombreError" class="error hidden">Nombre incorrecto</div>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" required>
+        <div id="apellidosError" class="error hidden">Apellidos incorrecto</div>
+
+        <label for="dni">Número de DNI/NIE Español:</label>
+        <input type="text" id="dni" required>
+        <div id="dniError" class="error hidden"></div>
+
+        <label for="fechaNacimiento">Fecha de Nacimiento (DD/MM/AAAA):</label>
+        <input type="text" id="fechaNacimiento" required>
+        <div id="fechaNacimientoError" class="error hidden"></div>
+
+        <label for="codigoPostal">Código Postal Español:</label>
+        <input type="text" id="codigoPostal" required>
+        <div id="codigoPostalError" class="error hidden"></div>
+
+        <label for="email">E-mail válido:</label>
+        <input type="email" id="email" required>
+        <div id="emailError" class="error hidden"></div>
+
+        <label for="telefonoFijo">Teléfono Fijo Español:</label>
+        <input type="text" id="telefonoFijo" required>
+        <div id="telefonoFijoError" class="error hidden"></div>
+
+        <label for="telefonoMovil">Teléfono Móvil Español:</label>
+        <input type="text" id="telefonoMovil" required>
+        <div id="telefonoMovilError" class="error hidden"></div>
+
+        <label for="iban">IBAN:</label>
+        <input type="text" id="iban" required>
+        <div id="ibanError" class="error hidden"></div>
+
+        <label for="tarjetaCredito">Tarjeta de Crédito:</label>
+        <input type="text" id="tarjetaCredito" required>
+        <div id="tarjetaCreditoError" class="error hidden"></div>
+
+        <label for="password">Contraseña (al menos 12 dígitos con letras, números y un carácter especial):</label>
+        <input type="password" id="password" required>
+        <div id="passwordError" class="error hidden"></div>
+
+        <label for="confirmPassword">Repetir contraseña:</label>
+        <input type="password" id="confirmPassword" required>
+        <div id="confirmPasswordError" class="error hidden"></div>
+
+        <button type="button" id="guardarBtn">GUARDAR</button>
+        <button type="button" id="recuperarBtn">RECUPERAR</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
