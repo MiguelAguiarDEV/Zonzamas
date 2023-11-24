@@ -4,7 +4,7 @@ body {
 }
 
 form {
-    width: fit-content;
+    width: 500px;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
@@ -42,6 +42,7 @@ input {
     margin-right: 10px;
 }
 .error {
+    position: absolute;
     color: red;
     opacity: 0;
     font-size: 0;
