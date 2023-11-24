@@ -95,6 +95,7 @@ document.getElementById('registrationForm').addEventListener('submit', function(
         for (let field of fields) {
             document.getElementById(field).value = '';
         }
+        document.getElementById('actionMessage').innerText = 'Datos guardados';
     } 
 
 });
@@ -105,6 +106,7 @@ document.getElementById('recuperar').addEventListener('click', function() {
         for (let field in data) {
             document.getElementById(field).value = data[field];
         }
+        document.getElementById('actionMessage').innerText = 'Datos recuperados';
     }
 });
 
@@ -146,6 +148,7 @@ function fillTestUser() {
         document.getElementById(field).value = testUser[field];
     }
     console.log('Test user filled');
+    document.getElementById('actionMessage').innerText = 'Usuario de prueba rellenado';
 }
 
 document.getElementById('fillTestUserButton').addEventListener('click', fillTestUser);
@@ -161,6 +164,7 @@ if (localStorage.length > 0) {
     clearButton.addEventListener('click', function() {
         // Vaciar el almacenamiento local
         localStorage.clear();
+        document.getElementById('actionMessage').innerText = 'Almacenamiento local vaciado';
         // Eliminar el botón después de vaciar el almacenamiento local
         clearButton.remove();
         // Refrescar la página

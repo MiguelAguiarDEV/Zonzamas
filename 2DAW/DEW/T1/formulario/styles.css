@@ -4,7 +4,7 @@ body {
 }
 
 form {
-    width: 300px;
+    width: fit-content;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
@@ -14,7 +14,6 @@ form {
 
 label {
     display: block;
-    margin-top: 20px;
     color: #555;
 }
 
@@ -24,8 +23,24 @@ input {
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 4px;
+    
 }
 
+
+.input-group {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.input-group > div {
+    flex-grow: 1;
+}
+
+.input-group label {
+    width: fit-content;
+    margin-right: 10px;
+}
 .error {
     color: red;
     opacity: 0;
@@ -43,7 +58,7 @@ input.invalid {
 }
 
 button {
-    display: block;
+    display: inline-block;
     margin-top: 20px;
     padding: 10px;
     background-color: #007BFF;
