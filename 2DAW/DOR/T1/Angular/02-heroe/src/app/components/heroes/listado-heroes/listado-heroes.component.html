@@ -1,0 +1,24 @@
+<p>Listado Héroes</p>
+<ul>
+
+@for (heroe of heroes; track heroes; let i = $index) {
+    <li>{{i+1}} - {{heroe}}</li>
+}
+</ul>
+@if (heroeBorrado != '') {
+    <div>
+        <h3>Heroe Borrado: <span>{{heroeBorrado}}</span></h3>
+    </div>
+}@else {
+    <div>
+        <h3>No ha borrado nada</h3>
+    </div>
+}
+
+@if (heroes.length > 0) {
+    <button id="borrar" class="btn btn-primary mx-2" (click)="borrarHeroe()">Borrar</button>
+}
+
+@if (heroeBorrado != '') {
+    <button id="restaurar" class="btn btn-primary mx-2" (click)="restaurarHeroes()">Restaurar</button>
+}
