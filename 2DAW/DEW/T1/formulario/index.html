@@ -7,58 +7,109 @@
     <title>Registro en Tienda Online</title>
 </head>
 <body>
+    <div id="actionMessage">
+    </div>
     <form id="registrationForm">
-        <!-- Campos del formulario -->
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" required>
-        <div id="nombreError" class="error hidden">Nombre incorrecto</div>
+        <div class="input-group">
+            <label for="nombre">Nombre:</label>
+            <div>
+                <input type="text" id="nombre" required>
+                <div id="nombreError" class="error hidden">Nombre incorrecto</div>
+            </div>
+        </div>
 
-        <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" required>
-        <div id="apellidosError" class="error hidden">Apellidos incorrecto</div>
 
-        <label for="dni">Número de DNI/NIE Español:</label>
-        <input type="text" id="dni" required>
-        <div id="dniError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="apellidos">Apellidos:</label>
+            <div>
+                <input type="text" id="apellidos" required>
+                <div id="apellidosError" class="error hidden">Apellidos incorrectos</div>
+            </div>
+        </div>
 
-        <label for="fechaNacimiento">Fecha de Nacimiento (DD/MM/AAAA):</label>
-        <input type="text" id="fechaNacimiento" required>
-        <div id="fechaNacimientoError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="dni">Número de DNI/NIE Español:</label>
+            <div>
+                <input type="text" id="dni" required>
+                <div id="dniError" class="error hidden">DNI/NIE incorrecto</div>
+            </div>
+        </div>
 
-        <label for="codigoPostal">Código Postal Español:</label>
-        <input type="text" id="codigoPostal" required>
-        <div id="codigoPostalError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="fechaNacimiento">Fecha de Nacimiento (DD/MM/AAAA):</label>
+            <div>
+                <input type="text" id="fechaNacimiento" required>
+                <div id="fechaNacimientoError" class="error hidden">Fecha de nacimiento incorrecta</div>
+            </div>
+        </div>
 
-        <label for="email">E-mail válido:</label>
-        <input type="email" id="email" required>
-        <div id="emailError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="codigoPostal">Código Postal Español:</label>
+            <div>
+                <input type="text" id="codigoPostal" required>
+                <div id="codigoPostalError" class="error hidden">Código postal incorrecto</div>
+            </div>
+        </div>
 
-        <label for="telefonoFijo">Teléfono Fijo Español:</label>
-        <input type="text" id="telefonoFijo" required>
-        <div id="telefonoFijoError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="email">E-mail válido:</label>
+            <div>
+                <input type="email" id="email" required>
+                <div id="emailError" class="error hidden">E-mail incorrecto</div>
+            </div>
+        </div>
 
-        <label for="telefonoMovil">Teléfono Móvil Español:</label>
-        <input type="text" id="telefonoMovil" required>
-        <div id="telefonoMovilError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="telefonoFijo">Teléfono Fijo Español:</label>
+            <div>
+                <input type="text" id="telefonoFijo" required>
+                <div id="telefonoFijoError" class="error hidden">Teléfono fijo incorrecto</div>
+            </div>
+        </div>
 
-        <label for="iban">IBAN:</label>
-        <input type="text" id="iban" required>
-        <div id="ibanError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="telefonoMovil">Teléfono Móvil Español:</label>
+            <div>
+                <input type="text" id="telefonoMovil" required>
+                <div id="telefonoMovilError" class="error hidden">Teléfono móvil incorrecto</div>
+            </div>
+        </div>
 
-        <label for="tarjetaCredito">Tarjeta de Crédito:</label>
-        <input type="text" id="tarjetaCredito" required>
-        <div id="tarjetaCreditoError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="iban">IBAN:</label>
+            <div>
+                <input type="text" id="iban" required>
+                <div id="ibanError" class="error hidden">IBAN incorrecto</div>
+            </div>
+        </div>
 
-        <label for="password">Contraseña (al menos 12 dígitos con letras, números y un carácter especial):</label>
-        <input type="password" id="password" required>
-        <div id="passwordError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="tarjetaCredito">Tarjeta de Crédito:</label>
+            <div>
+                <input type="text" id="tarjetaCredito" required>
+                <div id="tarjetaCreditoError" class="error hidden">Tarjeta de crédito incorrecta</div>
+            </div>
+        </div>
 
-        <label for="confirmPassword">Repetir contraseña:</label>
-        <input type="password" id="confirmPassword" required>
-        <div id="confirmPasswordError" class="error hidden"></div>
+        <div class="input-group">
+            <label for="contrasena">Contraseña:</label>
+            <div>
+                <input type="password" id="contrasena" required>
+                <div id="contrasenaError" class="error hidden">Contraseña incorrecta</div>
+            </div>
+        </div>
 
-        <button type="button" id="guardarBtn">GUARDAR</button>
-        <button type="button" id="recuperarBtn">RECUPERAR</button>
+        <div class="input-group">
+            <label for="repetirContrasena">Repetir contraseña:</label>
+            <div>
+                <input type="password" id="repetirContrasena" required>
+                <div id="repetirContrasenaError" class="error hidden">Las contraseñas no coinciden</div>
+            </div>
+        </div>
+
+        <button type="submit">Guardar</button>
+        <button type="button" id="recuperar">Recuperar</button>
+        <button type="button" id="fillTestUserButton">Llenar con usuario de prueba</button>
     </form>
 
     <script src="script.js"></script>

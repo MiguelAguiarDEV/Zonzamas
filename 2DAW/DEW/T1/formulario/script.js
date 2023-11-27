@@ -1,162 +1,181 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Expresiones regulares
-    const regexNombre = /^([A-ZÑÁÉÍÓÚ]+['\-]?[a-zñáéíóú]+)(\s+([A-Za-zÑñÁáÉéÍíÓóÚú]+['\-]?[A-Za-zÑñÁáÉéÍíÓóÚú]+))*$/;
-    const regexApellidos = /^([A-ZÑÁÉÍÓÚ]+['\-]?[a-zñáéíóú]+)(\s+([A-Za-zÑñÁáÉéÍíÓóÚú]+['\-]?[A-Za-zÑñÁáÉéÍíÓóÚú]+))*$/;
-    const regexDNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i;
-    const regexFechaNacimiento = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-    const regexCodigoPostal = /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/;
-    const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const regexTelefonoFijo = /^[89]\d{8}$/;
-    const regexTelefonoMovil = /^[67]\d{8}$/;
-    const regexIBAN = /^ES\d{22}$/;
-    const regexTarjetaCredito = /^\d{16}$/;
-    const regexPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
-    
-    // Datos de ejemplo
-    const datos = {
-      nombre: "Juan",
-      apellidos: "Gómez Pérez",
-      dni: "12345678A",
-      fechaNacimiento: "01/01/1990",
-      codigoPostal: "28001",
-      email: "juan@example.com",
-      telefonoFijo: "912345678",
-      telefonoMovil: "612345678",
-      iban: "ES12345678901234567890",
-      tarjetaCredito: "1234567890123456",
-      password: "JuanPerez@123",
-    };
-    
-    // Función para validar datos
-    function validarDatos(datos) {
-      for (const campo in datos) {
-        if (datos.hasOwnProperty(campo)) {
-          const regex = eval(`regex${campo.charAt(0).toUpperCase() + campo.slice(1)}`);
-          if (!regex.test(datos[campo])) {
-            console.log(`Error en ${campo}: ${datos[campo]}`);
-          }
-        }
-      }
+const validationRules = {
+    nombre: {
+        regex: /^[A-Z][a-zA-Z]*$/,
+        error: 'El nombre debe comenzar con una letra mayúscula y solo contener letras'
+    },
+    apellidos: {
+        regex: /^[A-Z][a-zA-Z]*\s[A-Z][a-zA-Z]*$/,
+        error: 'Los apellidos deben ser dos palabras, cada una comenzando con una letra mayúscula y solo conteniendo letras'
+    },
+    dni: {
+        regex: /^[0-9]{8}[A-Z]$/,
+        error: 'El DNI debe tener 8 números seguidos de una letra mayúscula'
+    },
+    fechaNacimiento: {
+        regex: /^\d{2}\/\d{2}\/\d{4}$/,
+        error: 'La fecha de nacimiento debe estar en formato DD/MM/AAAA'
+    },
+    codigoPostal: {
+        regex: /^\d{5}$/,
+        error: 'El código postal debe tener exactamente 5 números'
+    },
+    email: {
+        regex: /^\S+@\S+\.\S+$/,
+        error: 'El email debe tener el formato usuario@dominio.extension'
+    },
+    telefonoFijo: {
+        regex: /^9\d{8}$/,
+        error: 'El teléfono fijo debe comenzar por 9 y tener 9 dígitos en total'
+    },
+    telefonoMovil: {
+        regex: /^6\d{8}$/,
+        error: 'El teléfono móvil debe comenzar por 6 y tener 9 dígitos en total'
+    },
+    iban: {
+        regex: /^ES\d{2}\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}$/,
+        error: 'El IBAN debe tener el formato ESXX XXXX XXXX XXXX XXXX XXXX'
+    },
+    tarjetaCredito: {
+        regex: /^\d{4}\s?\d{4}\s?\d{4}\s?\d{4}$/,
+        error: 'La tarjeta de crédito debe tener 16 dígitos, agrupados de 4 en 4'
+    },
+    contrasena: {
+        regex: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{12,}$/,
+        error: 'La contraseña debe tener al menos 12 caracteres, incluyendo al menos una letra, un número y un carácter especial'
+    },
+    repetirContrasena: {
+        regex: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{12,}$/,
+        error: 'Las contraseñas deben coincidir'
     }
-    
-    // Validar los datos de ejemplo
-    validarDatos(datos);
-    
-    // Campos del formulario
-    const nombreInput = document.getElementById('nombre');
-    const apellidosInput = document.getElementById('apellidos');
-    const dniInput = document.getElementById('dni');
-    const fechaNacimientoInput = document.getElementById('fechaNacimiento');
-    const codigoPostalInput = document.getElementById('codigoPostal');
-    const emailInput = document.getElementById('email');
-    const telefonoFijoInput = document.getElementById('telefonoFijo');
-    const telefonoMovilInput = document.getElementById('telefonoMovil');
-    const ibanInput = document.getElementById('iban');
-    const tarjetaCreditoInput = document.getElementById('tarjetaCredito');
-    const passwordInput = document.getElementById('password');
-    const confirmPasswordInput = document.getElementById('confirmPassword');
-    // Función para validar campo con evento keyup
-    function validarCampoConEvento(input, regex, errorDiv) {
-        input.addEventListener('keyup', function () {
-            validarCampo(input, regex, errorDiv);
-        });
+};
+
+function validateField(field, value) {
+    const rule = validationRules[field];
+    if (!rule.regex.test(value)) {
+        document.getElementById(field + 'Error').textContent = rule.error;
+        document.getElementById(field).classList.add('invalid');
+        document.getElementById(field + 'Error').classList.add('visible');
+        return false;
+    } else {
+        document.getElementById(field + 'Error').textContent = '';
+        document.getElementById(field).classList.remove('invalid');
+        document.getElementById(field + 'Error').classList.remove('visible');
+        return true;
     }
+}
 
-    // Agregar eventos keyup a cada campo
-    validarCampoConEvento(nombreInput, regexNombre, document.getElementById('nombreError'));
-    validarCampoConEvento(apellidosInput, regexApellidos, document.getElementById('apellidosError'));
-    validarCampoConEvento(dniInput, regexDNI, document.getElementById('dniError'));
-    validarCampoConEvento(fechaNacimientoInput, regexFechaNacimiento, document.getElementById('fechaNacimientoError'));
-    validarCampoConEvento(codigoPostalInput, regexCodigoPostal, document.getElementById('codigoPostalError'));
-    validarCampoConEvento(emailInput, regexEmail, document.getElementById('emailError'));
-    validarCampoConEvento(telefonoFijoInput, regexTelefonoFijo, document.getElementById('telefonoFijoError'));
-    validarCampoConEvento(telefonoMovilInput, regexTelefonoMovil, document.getElementById('telefonoMovilError'));
-    validarCampoConEvento(ibanInput, regexIBAN, document.getElementById('ibanError'));
-    validarCampoConEvento(tarjetaCreditoInput, regexTarjetaCredito, document.getElementById('tarjetaCreditoError'));
-    validarCampoConEvento(passwordInput, regexPassword, document.getElementById('passwordError'));
-    validarCampoConEvento(confirmPasswordInput, regexPassword, document.getElementById('confirmPasswordError'));
+const fields = Object.keys(validationRules);
 
-    function validarCampo(input, regex, errorDiv) {
-        if (regex.test(input.value)) {
-            input.style.borderColor = '';
-            errorDiv.classList = 'error hidden';
-            return true;
-        } else {
-            input.style.borderColor = 'red';
-            errorDiv.classList = "error";
-            console.log("Incorrecto")
-            return false;
+// Agrega un controlador de eventos 'keyup' a cada campo
+for (let field of fields) {
+    document.getElementById(field).addEventListener('keyup', function() {
+        validateField(field, this.value);
+    });
+}
+
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    let allValid = true;
+
+    for (let field of fields) {
+        const input = document.getElementById(field);
+        const isValid = validateField(field, input.value);
+        if (!isValid) {
+            allValid = false;
         }
     }
 
-    function guardarDatos() {
-        // Validar todos los campos antes de guardar
-        if (
-            validarCampo(nombreInput, regexNombre, document.getElementById('nombreError')) &&
-            validarCampo(apellidosInput, regexApellidos, document.getElementById('apellidosError')) &&
-            validarCampo(dniInput, regexDNI, document.getElementById('dniError')) &&
-            validarCampo(fechaNacimientoInput, regexFechaNacimiento, document.getElementById('fechaNacimientoError')) &&
-            validarCampo(codigoPostalInput, regexCodigoPostal, document.getElementById('codigoPostalError')) &&
-            validarCampo(emailInput, regexEmail, document.getElementById('emailError')) &&
-            validarCampo(telefonoFijoInput, regexTelefonoFijo, document.getElementById('telefonoFijoError')) &&
-            validarCampo(telefonoMovilInput, regexTelefonoMovil, document.getElementById('telefonoMovilError')) &&
-            validarCampo(ibanInput, regexIBAN, document.getElementById('ibanError')) &&
-            validarCampo(tarjetaCreditoInput, regexTarjetaCredito, document.getElementById('tarjetaCreditoError')) &&
-            validarCampo(passwordInput, regexPassword, document.getElementById('passwordError')) &&
-            confirmPasswordInput.value === passwordInput.value
-        ) {
-            // Crear objeto JSON con los datos y guardar en localStorage
-            const datosUsuario = {
-                nombre: nombreInput.value,
-                apellidos: apellidosInput.value,
-                dni: dniInput.value,
-                fechaNacimiento: fechaNacimientoInput.value,
-                codigoPostal: codigoPostalInput.value,
-                email: emailInput.value,
-                telefonoFijo: telefonoFijoInput.value,
-                telefonoMovil: telefonoMovilInput.value,
-                iban: ibanInput.value,
-                tarjetaCredito: tarjetaCreditoInput.value,
-                password: passwordInput.value
-            };
-
-            localStorage.setItem('datosUsuario', JSON.stringify(datosUsuario));
-
-            alert('Datos guardados correctamente.');
-        } else {
-            alert('Por favor, complete correctamente todos los campos.');
+    if (allValid) {
+        const data = {};
+        for (let field of fields) {
+            data[field] = document.getElementById(field).value;
         }
-    }
-
-    function recuperarDatos() {
-        // Recuperar datos del localStorage
-        const datosGuardados = localStorage.getItem('datosUsuario');
-
-        if (datosGuardados) {
-            const datosUsuario = JSON.parse(datosGuardados);
-
-            // Mostrar datos en los campos correspondientes
-            nombreInput.value = datosUsuario.nombre;
-            apellidosInput.value = datosUsuario.apellidos;
-            dniInput.value = datosUsuario.dni;
-            fechaNacimientoInput.value = datosUsuario.fechaNacimiento;
-            codigoPostalInput.value = datosUsuario.codigoPostal;
-            emailInput.value = datosUsuario.email;
-            telefonoFijoInput.value = datosUsuario.telefonoFijo;
-            telefonoMovilInput.value = datosUsuario.telefonoMovil;
-            ibanInput.value = datosUsuario.iban;
-            tarjetaCreditoInput.value = datosUsuario.tarjetaCredito;
-            passwordInput.value = datosUsuario.password;
-            confirmPasswordInput.value = datosUsuario.password;
-
-            alert('Datos recuperados correctamente.');
-        } else {
-            alert('No hay datos guardados.');
-        }
-    }
-
-    document.getElementById('guardarBtn').addEventListener('click', guardarDatos);
-    document.getElementById('recuperarBtn').addEventListener('click', recuperarDatos);
+        localStorage.setItem('registrationData', JSON.stringify(data));
     
+        // Vaciar los campos del formulario
+        for (let field of fields) {
+            document.getElementById(field).value = '';
+        }
+        document.getElementById('actionMessage').innerText = 'Datos guardados';
+    } 
+
 });
 
+document.getElementById('recuperar').addEventListener('click', function() {
+    const data = JSON.parse(localStorage.getItem('registrationData'));
+    if (data) {
+        for (let field in data) {
+            document.getElementById(field).value = data[field];
+        }
+        document.getElementById('actionMessage').innerText = 'Datos recuperados';
+    }
+});
+
+// Check if passwords match
+document.getElementById('repetirContrasena').addEventListener('keyup', function() {
+    const password = document.getElementById('contrasena').value;
+    const confirmPassword = document.getElementById('repetirContrasena').value;
+
+    if (password !== confirmPassword) {
+        document.getElementById('repetirContrasenaError').textContent = 'Las contraseñas no coinciden';
+        document.getElementById('repetirContrasena').classList.add('invalid');
+    } else {
+        document.getElementById('repetirContrasenaError').textContent = '';
+        document.getElementById('repetirContrasena').classList.remove('invalid');
+    }
+});
+
+
+function fillTestUser() {
+    // Crear un usuario de prueba
+    
+    const testUser = {
+        nombre: 'Juan',
+        apellidos: 'Perez Gomez',
+        dni: '12345678A',
+        fechaNacimiento: '01/01/2000',
+        codigoPostal: '12345',
+        email: 'juan@test.com',
+        telefonoFijo: '912345678',
+        telefonoMovil: '612345678',
+        iban: 'ES12 3456 7890 1234 5678 9012',
+        tarjetaCredito: '1234 5678 9012 3456',
+        contrasena: 'Password123!',
+        repetirContrasena: 'Password123!'
+    };
+
+    // Llenar los campos del formulario con los datos del usuario de prueba
+    for (let field in testUser) {
+        document.getElementById(field).value = testUser[field];
+    }
+    console.log('Test user filled');
+    document.getElementById('actionMessage').innerText = 'Usuario de prueba rellenado';
+}
+
+document.getElementById('fillTestUserButton').addEventListener('click', fillTestUser);
+
+// Verificar si localStorage tiene algún dato
+if (localStorage.length > 0) {
+    // Crear un nuevo botón
+    let clearButton = document.createElement('button');
+    clearButton.classList =('btn','btn-clear');
+    clearButton.innerHTML = 'Vaciar Local Storage';
+    
+    // Agregar un evento de clic al botón
+    clearButton.addEventListener('click', function() {
+        // Vaciar el almacenamiento local
+        localStorage.clear();
+        document.getElementById('actionMessage').innerText = 'Almacenamiento local vaciado';
+        // Eliminar el botón después de vaciar el almacenamiento local
+        clearButton.remove();
+        // Refrescar la página
+        location.reload();
+    });
+
+    // Agregar el botón al cuerpo del documento
+    document.body.appendChild(clearButton);
+} else {
+    let recoverButton = document.getElementById('recuperar');
+    console.log(recoverButton);
+    // Ocultar el botón de recuperación
+    recoverButton.style.display = 'none';
+}
