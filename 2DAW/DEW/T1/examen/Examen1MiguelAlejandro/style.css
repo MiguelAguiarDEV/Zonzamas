@@ -1,0 +1,33 @@
+
+form {
+    width: 400px;
+}
+
+#contenedor-btn {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#contenedor-btn button {
+    aspect-ratio: 2/1;
+}
+
+#contenedor-btn .btn-llamar {
+    aspect-ratio: 0;
+    height: 100px;
+    grid-column: span 3 ;
+    background-color: green;
+}
+
+
+input.invalido {
+    color: red;
+}
+
+input.valido {
+    color: rgb(100, 167, 0);
+}
+
+#colgar {
+    background-color: red;
+}
