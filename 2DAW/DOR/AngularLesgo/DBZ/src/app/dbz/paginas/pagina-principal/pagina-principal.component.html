@@ -1,13 +1,14 @@
 <h1>DBZ Personajes</h1>
 <hr>
 
-<div class="row w-50">
+<div class="row w-50" >
 
   <div class="col">
-    <dbz-listado [listaPersonajes]="personajes"/>
+    <dbz-listado [listaPersonajes]="dbzService.personajes" (borrar)="dbzService.borrarPersonaje($event)"></dbz-listado>
   </div>
 
   <div class="col">
-    <dbz-agregar-personaje />
+    <dbz-agregar-personaje (nuevoPersonaje)="dbzService.nuevoPersonaje($event)"></dbz-agregar-personaje>
   </div>
+
 </div>

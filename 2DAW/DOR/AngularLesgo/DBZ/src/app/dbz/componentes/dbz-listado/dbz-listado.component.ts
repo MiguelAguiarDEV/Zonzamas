@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Personaje } from '../../interfaces/personaje';
 
 @Component({
@@ -16,4 +16,10 @@ export class DbzListadoComponent {
       poder: 1000
     },
   ];
+
+  @Output()
+  public borrar:EventEmitter<string> = new EventEmitter();
+  borrarPersonaje(id: string): void {
+    this.borrar.emit(id)
+  }
 }
