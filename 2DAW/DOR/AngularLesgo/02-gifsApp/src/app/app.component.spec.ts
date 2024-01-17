@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'gifs' title`, () => {
+  it(`should have the '02-gifsApp' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('gifs');
+    expect(app.title).toEqual('02-gifsApp');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, gifs');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, 02-gifsApp');
   });
 });
