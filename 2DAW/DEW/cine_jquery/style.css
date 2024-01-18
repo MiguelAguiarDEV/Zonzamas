@@ -1,0 +1,7 @@
+.card-img-top {
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+.portada {
+    margin: 1rem;
+}
