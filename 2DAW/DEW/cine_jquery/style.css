@@ -5,3 +5,29 @@
 .portada {
     margin: 1rem;
 }
+
+#btn-volver-inicio {
+    height: fit-content;
+    margin: 20px;
+}
+
+.portada-reserva {
+    height: 20vh;
+    min-width: 200px;
+}
+.img-reserva {
+    height: 20vh;
+}
+#butacas {
+    width: 400px
+}
+
+.butaca{
+    margin: 2px;
+    width: 40px;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
