@@ -1,81 +1,83 @@
-
 // Función para guardar un array en el localStorage
 function guardarArrayEnLocalStorage(clave, array) {
-    try {
-        // Convierte el array a cadena JSON antes de almacenarlo
-        var arrayJSON = JSON.stringify(array);
-        localStorage.setItem(clave, arrayJSON);
-        console.log(`Array guardado en localStorage con clave: ${clave}`);
-    } catch (error) {
-        console.error('Error al guardar array en localStorage:', error);
-    }
+  try {
+    // Convierte el array a cadena JSON antes de almacenarlo
+    var arrayJSON = JSON.stringify(array);
+    localStorage.setItem(clave, arrayJSON);
+    console.log(`Array guardado en localStorage con clave: ${clave}`);
+  } catch (error) {
+    console.error("Error al guardar array en localStorage:", error);
+  }
 }
 
 // Función para recuperar un array desde el localStorage
 function recuperarArrayDesdeLocalStorage(clave) {
-    try {
-        // Obtiene la cadena JSON del localStorage y la convierte a un array
-        var arrayJSON = localStorage.getItem(clave);
-        var arrayRecuperado = JSON.parse(arrayJSON);
-        console.log(`Array recuperado desde localStorage con clave: ${localStorage.getItem(clave)}`);
-        return arrayRecuperado;
-    } catch (error) {
-        console.error('Error al recuperar array desde localStorage:', error);
-		console.log(localStorage.getItem(clave));
-        return null;
-    }
+  try {
+    // Obtiene la cadena JSON del localStorage y la convierte a un array
+    var arrayJSON = localStorage.getItem(clave);
+    var arrayRecuperado = JSON.parse(arrayJSON);
+    console.log(
+      `Array recuperado desde localStorage con clave: ${localStorage.getItem(
+        clave
+      )}`
+    );
+    return arrayRecuperado;
+  } catch (error) {
+    console.error("Error al recuperar array desde localStorage:", error);
+    console.log(localStorage.getItem(clave));
+    return null;
+  }
 }
 
 var arrayPeliculas = {};
 
-if(recuperarArrayDesdeLocalStorage("peliculas")){
+if (recuperarArrayDesdeLocalStorage("peliculas")) {
   arrayPeliculas = recuperarArrayDesdeLocalStorage("peliculas");
 } else {
   arrayPeliculas = {
-	  //Si las peliculas estan en local storage las recupera y las guarda en la variable arrayPeliculas.
-		1: {
-			id: 1,
-			nombre: "Avatar el sentido del agua",
-			director: "James Cameron",
-			duracion: 120,
-			genero: "Ciencia Ficcion",
-			urlPortada: "img/avatar.jpeg",
-			precio: 10,
-			butacas: generarArrayAleatorio(20),
-		},
-		2: {
-			id: 2,
-			nombre: "El viaje de Chihiro",
-			director: "Hayao Miyazaki",
-			duracion: 125,
-			genero: "Animacion",
-			urlPortada: "img/chijiro.webp",
-			precio: 5,
-			butacas: generarArrayAleatorio(17),
-		},
-		3: {
-			id: 3,
-			nombre: "Interstellar",
-			director: "Christopher Nolan",
-			duracion: 150,
-			genero: "Ciencia Ficcion",
-			urlPortada: "img/Interstellar.jpg",
-			precio: 7,
-			butacas: generarArrayAleatorio(42),
-		},
-		4: {
-			id: 4,
-			nombre: "El Hobbit",
-			director: "Peter Jackson",
-			duracion: 180,
-			genero: "Fantasia",
-			urlPortada: "img/hobbit.jpg",
-			precio: 2,
-			butacas: generarArrayAleatorio(38),
-		}
-	}
+    //Si las peliculas estan en local storage las recupera y las guarda en la variable arrayPeliculas.
+    1: {
+      id: 1,
+      nombre: "Avatar el sentido del agua",
+      director: "James Cameron",
+      duracion: 120,
+      genero: "Ciencia Ficcion",
+      urlPortada: "img/avatar.jpeg",
+      precio: 10,
+      butacas: generarArrayAleatorio(20),
+    },
+    2: {
+      id: 2,
+      nombre: "El viaje de Chihiro",
+      director: "Hayao Miyazaki",
+      duracion: 125,
+      genero: "Animacion",
+      urlPortada: "img/chijiro.webp",
+      precio: 5,
+      butacas: generarArrayAleatorio(17),
+    },
+    3: {
+      id: 3,
+      nombre: "Interstellar",
+      director: "Christopher Nolan",
+      duracion: 150,
+      genero: "Ciencia Ficcion",
+      urlPortada: "img/Interstellar.jpg",
+      precio: 7,
+      butacas: generarArrayAleatorio(42),
+    },
+    4: {
+      id: 4,
+      nombre: "El Hobbit",
+      director: "Peter Jackson",
+      duracion: 180,
+      genero: "Fantasia",
+      urlPortada: "img/hobbit.jpg",
+      precio: 2,
+      butacas: generarArrayAleatorio(38),
+    },
+  };
 }
-
 
 //Funcion para generar Arrays con n elementos con valores 0 o 1.
 function generarArrayAleatorio(n) {
@@ -99,7 +101,7 @@ const btnVolverInicio = $("<button/>", {
   id: "btn-volver-inicio",
   class: "btn btn-danger d-flex",
   click: function () {
-    window.location.href = "index.html";
+    location.reload();
   },
 });
 
@@ -107,6 +109,7 @@ function generarPortadas(arrayPeliculas) {
   for (pelicula in arrayPeliculas) {
     //Genera el html de las portadas.
     $("#cartelera").append(`
+		
         <section id="portada-${arrayPeliculas[pelicula].nombre.replace(
           " ",
           "-"
@@ -144,13 +147,16 @@ function generarPortadas(arrayPeliculas) {
     generarPaginaReserva(id);
   });
 }
+
 generarPortadas(arrayPeliculas);
 
-let precioTotal = 0;
+var precioTotal = 0;
 function generarPaginaReserva(id) {
+  precioTotal = 0;
   guardarArrayEnLocalStorage("peliculas", arrayPeliculas);
 
   $("#cine").html(`
+  <button id="inicio" type="button" class="btn btn-primary">Inicio</button>
 		<div class="portada-reserva d-flex rounded-9 shadow m-3 overflow-hidden">
 			<img src="${arrayPeliculas[id].urlPortada}" class="d-flex img-reserva rounded-start" alt="..." >
 			<div class="card-body p-0 ms-3">
@@ -174,7 +180,11 @@ function generarPaginaReserva(id) {
 			</button>
 		</div
 	`);
-  $("#cine").prepend(btnVolverInicio);
+
+  $("#inicio").click(function () {
+    location.reload();
+  });
+
   generarButacas(id);
   document.getElementById("reservar").addEventListener("click", function () {
     if (precioTotal == 0) {
@@ -245,10 +255,12 @@ function generarButacas(id) {
       if (arrayPeliculas[id].butacas[fila] == 1) {
         precioTotal += arrayPeliculas[id].precio;
         arrayPeliculas[id].butacas[fila] = 3;
+        $("#total").html(precioTotal + "$");
         console.log(arrayPeliculas[id].butacas[fila]);
       } else if (arrayPeliculas[id].butacas[fila] == 3) {
         arrayPeliculas[id].butacas[fila] = 1;
         precioTotal -= arrayPeliculas[id].precio;
+        $("#total").html(precioTotal + "$");
       }
       generarButacas(id);
     });
