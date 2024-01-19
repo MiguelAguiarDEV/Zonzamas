@@ -44,7 +44,7 @@ if (recuperarArrayDesdeLocalStorage("peliculas")) {
       genero: "Ciencia Ficcion",
       urlPortada: "img/avatar.jpeg",
       precio: 10,
-      butacas: generarArrayAleatorio(20),
+      butacas: generarArrayAleatorio(100),
     },
     2: {
       id: 2,
@@ -54,7 +54,7 @@ if (recuperarArrayDesdeLocalStorage("peliculas")) {
       genero: "Animacion",
       urlPortada: "img/chijiro.webp",
       precio: 5,
-      butacas: generarArrayAleatorio(17),
+      butacas: generarArrayAleatorio(150),
     },
     3: {
       id: 3,
@@ -64,7 +64,7 @@ if (recuperarArrayDesdeLocalStorage("peliculas")) {
       genero: "Ciencia Ficcion",
       urlPortada: "img/Interstellar.jpg",
       precio: 7,
-      butacas: generarArrayAleatorio(42),
+      butacas: generarArrayAleatorio(200),
     },
     4: {
       id: 4,
@@ -74,7 +74,7 @@ if (recuperarArrayDesdeLocalStorage("peliculas")) {
       genero: "Fantasia",
       urlPortada: "img/hobbit.jpg",
       precio: 2,
-      butacas: generarArrayAleatorio(38),
+      butacas: generarArrayAleatorio(40),
     },
   };
 }
@@ -216,7 +216,7 @@ function generarPaginaReserva(id) {
           });
           for (let i = 0; i < arrayPeliculas[id].butacas.length; i++) {
             if (arrayPeliculas[id].butacas[i] == 3) {
-              arrayPeliculas[id].butacas[i] = 0;
+              arrayPeliculas[id].butacas[i] = 4;
             }
           }
         } else {
@@ -245,7 +245,7 @@ function generarButacas(id) {
       `<div class="butaca rounded-3 shadow m-1">${fila}</div>`
     );
 
-    if (arrayPeliculas[id].butacas[fila] == 0) {
+    if (arrayPeliculas[id].butacas[fila] == 0 || arrayPeliculas[id].butacas[fila] == 4) {
       butacaHTML.addClass("bg-danger");
     } else if (arrayPeliculas[id].butacas[fila] == 3) {
       butacaHTML.addClass("bg-warning");
@@ -255,14 +255,19 @@ function generarButacas(id) {
       if (arrayPeliculas[id].butacas[fila] == 1) {
         precioTotal += arrayPeliculas[id].precio;
         arrayPeliculas[id].butacas[fila] = 3;
+
         $("#total").html(precioTotal + "$");
-        console.log(arrayPeliculas[id].butacas[fila]);
+
       } else if (arrayPeliculas[id].butacas[fila] == 3) {
         arrayPeliculas[id].butacas[fila] = 1;
         precioTotal -= arrayPeliculas[id].precio;
         $("#total").html(precioTotal + "$");
+
+      } else if (arrayPeliculas[id].butacas[fila] == 4) {
+        arrayPeliculas[id].butacas[fila] = 1;
       }
       generarButacas(id);
+      console.log(arrayPeliculas[id].butacas);
     });
     butacasHTML.append(butacaHTML);
   }
