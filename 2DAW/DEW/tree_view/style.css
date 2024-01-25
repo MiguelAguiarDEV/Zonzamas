@@ -1,19 +1,68 @@
-body {
-    background-color: F7F7F7;
+/* Basic styling for the file explorer */
+#myUL {
+    list-style-type: none;
+}
+
+.dir-inf {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    flex-direction: row;
+}
+
+.dir-inf img {
+    width: 20px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    margin-right: 5px;
+}
+
+.dir-inf span {
+    margin-right: 5px;
 }
 
 .btn-dir {
     margin-left: 10px;
-    border: 1px solid ;
-    cursor: pointer;
-    width: 20px;
-    padding: 0;
+    justify-content: center;
+    text-justify: centre;
+}
+.btn-add {
+    background-color: green;
+}
+/* Adjustments for the nested levels */
+.dir {
+    padding-left: 20px; /* Adjust indentation */
 }
 
-img {
-    width: 20px;   
+/* Styling for file items */
+.fic {
+    margin-left: 20px; /* Adjust indentation */
+    padding: 0;
 }
-.dir-inf{
-    border: 1px solid black;
+/* Button style */
+.btn-dir {
+    background-color: #6c757d; /* Adjust color as needed */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
     
+}
+
+.btn-exp {
+    position: relative;
+}
+
+.btn {
+    width: 25px;
+    height: 25px;
+}
+/* Adjusting vertical spacing for the directory structure */
+.hijos > ul {
+    margin-top: 10px;
+}
+
+
+img {
+    width: 20px;
 }

@@ -27,15 +27,41 @@
 
     
     <section class="w-50 ms-5 mt-5">
-        <div id="myUL" class="mx-auto mt-5">
-
-                <ul class="dir root">/<button class="btn-dir btn btn-secondary">></button>
+        <div id="root" class="dir mx-auto mt-5">
+            <span class="dir-inf">
+                <span>Root</span>
+                <button class="btn-dir btn btn-add">+</button>
+                <button class="btn-dir btn btn-del">-</button>
+                <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+            </span>
+            <ul class="hijos">
+                <ul class="dir">
+                    <span class="dir-inf">
+                        <img src="img/folder.png" alt="">
+                        <span>JQuery Proyecto</span>
+                        <button class="btn-dir btn btn-add">+</button>
+                        <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                    </span>
+                    <ul class="hijos">
+                        <ul class="fic"><img src="img/file.png" alt=""> index.html</ul>
+                        <ul class="fic"><img src="img/file.png" alt=""> style.css</ul>
+                        <ul class="fic"><img src="img/file.png" alt=""> script.js</ul>
+                    </ul>
+                </ul>
+                <ul class="dir">
+                    <span class="dir-inf">
+                        <img src="img/folder.png" alt="">
+                        <span>DOR</span>
+                        <button class="btn-dir btn btn-add">+</button>
+                        <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                    </span>
                     <ul class="hijos">
                         <ul class="dir">
-                            <span class="dir-inf alaign-items-center">
+                            <span class="dir-inf">
                                 <img src="img/folder.png" alt="">
-                                JQuery Proyecto
-                                <button class="btn-dir btn btn-secondary">></button>
+                                <span>Proyecto Form</span>
+                                <button class="btn-dir btn btn-add">+</button>
+                                        <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
                             </span>
                             <ul class="hijos">
                                 <ul class="fic"><img src="img/file.png" alt=""> index.html</ul>
@@ -43,47 +69,27 @@
                                 <ul class="fic"><img src="img/file.png" alt=""> script.js</ul>
                             </ul>
                         </ul>
-                        
                         <ul class="dir">
-                            <span class="dir-inf alaign-items-center">
+                            <span class="dir-inf">
                                 <img src="img/folder.png" alt="">
-                                DOR
-                                <button class="btn-dir btn btn-secondary">></button>
+                                <span>Proyecto Angular</span>
+                                <button class="btn-dir btn btn-add">+</button>
+                                        <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
                             </span>
                             <ul class="hijos">
-                                <ul>
-                                    <span class="dir-inf alaign-items-center">
-                                        <img src="img/folder.png" alt="">
-                                        Proyecto Form
-                                        <button class="btn-dir btn btn-secondary">></button>
-                                    </span>
-                                    <ul class="hijos">
-                                        <ul class="fic"><img src="img/file.png" alt=""> index.html</ul>
-                                        <ul class="fic"><img src="img/file.png" alt=""> style.css</ul>
-                                        <ul class="fic"><img src="img/file.png" alt=""> script.js</ul>
-                                    </ul>
-                                </ul>
-                                <ul class="dir">
-                                    <img src="img/folder.png" alt="">
-                                    Proyecto Angular
-                                    <button class="btn-dir btn btn-secondary">></button>
-                                    <ul class="hijos">
-                                        <ul class="fic"><img src="img/file.png" alt=""> index.html</ul>
-                                        <ul class="fic"><img src="img/file.png" alt=""> style.css</ul>
-                                        <ul class="fic"><img src="img/file.png" alt=""> script.js</ul>
-                                    </ul>
-                                </ul>
+                                <ul class="fic"><img src="img/file.png" alt=""> index.html</ul>
+                                <ul class="fic"><img src="img/file.png" alt=""> style.css</ul>
+                                <ul class="fic"><img src="img/file.png" alt=""> script.js</ul>
                             </ul>
                         </ul>
                     </ul>
                 </ul>
-            </div>
-
-
+            </ul>
+        </ul>
+        </div>
     </section>
-    <script src="./script.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
+    <script src="script.js"></script>
+    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
 </body>
 
 </html>
