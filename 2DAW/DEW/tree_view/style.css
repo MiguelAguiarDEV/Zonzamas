@@ -1,0 +1,19 @@
+body {
+    background-color: F7F7F7;
+}
+
+.btn-dir {
+    margin-left: 10px;
+    border: 1px solid ;
+    cursor: pointer;
+    width: 20px;
+    padding: 0;
+}
+
+img {
+    width: 20px;   
+}
+.dir-inf{
+    border: 1px solid black;
+    
+}
