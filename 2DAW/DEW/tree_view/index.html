@@ -21,19 +21,19 @@
 <body>
     <section class="w-50 mx-auto mt-5">
         <div class="input-group">
-            <span class="input-group-text text-bg-primary border-primary">Nombre directorio/fichero</span>
-            <input id="buscar" type="text" aria-label="First name" class="form-control">
+            <span class="input-group-text text-bg-primary border-primary">Buscar</span>
+            <input id="buscar" type="text" aria-label="First name" class="form-control" placeholder="Nombre fichero">
         </div>
     </section>
 
     
-    <section class="w-50 ms-5 mt-5">
-        <div id="root" class="dir mx-auto mt-5">
-            <span class="dir-inf">
+    <section class="w-50 ms-5 mt-5 tree">
+        <div id="root" class="dir mx-auto mt-5 root">
+            <span class="dir-inf root">
                 <span class="dir-nom">Root</span>
                 <button class="btn-dir btn btn-add">+</button>
-                <button class="btn-dir btn btn-del">-</button>
                 <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                <button class="btn-dir btn btn-del">x</button>
             </span>
             <ul class="hijos">
                 <ul class="dir">
@@ -42,11 +42,12 @@
                         <span class="dir-nom">JQuery Proyecto</span>
                         <button class="btn-dir btn btn-add">+</button>
                         <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                        <button class="btn-dir btn btn-del">x</button>
                     </span>
                     <ul class="hijos">
-                        <ul class="fic"><img src="img/file.png" alt=""> index.html</ul>
-                        <ul class="fic"><img src="img/file.png" alt=""> style.css</ul>
-                        <ul class="fic"><img src="img/file.png" alt=""> script.js</ul>
+                        <ul class="fic"><img src="img/file.png" alt="">index.html</ul>
+                        <ul class="fic"><img src="img/file.png" alt="">style.css</ul>
+                        <ul class="fic"><img src="img/file.png" alt="">script.js</ul>
                     </ul>
                 </ul>
                 <ul class="dir">
@@ -55,6 +56,7 @@
                         <span class="dir-nom">DOR</span>
                         <button class="btn-dir btn btn-add">+</button>
                         <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                        <button class="btn-dir btn btn-del">x</button>
                     </span>
                     <ul class="hijos">
                         <ul class="dir">
@@ -62,12 +64,13 @@
                                 <img src="img/folder.png" alt="">
                                 <span class="dir-nom">Proyecto Form</span>
                                 <button class="btn-dir btn btn-add">+</button>
-                                        <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                                <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                                <button class="btn-dir btn btn-del">x</button>
                             </span>
                             <ul class="hijos">
-                                <ul class="fic"><img src="img/file.png" alt=""> index.html</ul>
-                                <ul class="fic"><img src="img/file.png" alt=""> style.css</ul>
-                                <ul class="fic"><img src="img/file.png" alt=""> script.js</ul>
+                                <ul class="fic"><img src="img/file.png" alt="">index.html</ul>
+                                <ul class="fic"><img src="img/file.png" alt="">style.css</ul>
+                                <ul class="fic"><img src="img/file.png" alt="">script.js</ul>
                             </ul>
                         </ul>
                         <ul class="dir">
@@ -75,12 +78,13 @@
                                 <img src="img/folder.png" alt="">
                                 <span class="dir-nom">Proyecto Angular</span>
                                 <button class="btn-dir btn btn-add">+</button>
-                                        <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                                <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                                <button class="btn-dir btn btn-del">x</button>
                             </span>
                             <ul class="hijos">
-                                <ul class="fic"><img src="img/file.png" alt=""> index.html</ul>
-                                <ul class="fic"><img src="img/file.png" alt=""> style.css</ul>
-                                <ul class="fic"><img src="img/file.png" alt=""> script.js</ul>
+                                <ul class="fic"><img src="img/file.png" alt="">index.html</ul>
+                                <ul class="fic"><img src="img/file.png" alt="">style.css</ul>
+                                <ul class="fic"><img src="img/file.png" alt="">script.js</ul>
                             </ul>
                         </ul>
                     </ul>

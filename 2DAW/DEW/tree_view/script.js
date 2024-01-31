@@ -1,3 +1,4 @@
+const input = $("#buscar");
 function rotar(elemento) {
   console.log($(elemento).data("toggled"));
   if (!$(elemento).data("toggled")) {
@@ -104,3 +105,111 @@ function obtenerNombresHijos(carpeta) {
   // Devolver el array con los nombres de los hijos
   return nombresHijos;
 }
+
+function obtenerNombresDeArchivosYCarpetas() {
+  let array = [];
+  $(".dir-nom").each(function () {
+    array.push($(this).text());
+  });
+  $(".fic").each(function () {
+    array.push($(this).text());
+  });
+
+  return array;
+}
+
+function autocompletar() {
+  obtenerNombresDeArchivosYCarpetas().forEach((element) => {
+    console.log(input.val());
+    if (
+      element.includes(input.val()) &&
+      input.val() != "" &&
+      input.val()[0] == element[0]
+    ) {
+      input.val(element);
+    }
+  });
+}
+
+console.log(obtenerNombresDeArchivosYCarpetas());
+
+input.keydown(function (e) {
+  if (e.key == "Tab") {
+    event.preventDefault();
+    autocompletar();
+    hacerVisible(input.val());
+  }
+  hacerVisible(input.val());
+  if (input.val() == "") {
+    $(".dir").show();
+    $(".fic").show();
+  }
+});
+
+function hacerVisible(nombre) {
+  $(".dir").each(function () {
+    var carpeta = $(this);
+    var contieneCoincidencia = false; // Variable para rastrear si la carpeta contiene archivos que coinciden con el nombre
+
+    carpeta.find(".fic").each(function () {
+      if ($(this).text().includes(nombre)) {
+        contieneCoincidencia = true;
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+
+    // Mostrar u ocultar la carpeta padre según si contiene archivos que coinciden con el nombre
+    if (contieneCoincidencia) {
+      carpeta.show();
+    } else {
+      carpeta.hide();
+    }
+  });
+}
+
+
+$(".dir-inf:not(.root)").hover(
+  function() {
+      $(this).closest(".dir-inf").find(".btn-del").css("visibility", "visible"); // Cambia la visibilidad del botón cuando pasas el mouse sobre el elemento
+  },
+  function() {
+      $(this).closest(".dir-inf").find(".btn-del").css("visibility", "hidden"); // Restablece la visibilidad del botón cuando el mouse deja el elemento
+  }
+);
+
+$(".dir-inf:not(.root)").on("click", ".btn-del", function() {
+  Swal.fire({
+      title: "¿Quieres eliminar la carpeta?",
+      showDenyButton: true,
+      confirmButtonText: "Eliminar",
+      denyButtonText: "Cancelar"
+  }).then((result) => {
+      /* Lee más sobre isConfirmed, isDenied a continuación */
+      if (result.isConfirmed) {
+          Swal.fire("Eliminado!", "", "success");
+          $(this).closest(".dir").remove(); // Elimina el elemento más cercano con la clase ".dir-inf"
+      } else if (result.isDenied) {
+          Swal.fire("No se ha eliminado", "", "info");
+      }
+  });
+});
+
+
+$(".fic").click(function() {
+  Swal.fire({
+    title: "¿Quieres eliminar el fichero?",
+    showDenyButton: true,
+    confirmButtonText: "Eliminar",
+    denyButtonText: "Cancelar"
+}).then((result) => {
+    /* Lee más sobre isConfirmed, isDenied a continuación */
+    if (result.isConfirmed) {
+        Swal.fire("Eliminado!", "", "success");
+        $(this).remove(); // Elimina el elemento más cercano con la clase ".dir-inf"
+    } else if (result.isDenied) {
+        Swal.fire("No se ha eliminado", "", "info");
+    }
+});
+});

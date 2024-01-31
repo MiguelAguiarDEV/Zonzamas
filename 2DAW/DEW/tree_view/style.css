@@ -8,7 +8,11 @@
     align-items: center;
     margin-bottom: 5px;
     flex-direction: row;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 4px;
 }
+
 
 .dir-inf img {
     width: 20px; /* Adjust size as needed */
@@ -36,7 +40,9 @@
 /* Styling for file items */
 .fic {
     margin-left: 20px; /* Adjust indentation */
-    padding: 0;
+    padding: 5px;
+    width: fit-content;
+    border-radius: 4px;
 }
 /* Button style */
 .btn-dir {
@@ -48,7 +54,15 @@
     padding: 0;
     
 }
-
+.btn-del {
+    background-color: #dc3545; /* Adjust color as needed */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+    visibility: hidden;
+}
 .btn-exp {
     position: relative;
 }
@@ -65,4 +79,20 @@
 
 img {
     width: 20px;
+}
+
+.btn-add:hover{
+    background-color: #79bcf7;
+}
+.btn-exp:hover {
+    background-color: #ffee00;
+
+}
+
+.btn-del:hover {
+    background-color: #ff0000;
+}
+.fic:hover{
+    cursor:pointer;
+    background-color: #df3737;
 }
