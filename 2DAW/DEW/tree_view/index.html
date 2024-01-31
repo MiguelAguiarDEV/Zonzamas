@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tree View</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
     <section class="w-50 ms-5 mt-5">
         <div id="root" class="dir mx-auto mt-5">
             <span class="dir-inf">
-                <span>Root</span>
+                <span class="dir-nom">Root</span>
                 <button class="btn-dir btn btn-add">+</button>
                 <button class="btn-dir btn btn-del">-</button>
                 <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
@@ -38,7 +39,7 @@
                 <ul class="dir">
                     <span class="dir-inf">
                         <img src="img/folder.png" alt="">
-                        <span>JQuery Proyecto</span>
+                        <span class="dir-nom">JQuery Proyecto</span>
                         <button class="btn-dir btn btn-add">+</button>
                         <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
                     </span>
@@ -51,7 +52,7 @@
                 <ul class="dir">
                     <span class="dir-inf">
                         <img src="img/folder.png" alt="">
-                        <span>DOR</span>
+                        <span class="dir-nom">DOR</span>
                         <button class="btn-dir btn btn-add">+</button>
                         <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
                     </span>
@@ -59,7 +60,7 @@
                         <ul class="dir">
                             <span class="dir-inf">
                                 <img src="img/folder.png" alt="">
-                                <span>Proyecto Form</span>
+                                <span class="dir-nom">Proyecto Form</span>
                                 <button class="btn-dir btn btn-add">+</button>
                                         <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
                             </span>
@@ -72,7 +73,7 @@
                         <ul class="dir">
                             <span class="dir-inf">
                                 <img src="img/folder.png" alt="">
-                                <span>Proyecto Angular</span>
+                                <span class="dir-nom">Proyecto Angular</span>
                                 <button class="btn-dir btn btn-add">+</button>
                                         <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
                             </span>
