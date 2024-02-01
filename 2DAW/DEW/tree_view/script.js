@@ -74,6 +74,7 @@ function crearFicDir(nombre, dir) {
                     <span class="dir-nom">${nombre}</span>
                     <button class="btn-dir btn btn-add">+</button>
                     <button toggled=true class="btn-dir btn btn-exp"><div>></div></button>
+                    <button class="btn-dir btn btn-del">x</button>
                 </span>
                 <ul class="hijos">
         
@@ -83,7 +84,9 @@ function crearFicDir(nombre, dir) {
     dir.append(html);
     rotar(dir.find(".btn-exp").last());
     añadirOnClickRotar(dir.find(".btn-exp").last());
+    
   }
+  anadirEventoBorrar();
   return html;
 }
 
@@ -170,18 +173,42 @@ function hacerVisible(nombre) {
 }
 
 
-$(".dir-inf:not(.root)").hover(
-  function() {
-      $(this).closest(".dir-inf").find(".btn-del").css("visibility", "visible"); // Cambia la visibilidad del botón cuando pasas el mouse sobre el elemento
-  },
-  function() {
-      $(this).closest(".dir-inf").find(".btn-del").css("visibility", "hidden"); // Restablece la visibilidad del botón cuando el mouse deja el elemento
-  }
-);
 
-$(".dir-inf:not(.root)").on("click", ".btn-del", function() {
-  Swal.fire({
-      title: "¿Quieres eliminar la carpeta?",
+
+
+function anadirEventoBorrar(){
+
+
+
+  $(".dir-inf:not(.root)").hover(
+    function() {
+        $(this).closest(".dir-inf").find(".btn-del").css("visibility", "visible"); // Cambia la visibilidad del botón cuando pasas el mouse sobre el elemento
+    },
+    function() {
+        $(this).closest(".dir-inf").find(".btn-del").css("visibility", "hidden"); // Restablece la visibilidad del botón cuando el mouse deja el elemento
+    }
+  );
+  
+  $(".dir-inf:not(.root)").on("click", ".btn-del", function() {
+    Swal.fire({
+        title: "¿Quieres eliminar la carpeta?",
+        showDenyButton: true,
+        confirmButtonText: "Eliminar",
+        denyButtonText: "Cancelar"
+    }).then((result) => {
+        /* Lee más sobre isConfirmed, isDenied a continuación */
+        if (result.isConfirmed) {
+            Swal.fire("Eliminado!", "", "success");
+            $(this).closest(".dir").remove(); // Elimina el elemento más cercano con la clase ".dir-inf"
+        } else if (result.isDenied) {
+            Swal.fire("No se ha eliminado", "", "info");
+        }
+    });
+  });
+  
+  $(".fic").click(function() {
+    Swal.fire({
+      title: "¿Quieres eliminar el fichero?",
       showDenyButton: true,
       confirmButtonText: "Eliminar",
       denyButtonText: "Cancelar"
@@ -189,27 +216,12 @@ $(".dir-inf:not(.root)").on("click", ".btn-del", function() {
       /* Lee más sobre isConfirmed, isDenied a continuación */
       if (result.isConfirmed) {
           Swal.fire("Eliminado!", "", "success");
-          $(this).closest(".dir").remove(); // Elimina el elemento más cercano con la clase ".dir-inf"
+          $(this).remove(); // Elimina el elemento más cercano con la clase ".dir-inf"
       } else if (result.isDenied) {
           Swal.fire("No se ha eliminado", "", "info");
       }
+    });
   });
-});
+}
 
-
-$(".fic").click(function() {
-  Swal.fire({
-    title: "¿Quieres eliminar el fichero?",
-    showDenyButton: true,
-    confirmButtonText: "Eliminar",
-    denyButtonText: "Cancelar"
-}).then((result) => {
-    /* Lee más sobre isConfirmed, isDenied a continuación */
-    if (result.isConfirmed) {
-        Swal.fire("Eliminado!", "", "success");
-        $(this).remove(); // Elimina el elemento más cercano con la clase ".dir-inf"
-    } else if (result.isDenied) {
-        Swal.fire("No se ha eliminado", "", "info");
-    }
-});
-});
+anadirEventoBorrar();
