@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Teclado</title>
+  </head>
+  <body>
+    <div id="texto"><span id="cursor">+</span></div>
+
+    
+    <div class="contenedor">
+      <!-- Teclado normal -->
+      <div class="teclado normal">
+        <div class="fila fila0">
+          <div class="tecla º">º</div>
+          <div class="tecla 1">1</div>
+          <div class="tecla 2">2</div>
+          <div class="tecla 3">3</div>
+          <div class="tecla 4">4</div>
+          <div class="tecla 5">5</div>
+          <div class="tecla 6">6</div>
+          <div class="tecla 7">7</div>
+          <div class="tecla 8">8</div>
+          <div class="tecla 9">9</div>
+          <div class="tecla 0">0</div>
+          <div class="tecla '">'</div>
+          <div class="tecla ¡">¡</div>
+          <div class="tecla Retroceso">Retroceso</div>
+        </div>
+        <div class="fila fila1">
+          <div class="tecla Tab">Tab</div>
+          <div class="tecla q">q</div>
+          <div class="tecla w">w</div>
+          <div class="tecla e">e</div>
+          <div class="tecla r">r</div>
+          <div class="tecla t">t</div>
+          <div class="tecla y">y</div>
+          <div class="tecla u">u</div>
+          <div class="tecla i">i</div>
+          <div class="tecla o">o</div>
+          <div class="tecla p">p</div>
+          <div class="tecla `">`</div>
+          <div class="tecla +">+</div>
+          <div class="tecla Enter">Enter</div>
+        </div>
+        <div class="fila fila2">
+          <div class="tecla BloqMayús">BloqMayús<span class="circulo">.</span></div>
+          <div class="tecla a">a</div>
+          <div class="tecla s">s</div>
+          <div class="tecla d">d</div>
+          <div class="tecla f">f</div>
+          <div class="tecla g">g</div>
+          <div class="tecla h">h</div>
+          <div class="tecla j">j</div>
+          <div class="tecla k">k</div>
+          <div class="tecla l">l</div>
+          <div class="tecla ñ">ñ</div>
+          <div class="tecla ´">´</div>
+          <div class="tecla ç">ç</div>
+        </div>
+        <div class="fila fila3">
+          <div class="tecla Shift">Shift</div>
+          <div class="tecla <">&lt;</div>
+          <div class="tecla z">z</div>
+          <div class="tecla x">x</div>
+          <div class="tecla c">c</div>
+          <div class="tecla v">v</div>
+          <div class="tecla b">b</div>
+          <div class="tecla n">n</div>
+          <div class="tecla m">m</div>
+          <div class="tecla ,">,</div>
+          <div class="tecla .">.</div>
+          <div class="tecla -">-</div>
+          <div class="tecla Shift">Shift</div>
+        </div>
+        <div class="fila fila4">
+          <div class="tecla Espacio">Espacio</div>
+          <div class="tecla AltGr">AltGr</div>
+          <div class="tecla 🠔">🠔</div>
+          <div class="tecla 🠖">🠖</div>
+        </div>
+      </div>
+      <!-- Teclado Mayus -->
+      <div class="teclado mayus">
+        <div class="fila fila0">
+          <div class="tecla º">ª</div>
+          <div class="tecla 1">!</div>
+          <div class="tecla 2">"</div>
+          <div class="tecla 3">·</div>
+          <div class="tecla 4">$</div>
+          <div class="tecla 5">%</div>
+          <div class="tecla 6">&amp;</div>
+          <div class="tecla 7">/</div>
+          <div class="tecla 8">(</div>
+          <div class="tecla 9">)</div>
+          <div class="tecla 0">=</div>
+          <div class="tecla '">?</div>
+          <div class="tecla ¡">¿</div>
+          <div class="tecla Retroceso">Retroceso</div>
+        </div>
+        <div class="fila fila1">
+          <div class="tecla Tab">Tab</div>
+          <div class="tecla q">Q</div>
+          <div class="tecla w">W</div>
+          <div class="tecla e">E</div>
+          <div class="tecla r">R</div>
+          <div class="tecla t">T</div>
+          <div class="tecla y">Y</div>
+          <div class="tecla u">U</div>
+          <div class="tecla i">I</div>
+          <div class="tecla o">O</div>
+          <div class="tecla p">P</div>
+          <div class="tecla `">^</div>
+          <div class="tecla +">*</div>
+          <div class="tecla Enter">Enter</div>
+        </div>
+        <div class="fila fila2">
+          <div class="tecla BloqMayús">BloqMayús<span class="circulo">.</span></div>
+          <div class="tecla a">A</div>
+          <div class="tecla s">S</div>
+          <div class="tecla d">D</div>
+          <div class="tecla f">F</div>
+          <div class="tecla g">G</div>
+          <div class="tecla h">H</div>
+          <div class="tecla j">J</div>
+          <div class="tecla k">K</div>
+          <div class="tecla l">L</div>
+          <div class="tecla ñ">Ñ</div>
+          <div class="tecla ´">¨</div>
+          <div class="tecla ç">Ç</div>
+        </div>
+        <div class="fila fila3">
+          <div class="tecla Shift">Shift</div>
+          <div class="tecla <"><</div>
+          <div class="tecla z">Z</div>
+          <div class="tecla x">X</div>
+          <div class="tecla c">C</div>
+          <div class="tecla v">V</div>
+          <div class="tecla b">B</div>
+          <div class="tecla n">N</div>
+          <div class="tecla m">M</div>
+          <div class="tecla ,">;</div>
+          <div class="tecla .">:</div>
+          <div class="tecla -">_</div>
+          <div class="tecla Shift">Shift</div>
+        </div>
+        <div class="fila fila4">
+          <div class="tecla Espacio">Espacio</div>
+          <div class="tecla AltGr">AltGr</div>
+          <div class="tecla 🠔">🠔</div>
+          <div class="tecla 🠖">🠖</div>
+        </div>
+      </div>
+
+      <!-- Teclado AltGr -->
+      <div class="teclado altgr">
+        <div class="fila fila0">
+          <div class="tecla º">\</div>
+          <div class="tecla 1">|</div>
+          <div class="tecla 2">@</div>
+          <div class="tecla 3">#</div>
+          <div class="tecla 4"></div>
+          <div class="tecla 5"></div>
+          <div class="tecla 6">¬</div>
+          <div class="tecla 7"></div>
+          <div class="tecla 8">{</div>
+          <div class="tecla 9">}</div>
+          <div class="tecla 0"></div>
+          <div class="tecla '"></div>
+          <div class="tecla ¡"></div>
+          <div class="tecla Retroceso">Retroceso</div>
+        </div>
+        <div class="fila fila1">
+          <div class="tecla Tab">Tab</div>
+          <div class="tecla q"></div>
+          <div class="tecla w"></div>
+          <div class="tecla e">€</div>
+          <div class="tecla r"></div>
+          <div class="tecla t"></div>
+          <div class="tecla y"></div>
+          <div class="tecla u"></div>
+          <div class="tecla i"></div>
+          <div class="tecla o"></div>
+          <div class="tecla p"></div>
+          <div class="tecla `">[</div>
+          <div class="tecla +">]</div>
+          <div class="tecla Enter">Enter</div>
+        </div>
+        <div class="fila fila2">
+          <div class="tecla BloqMayús">BloqMayús<span class="circulo">.</span></div>
+          <div class="tecla a"></div>
+          <div class="tecla s"></div>
+          <div class="tecla d"></div>
+          <div class="tecla f"></div>
+          <div class="tecla g"></div>
+          <div class="tecla h"></div>
+          <div class="tecla j"></div>
+          <div class="tecla k"></div>
+          <div class="tecla l"></div>
+          <div class="tecla ñ"></div>
+          <div class="tecla ´">{</div>
+          <div class="tecla ç">}</div>
+        </div>
+        <div class="fila fila3">
+          <div class="tecla Shift">Shift</div>
+          <div class="tecla <"></div>
+          <div class="tecla z"></div>
+          <div class="tecla x"></div>
+          <div class="tecla c"></div>
+          <div class="tecla v"></div>
+          <div class="tecla b"></div>
+          <div class="tecla n"></div>
+          <div class="tecla m"></div>
+          <div class="tecla ,"></div>
+          <div class="tecla ."></div>
+          <div class="tecla -"></div>
+          <div class="tecla Shift">Shift</div>
+        </div>
+        <div class="fila fila4">
+          <div class="tecla Espacio">Espacio</div>
+          <div class="tecla AltGr">AltGr</div>
+          <div class="tecla 🠔">🠔</div>
+          <div class="tecla 🠖">🠖</div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
