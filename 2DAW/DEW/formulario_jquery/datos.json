@@ -1,0 +1,13 @@
+{
+    "nombre": "Raquel",
+    "apellidos": "López Pérez",
+    "dni": "12345678X",
+    "fechaNacimiento": "22/09/2000",
+    "codigoPostal": "35500",
+    "email": "pepe@gmail.com",
+    "telefonoFijo": "928666666",
+    "telefonoMovil": "666999666",
+    "tarjetaCredito": "4539955085883327",
+    "iban": "ES7921000813610123456789",
+    "contrasena": "Pepe1234567890*"
+}
