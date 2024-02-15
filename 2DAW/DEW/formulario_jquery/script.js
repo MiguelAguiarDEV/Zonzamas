@@ -57,8 +57,8 @@ const validationRules = {
     }
 };
 
-function validateField(field, value, ruleS) {
-    const rule = validationRules[ruleS];
+function validateField(field, value,rule) {
+    rule = validationRules[rule];
     if (!rule.regex.test(value)) {
         $('#' + field + 'Error').text(rule.error);
         $('#' + field).addClass('invalid');
@@ -75,10 +75,19 @@ function validateField(field, value, ruleS) {
 const fields = Object.keys(validationRules);
 
 // Agrega un controlador de eventos 'keyup' a cada campo
+// for (let field of fields) {
+//     document.getElementById(field).addEventListener('keyup', function() {
+//         validateField(field, this.value, field);
+//     });
+// }
+
+// Agrega un controlador de eventos 'keyup' a cada campo
 for (const field of fields) {
-    $(document).on('keyup', '[id^="field"]', function() {
+    $('#' + field).on('keyup', function() {
+        
         validateField(field, $(this).val(), field);
     });
+    console.log('keyup', field);
 }
 
 function validateAll() {
